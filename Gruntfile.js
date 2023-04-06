@@ -66,33 +66,17 @@ module.exports = function(grunt) {
 			}
 		},
  		usebanner: {
- 			css: {
-				options: {
-					position: 'top',
-					banner: BANNER_TEXT,
-					linebreak: true
-				},
-				files: {
-					src: [
-						`${BUILD_DIR}wp-admin/css/*.min.css`,
-						`${BUILD_DIR}wp-includes/css/*.min.css`,
-						`${BUILD_DIR}wp-admin/css/colors/*/*.css`
-					]
-				}
+			options: {
+				position: 'top',
+				banner: BANNER_TEXT,
+				linebreak: true
 			},
-			js: {
-				usebanner: {
-					options: {
-						position: 'top',
-						banner: '/*! This file is auto-generated */',
-						linebreak: true
-					},
-					files: {
-						src: [
-							SOURCE_DIR + 'wp-includes/js/dist/*.min.js',
-						]
-					}
-				}
+			files: {
+				src: [
+					`${BUILD_DIR}wp-admin/css/*.min.css`,
+					`${BUILD_DIR}wp-includes/css/*.min.css`,
+					`${BUILD_DIR}wp-admin/css/colors/*/*.css`
+				]
 			}
 		},
 		clean: {
@@ -101,9 +85,7 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: SOURCE_DIR,
 				src: [
-					'wp-includes/js/dist/vendor/*.js',
-					'wp-includes/js/clipboard.js',
-					'wp-includes/js/clipboard.min.js'
+					'wp-includes/js/dist/vendor/*.js'
 				]
 			},
 			'package-js': {
@@ -201,14 +183,6 @@ module.exports = function(grunt) {
 					{
 						src:  `./node_modules/moment/min/moment.min.js`,
 						dest: `${SOURCE_DIR}wp-includes/js/dist/vendor/moment.min.js`
-					},
-					{
-						src:  `./node_modules/clipboard/dist/clipboard.js`,
-						dest: `${SOURCE_DIR}wp-includes/js/clipboard.js`
-					},
-					{
-						src:  `./node_modules/clipboard/dist/clipboard.min.js`,
-						dest: `${SOURCE_DIR}wp-includes/js/clipboard.min.js`
 					}
 				]
 			},
@@ -286,6 +260,18 @@ module.exports = function(grunt) {
 		webpack: {
 			min: webpackConfig( { environment: 'production', buildTarget: SOURCE_DIR } ),
 			dev: webpackConfig( { environment: 'development', buildTarget: SOURCE_DIR } )
+		},
+		usebanner: {
+			options: {
+				position: 'top',
+				banner: '/*! This file is auto-generated */',
+				linebreak: true
+			},
+			files: {
+				src: [
+					SOURCE_DIR + 'wp-includes/js/dist/*.min.js',
+				]
+			}
 		},
 		sass: {
 			colors: {
@@ -471,10 +457,8 @@ module.exports = function(grunt) {
 					'wp-includes/js/tinymce/plugins/wp*/plugin.js',
 					// Third party scripts
 					'!wp-includes/js/codemirror/*.js',
-					'!wp-includes/js/tinymce/plugins/**/*.js',
 					'!wp-admin/js/farbtastic.js',
 					'!wp-includes/js/backbone*.js',
-					'!wp-includes/js/clipboard.js',
 					'!wp-includes/js/swfobject.js',
 					'!wp-includes/js/underscore*.js',
 					'!wp-includes/js/colorpicker.js',
@@ -482,7 +466,6 @@ module.exports = function(grunt) {
 					'!wp-includes/js/json2.js',
 					'!wp-includes/js/tw-sack.js',
 					'!wp-includes/js/twemoji.js',
-					'!wp-includes/js/plupload/*.js',
 					'!**/*.min.js'
 				],
 				// Remove once other JSHint errors are resolved
@@ -565,7 +548,7 @@ module.exports = function(grunt) {
 					'tests/qunit/*.html'
 				],
 				options: {
-					httpBase: 'http://localhost:8008/',
+					httpBase: 'http://localhost:8008',
 					puppeteer: puppeteerOptions
 				}
 			}
@@ -1107,7 +1090,7 @@ module.exports = function(grunt) {
 			'copy:vendor-js',
 			'webpack:dev',
 			'webpack:min',
-			'usebanner:js'
+			'usebanner'
 		]
 	);
 
@@ -1130,7 +1113,7 @@ module.exports = function(grunt) {
 			'concat:emoji',
 			'includes:emoji',
 			'includes:embed',
-			'usebanner:css',
+			'usebanner',
 			'jsvalidate:build'
 		]
 	);
