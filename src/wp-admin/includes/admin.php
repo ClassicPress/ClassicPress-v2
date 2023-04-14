@@ -18,6 +18,9 @@ if ( ! defined( 'WP_ADMIN' ) ) {
 	unset( $admin_locale );
 }
 
+/** ClassicPress Support URL changes */
+require_once ABSPATH . WPINC . '/cp-branding/links.php';
+
 /** ClassicPress Administration Hooks */
 require_once ABSPATH . 'wp-admin/includes/admin-filters.php';
 
