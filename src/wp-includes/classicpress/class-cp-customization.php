@@ -10,6 +10,7 @@
 class CP_Customization {
 	public function __construct() {
 		add_action( 'load-edit.php', array( $this, 'add_id_init' ) );
+		add_filter( 'gettext_default', array( $this, 'cp_translations' ), 10, 3 );
 	}
 
 	/**
@@ -27,7 +28,7 @@ class CP_Customization {
 	 * @return string Translated string with corrected URL.
 	 */
 
-	public static function cp_translations( $translated_text, $untranslated_text, $domain ) {
+	public function cp_translations( $translated_text, $untranslated_text, $domain ) {
 		if ( strpos( $untranslated_text, 'https://' ) === false ) {
 			return $translated_text;
 		}
