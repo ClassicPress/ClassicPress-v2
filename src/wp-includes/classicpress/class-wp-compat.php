@@ -29,15 +29,15 @@ class WP_Compat {
 		}
 
 		// Define hooks to be used to warn users
-		add_action( 'after_plugin_row', array( $this, 'using_block_function_row'), 10, 2 );
-		add_action( 'upgrader_process_complete', array( $this, 'update_who_uses_blocks'), 10, 2 );
-		add_action( 'delete_plugin', array( $this, 'delete_who_uses_blocks'), 10, 1 );
-		add_action( 'admin_notices', array( $this, 'using_block_function_theme'), 10, 0 );
-		add_action( 'after_switch_theme', array( $this, 'delete_theme_uses_blocks'), 10, 0 );
+		add_action( 'after_plugin_row', array( $this, 'using_block_function_row' ), 10, 2 );
+		add_action( 'upgrader_process_complete', array( $this, 'update_who_uses_blocks' ), 10, 2 );
+		add_action( 'delete_plugin', array( $this, 'delete_who_uses_blocks' ), 10, 1 );
+		add_action( 'admin_notices', array( $this, 'using_block_function_theme' ), 10, 0 );
+		add_action( 'after_switch_theme', array( $this, 'delete_theme_uses_blocks' ), 10, 0 );
 
 	}
 
-	public function purge_options ( $old_value, $value ) {
+	public function purge_options( $old_value, $value ) {
 		if ( $value === 2 ) {
 			return;
 		}
