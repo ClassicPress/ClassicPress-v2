@@ -62,7 +62,7 @@ class WP_Compat {
 		$active        = is_plugin_active( $plugin_file ) ? 'active' : '';
 		?>
 		<tr class="plugin-update-tr <?php echo $active; ?>">
-			<td colspan="<?php echo $wp_list_table->get_column_count(); ?>" class="plugin-update colspanchange">
+			<td colspan="<?php echo $wp_list_table->get_column_count(); ?>" class="plugin-update colspanchange" style="box-shadow: none;">
 				<div class="notice inline notice-alt notice-warning">
 					<p>
 						<?php
