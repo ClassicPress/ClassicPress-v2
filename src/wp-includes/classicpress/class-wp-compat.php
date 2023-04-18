@@ -246,6 +246,22 @@ class WP_Compat {
 
 		endif;
 
+		if ( ! function_exists( 'has_block' ) ) :
+			/**
+			 * Polyfill for block functions.
+			 *
+			 * @since CP-2.0.0
+			 *
+			 * @return bool False.
+			 */
+			function has_block( ...$args ) {
+				global $wp_compat;
+				$wp_compat->using_block_function();
+				return false;
+			}
+
+		endif;
+
 		if ( ! function_exists( 'register_block_pattern' ) ) :
 			/**
 			 * Polyfill for block functions.
