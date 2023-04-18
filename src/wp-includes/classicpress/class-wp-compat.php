@@ -60,9 +60,10 @@ class WP_Compat {
 
 		$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
 		$active        = is_plugin_active( $plugin_file ) ? 'active' : '';
+		$shadow        = isset( $plugin_data['new_version'] ) ? 'style="box-shadow: none;"' : '';
 		?>
 		<tr class="plugin-update-tr <?php echo $active; ?>">
-			<td colspan="<?php echo $wp_list_table->get_column_count(); ?>" class="plugin-update colspanchange" style="box-shadow: none;">
+			<td colspan="<?php echo $wp_list_table->get_column_count(); ?>" class="plugin-update colspanchange" <?php echo $shadow; ?>>
 				<div class="notice inline notice-alt notice-warning">
 					<p>
 						<?php
