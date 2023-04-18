@@ -509,21 +509,28 @@ endfor;
 
 
 <tr>
-<th scope="row"><label for="blocks_compatibility_level"><?php _e( 'Blocks compatibility level' ); ?></label></th>
+<th scope="row"><label for="blocks_compatibility_level"><?php _e( 'Blocks compatibility' ); ?></label></th>
 <td><select name="blocks_compatibility_level" id="blocks_compatibility_level">
 <?php
 $blocks_compatibility_level = get_option( 'blocks_compatibility_level', 1 );
 $blocks_compatibility_level_desc = array(
-	__( 'None' ),
-	__( 'Active' ),
-	__( 'Active with warnings' ),
+	__( 'Off' ),
+	__( 'On' ),
+	__( 'Troubleshooting' ),
 );
 for ( $index = 0; $index <= 2; $index++ ) :
 	$selected = ( $blocks_compatibility_level == $index ) ? 'selected="selected"' : '';
 	echo "\n\t<option value='" . esc_attr( $index ) . "' $selected>" . $blocks_compatibility_level_desc[ $index ] . '</option>';
 endfor;
 ?>
-</select></td>
+</select>
+<p class="description" id="home-description">
+<?php _e( 'ClassicPress is incompatible with the block editor. When blocks compatability is turned on (default), it allows more plugins and themes to work but block-related features will not work. ' ); ?>
+<a href="https://docs.classicpress.net/user-guides/using-classicpress/settings-general-screen/#blocks-compatability" target="_blank" rel="noopener noreferrer">
+<?php _e( 'Learn more.' ); ?>
+</a>
+</p>
+</td>
 </tr>
 
 
