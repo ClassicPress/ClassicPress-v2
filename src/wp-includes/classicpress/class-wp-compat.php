@@ -75,7 +75,7 @@ class WP_Compat {
 			</td>
 		</tr>
 		<script>
-			jQuery('tr[data-plugin="<?php echo $plugin_file; ?>"]').addClass('update');
+			document.querySelector('tr[data-plugin="<?php echo $plugin_file; ?>"').classList.add('update');
 		</script>
 		<?php
 	}
