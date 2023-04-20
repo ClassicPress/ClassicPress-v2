@@ -509,7 +509,7 @@ endfor;
 
 
 <tr>
-<th scope="row"><label for="blocks_compatibility_level"><?php _e( 'Blocks compatibility' ); ?></label></th>
+<th scope="row"><label for="blocks_compatibility_level"><?php _e( 'Blocks Compatibility' ); ?></label></th>
 <td><select name="blocks_compatibility_level" id="blocks_compatibility_level">
 <?php
 $blocks_compatibility_level = get_option( 'blocks_compatibility_level', 1 );
