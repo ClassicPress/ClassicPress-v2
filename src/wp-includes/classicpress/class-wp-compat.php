@@ -296,6 +296,8 @@ class WP_Compat {
 
 	}
 
+		// Load classes files as classes can not be defined inside a class.
+		require_once 'class-wp-block-type-pf.php';
 }
 
 $wp_compat = new WP_Compat;
