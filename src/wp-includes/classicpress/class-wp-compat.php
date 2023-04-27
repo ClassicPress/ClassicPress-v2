@@ -54,7 +54,7 @@ class WP_Compat {
 	 */
 	public function using_block_function_row( $plugin_file, $plugin_data ) {
 		$plugins_using_blocks = get_option( 'plugins_using_blocks', array() );
-		if ( ! array_key_exists( $plugin_file, $plugins_using_blocks ) ) {
+		if ( ! array_key_exists( dirname( $plugin_file ), $plugins_using_blocks ) && ! array_key_exists( $plugin_file, $plugins_using_blocks )) {
 			return;
 		}
 
@@ -161,6 +161,16 @@ class WP_Compat {
 	}
 
 	/**
+	 * Get plugin folder name from a path.
+	 *
+	 * @param string $path
+	 * @return string
+	 */
+	private function plugin_folder( $path ){
+		return preg_replace( '~^' . preg_quote( WP_PLUGIN_DIR ) . preg_quote( DIRECTORY_SEPARATOR ) . '([^' . preg_quote( DIRECTORY_SEPARATOR ) . ']*).*~', '$1', $path );
+	}
+
+	/**
 	 * Action hooked to after_switch_theme to remove the theme
 	 * that may not work properly.
 	 *
@@ -190,8 +200,15 @@ class WP_Compat {
 			update_option( 'theme_using_blocks', '2' );
 		} else {
 			// A plugin is calling the function
-			$plugins = array_intersect( array_column( $trace, 'file' ), wp_get_active_and_valid_plugins() );
-			unset( $plugins[ array_search( __FILE__, $plugins ) ] ); // Remove ourself
+			$traces = array_column( $trace, 'file' );
+			$traces = array_map( function( $path ) {
+				return $this->plugin_folder( $path );
+			}, $traces);
+			$active = wp_get_active_and_valid_plugins();
+			$active = array_map( function( $path ) {
+				return $this->plugin_folder( $path );
+			}, $active);
+			$plugins = array_intersect( $traces, $active );
 			$plugin = array_pop( $plugins );
 			if ( $plugin === null ) {
 				// Nothing found? Bail.
@@ -209,7 +226,6 @@ class WP_Compat {
 	 * Polyfills that can not be defined elsewhere go here.
 	 * that may not work properly.
 	 *
-	 * @param string       $options
 	 * @return void
 	 */
 	private function define_polyfills() {
@@ -277,6 +293,7 @@ class WP_Compat {
 			}
 
 		endif;
+
 	}
 
 }
