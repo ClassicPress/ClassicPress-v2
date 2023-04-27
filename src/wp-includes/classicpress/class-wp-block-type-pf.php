@@ -16,12 +16,6 @@
  */
 
 class WP_Block_Type {
-/*
-				global $wp_compat;
-				$wp_compat->using_block_function();
-				return false;
-*/
-
 	public function __set( $name, $value ) {
 		global $wp_compat;
 		$wp_compat->using_block_function();
@@ -56,5 +50,4 @@ class WP_Block_Type {
 		$wp_compat::using_block_function();
 		return false;
 	}
-
 }
