@@ -513,15 +513,17 @@ endfor;
 <td><select name="blocks_compatibility_level" id="blocks_compatibility_level">
 <?php
 $blocks_compatibility_level = get_option( 'blocks_compatibility_level', 1 );
+
 $blocks_compatibility_level_desc = array(
 	__( 'Off' ),
 	__( 'On' ),
 	__( 'Troubleshooting' ),
 );
-for ( $index = 0; $index <= 2; $index++ ) :
-	$selected = ( $blocks_compatibility_level == $index ) ? 'selected="selected"' : '';
-	echo "\n\t<option value='" . esc_attr( $index ) . "' $selected>" . $blocks_compatibility_level_desc[ $index ] . '</option>';
-endfor;
+
+for ( $index = 0; $index <= 2; $index++ ) {
+	echo "\n\t<option value='" . esc_attr( $index ) . "' " . selected( $blocks_compatibility_level, $index, false ) . '>'
+	. esc_html( $blocks_compatibility_level_desc[ $index ] ) . '</option>';
+}
 ?>
 </select>
 <p class="description" id="home-description">

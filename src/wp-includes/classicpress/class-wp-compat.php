@@ -12,33 +12,33 @@ class WP_Compat {
 
 	public function __construct() {
 
-		if ( $this->blocks_compatibility_level === null ) {
+		if ( null === $this->blocks_compatibility_level ) {
 			$this->blocks_compatibility_level = (int) get_option( 'blocks_compatibility_level', 1 );
 		}
 
 		add_action( 'update_option_blocks_compatibility_level', array( $this, 'purge_options' ), 10, 2 );
 
-		if ( $this->blocks_compatibility_level === 0 ) {
+		if ( 0 === $this->blocks_compatibility_level ) {
 			return;
 		}
 
 		$this->define_polyfills();
 
-		if ( $this->blocks_compatibility_level === 1 ) {
+		if ( 1 === $this->blocks_compatibility_level ) {
 			return;
 		}
 
 		// Define hooks to be used to warn users
 		add_action( 'after_plugin_row', array( $this, 'using_block_function_row' ), 10, 2 );
-		add_action( 'upgrader_process_complete', array( $this, 'update_who_uses_blocks' ), 10, 2 );
-		add_action( 'delete_plugin', array( $this, 'delete_who_uses_blocks' ), 10, 1 );
+		add_action( 'upgrader_process_complete', array( $this, 'update_extensions_using_blocks' ), 10, 2 );
+		add_action( 'delete_plugin', array( $this, 'delete_plugins_using_blocks' ), 10, 1 );
 		add_action( 'admin_notices', array( $this, 'using_block_function_theme' ), 10, 0 );
-		add_action( 'after_switch_theme', array( $this, 'delete_theme_uses_blocks' ), 10, 0 );
+		add_action( 'after_switch_theme', array( $this, 'delete_themes_using_blocks' ), 10, 0 );
 
 	}
 
 	public function purge_options( $old_value, $value ) {
-		if ( $value === 2 ) {
+		if ( 2 === $value ) {
 			return;
 		}
 		delete_option( 'plugins_using_blocks' );
@@ -88,17 +88,17 @@ class WP_Compat {
 	 * @param array       $options
 	 * @return void
 	 */
-	public function update_who_uses_blocks( $upgrader, $options ) {
-		if ( $options['action'] !== 'update' ) {
+	public function update_extensions_using_blocks( $upgrader, $options ) {
+		if ( 'update' !== $options['action'] ) {
 			return;
 		}
 
-		if ( $options['type'] === 'theme' ) {
+		if ( 'theme' === $options['type'] ) {
 			update_option( 'theme_using_blocks', false );
 			return;
 		}
 
-		if ( $options['type'] !== 'plugin' ) {
+		if ( 'plugin' !== $options['type'] ) {
 			return;
 		}
 
@@ -118,7 +118,7 @@ class WP_Compat {
 	 * @param string       $options
 	 * @return void
 	 */
-	public function delete_who_uses_blocks( $plugin_file ) {
+	public function delete_plugins_using_blocks( $plugin_file ) {
 		$plugins_using_blocks = get_option( 'plugins_using_blocks', array() );
 		if ( array_key_exists( $plugin_file, $plugins_using_blocks ) ) {
 			unset( $plugins_using_blocks[ $plugin_file ] );
@@ -134,15 +134,16 @@ class WP_Compat {
 	 */
 	public function using_block_function_theme() {
 		global $pagenow;
-		if ( $pagenow !== 'themes.php' ) {
+		if ( 'themes.php' !== $pagenow ) {
 			return;
 		}
+
 		$theme_using_blocks = get_option( 'theme_using_blocks', '0' );
 		if ( ! in_array( $theme_using_blocks, array( '1', '2' ), true ) ) {
 			return;
 		}
 
-		if ( $theme_using_blocks === '1' ) {
+		if ( '1' === $theme_using_blocks ) {
 			// Translators: %1$s is the theme name.
 			$message = sprintf( esc_html__( '%1$s uses block-related functions and may not work correctly.' ), wp_get_theme()->get( 'Name' ) );
 		} else {
@@ -176,8 +177,8 @@ class WP_Compat {
 	 *
 	 * @return void
 	 */
-	public function delete_theme_uses_blocks() {
-		update_option( 'theme_using_blocks', '0' );
+	public function delete_themes_using_blocks() {
+		update_option( 'theme_using_blocks', false );
 	}
 
 
@@ -188,14 +189,16 @@ class WP_Compat {
 	 * @return void
 	 */
 	public function using_block_function() {
-		if ( $this->blocks_compatibility_level !== 2 ) {
+		if ( 2 !== $this->blocks_compatibility_level ) {
 			return;
 		}
+
 		$trace = debug_backtrace();
-		if ( strpos( $trace[1]['file'], get_stylesheet_directory() ) === 0 ) {
+
+		if ( 0 === strpos( $trace[1]['file'], get_stylesheet_directory() ) ) {
 			// Current theme is calling the function
 			update_option( 'theme_using_blocks', '1' );
-		} elseif ( strpos( $trace[1]['file'], get_template_directory() ) === 0 ) {
+		} elseif ( 0 === strpos( $trace[1]['file'], get_template_directory() ) ) {
 			// Parent theme is calling the function
 			update_option( 'theme_using_blocks', '2' );
 		} else {
@@ -216,7 +219,7 @@ class WP_Compat {
 			);
 			$plugins = array_intersect( $traces, $active );
 			$plugin = array_pop( $plugins );
-			if ( $plugin === null ) {
+			if ( null === $plugin ) {
 				// Nothing found? Bail.
 				return;
 			}
@@ -236,7 +239,7 @@ class WP_Compat {
 	 */
 	private function define_polyfills() {
 		// Polyfills that must not have to be defined elsewhere go there.
-		if ( ! function_exists( 'register_block_type' ) ) :
+		if ( ! function_exists( 'register_block_type' ) ) {
 			/**
 			 * Polyfill for block functions.
 			 *
@@ -249,10 +252,9 @@ class WP_Compat {
 				$wp_compat->using_block_function();
 				return false;
 			}
+		}
 
-		endif;
-
-		if ( ! function_exists( 'register_block_type_from_metadata' ) ) :
+		if ( ! function_exists( 'register_block_type_from_metadata' ) ) {
 			/**
 			 * Polyfill for block functions.
 			 *
@@ -265,10 +267,9 @@ class WP_Compat {
 				$wp_compat->using_block_function();
 				return false;
 			}
+		}
 
-		endif;
-
-		if ( ! function_exists( 'has_block' ) ) :
+		if ( ! function_exists( 'has_block' ) ) {
 			/**
 			 * Polyfill for block functions.
 			 *
@@ -281,10 +282,9 @@ class WP_Compat {
 				$wp_compat->using_block_function();
 				return false;
 			}
+		}
 
-		endif;
-
-		if ( ! function_exists( 'register_block_pattern' ) ) :
+		if ( ! function_exists( 'register_block_pattern' ) ) {
 			/**
 			 * Polyfill for block functions.
 			 *
@@ -297,11 +297,10 @@ class WP_Compat {
 				$wp_compat->using_block_function();
 				return false;
 			}
+		}
 
-		endif;
-
-		// Load classes files as classes can not be defined inside a class.
-		require_once 'class-wp-block-type-pf.php';
+		// Load WP_Block_Type class file as polyfill.
+		require_once 'class-wp-block-type.php';
 
 	}
 

@@ -2176,7 +2176,7 @@ function register_initial_settings() {
 		'general',
 		'blocks_compatibility_level',
 		array(
-			'show_in_rest' => true,
+			'show_in_rest' => false,
 			'type'         => 'integer',
 			'description'  => __( 'Compatibility level for block-related function support.' ),
 		)

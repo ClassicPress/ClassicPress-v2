@@ -2,50 +2,50 @@
 /**
  * Blocks API: WP_Block_Type class Polyfill
  *
- * @package WordPress
+ * @package ClassicPress
  * @subpackage Blocks
- * @since 5.0.0
+ * @since 2.0.0
  */
 
 /**
  * Core class representing a block type.
  *
- * @since 5.0.0
+ * @since 2.0.0
  *
  * @see register_block_type()
  */
 
 class WP_Block_Type {
-	public function __set( $name, $value ) {
+	public function __set( ...$args ) {
 		global $wp_compat;
 		$wp_compat->using_block_function();
 	}
 
-	public function __get( $name ) {
-		global $wp_compat;
-		$wp_compat->using_block_function();
-		return false;
-	}
-
-	public function __isset( $name ) {
+	public function __get( ...$args ) {
 		global $wp_compat;
 		$wp_compat->using_block_function();
 		return false;
 	}
 
-	public function __unset( $name ) {
+	public function __isset( ...$args ) {
 		global $wp_compat;
 		$wp_compat->using_block_function();
 		return false;
 	}
 
-	public function __call( $name, $arguments ) {
+	public function __unset( ...$args ) {
+		global $wp_compat;
+		$wp_compat->using_block_function();
+		return false;
+	}
+
+	public function __call( ...$args ) {
 		global $wp_compat;
 		$wp_compat::using_block_function();
 		return false;
 	}
 
-	public static function __callstatic( $name, $arguments ) {
+	public static function __callstatic( ...$args ) {
 		global $wp_compat;
 		$wp_compat::using_block_function();
 		return false;
