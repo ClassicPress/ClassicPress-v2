@@ -300,7 +300,7 @@ class WP_Compat {
 		}
 
 		// Load WP_Block_Type class file as polyfill.
-		require_once 'class-wp-block-type.php';
+		require_once ABSPATH . WPINC . '/classicpress/class-wp-block-type.php';
 
 	}
 
