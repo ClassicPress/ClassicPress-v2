@@ -92,7 +92,7 @@ class Tests_Compat_wordpress extends WP_UnitTestCase {
 
 		$setting = get_option( 'plugins_using_blocks' );
 		$this->assertNotFalse( $setting );
-		$this->assertTrue( array_key_exists( 'block-plugin.php', $setting) );
+		$this->assertTrue( array_key_exists( 'block-plugin.php', $setting ) );
 
 		deactivate_plugins( 'block-plugin.php' );
 		update_option( 'plugins_using_blocks', false );
