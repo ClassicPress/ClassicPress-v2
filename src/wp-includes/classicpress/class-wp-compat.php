@@ -195,10 +195,10 @@ class WP_Compat {
 
 		$trace = debug_backtrace();
 
-		if ( 0 === strpos( $trace[1]['file'], get_stylesheet_directory() ) ) {
+		if ( 0 === strpos( $trace[1]['file'], realpath( get_stylesheet_directory() ) ) ) {
 			// Current theme is calling the function
 			update_option( 'theme_using_blocks', '1' );
-		} elseif ( 0 === strpos( $trace[1]['file'], get_template_directory() ) ) {
+		} elseif ( 0 === strpos( $trace[1]['file'], realpath( get_template_directory() ) ) ) {
 			// Parent theme is calling the function
 			update_option( 'theme_using_blocks', '2' );
 		} else {
