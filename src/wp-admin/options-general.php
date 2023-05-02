@@ -515,9 +515,9 @@ endfor;
 $blocks_compatibility_level = get_option( 'blocks_compatibility_level', 1 );
 
 $blocks_compatibility_level_desc = array(
-	__( 'Off' ),
-	__( 'On' ),
-	__( 'Troubleshooting' ),
+	_x( 'Off', 'Block Compatibility' ),
+	_x( 'On', 'Block Compatibility' ),
+	_x( 'Troubleshooting', 'Block Compatibility' ),
 );
 
 for ( $index = 0; $index <= 2; $index++ ) {
