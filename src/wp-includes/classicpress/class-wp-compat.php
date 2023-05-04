@@ -70,6 +70,7 @@ class WP_Compat {
 						// Translators: %1$s is the plugin name.
 						printf( esc_html__( '%1$s uses block-related functions and may not work correctly.' ), $plugin_data['Name'] );
 						?>
+						<a href="https://forums.classicpress.net/new-topic?category=plugins/plugin-support&tags=blocks-compatibility&title=<?php echo urlencode( $plugin_data['Name'] ); ?>+blocks+compatibility"><?php _e( 'Report an issue &rsaquo;' ); ?></a>
 					</p>
 				</div>
 			</td>
@@ -145,10 +146,12 @@ class WP_Compat {
 
 		if ( '1' === $theme_using_blocks ) {
 			// Translators: %1$s is the theme name.
-			$message = sprintf( esc_html__( '%1$s uses block-related functions and may not work correctly.' ), wp_get_theme()->get( 'Name' ) );
+			$message  = sprintf( esc_html__( '%1$s uses block-related functions and may not work correctly.' ), wp_get_theme()->get( 'Name' ) );
+			$message .= ' <a href="https://forums.classicpress.net/new-topic?category=themes/theme-support&tags=blocks-compatibility&title=' . urlencode( wp_get_theme()->get( 'Name' ) ) . '+blocks+compatibility">' . __( 'Report an issue &rsaquo;' ) . '</a>';
 		} else {
 			// Translators: %1$s is the theme name, %1$s is the parent theme name.
 			$message = sprintf( esc_html__( '%1$s parent theme (%2$s) uses block-related functions and may not work correctly.' ), wp_get_theme()->get( 'Name' ), wp_get_theme()->parent()->get( 'Name' ) );
+			$message .= ' <a href="https://forums.classicpress.net/new-topic?category=themes/theme-support&tags=blocks-compatibility&title=' . urlencode( wp_get_theme()->parent()->get( 'Name' ) ) . '+blocks+compatibility">' . __( 'Report an issue &rsaquo;' ) . '</a>';
 		}
 
 		?>
