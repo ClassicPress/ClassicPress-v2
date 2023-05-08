@@ -177,7 +177,7 @@ if ( $login_custom_image_src ) {
 		<p class="description" id="login_custom_image-description">
 			<?php _e( 'If you choose an image here and enable this option, then that image will be shown at the top of the login page instead of the ClassicPress logo.' ); ?>
 			<a href="https://link.classicpress.net/docs/custom-login-image">
-				<?php _e( 'Documentation &#187;' ); ?>
+				<?php _e( 'Learn more.' ); ?>
 			</a>
 		</p>
 		<label>
