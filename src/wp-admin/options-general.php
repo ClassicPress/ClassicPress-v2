@@ -527,8 +527,8 @@ for ( $index = 0; $index <= 2; $index++ ) {
 ?>
 </select>
 <p class="description" id="home-description">
-<?php _e( 'ClassicPress is incompatible with the block editor. When blocks compatability is turned on (default), it allows more plugins and themes to work but block-related features will not work. ' ); ?>
-<a href="https://docs.classicpress.net/user-guides/using-classicpress/settings-general-screen/#blocks-compatability" target="_blank" rel="noopener noreferrer">
+<?php _e( 'ClassicPress is incompatible with the block editor. When blocks compatibility is turned on (default), it allows more plugins and themes to work but block-related features will not work. ' ); ?>
+<a href="https://docs.classicpress.net/user-guides/using-classicpress/settings-general-screen/#blocks-compatibility" target="_blank" rel="noopener noreferrer">
 <?php _e( 'Learn more.' ); ?>
 </a>
 </p>
