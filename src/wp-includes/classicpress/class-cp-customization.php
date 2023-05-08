@@ -8,9 +8,36 @@
  */
 
 class CP_Customization {
+	/**
+	 * Stores ClassicPress core plugins list.
+	 * @var array
+	 */
+	public $cp_core_plugins = array(
+		'codepotent-update-manager/codepotent-update-manager.php',
+		'aaa.php',
+	);
+
 	public function __construct() {
 		add_action( 'load-edit.php', array( $this, 'add_id_init' ) );
 		add_filter( 'gettext_default', array( $this, 'cp_translations' ), 10, 3 );
+		add_filter( 'option_active_plugins', array( $this, 'cp_sort_plugins' ) );
+	}
+
+	/**
+	 * Sorts a list of plugin slugs putting core plugin first.
+	 *
+	 * Intended to be used as option_active_plugins filter.
+	 *
+	 * @since CP-2.0.0
+	 *
+	 *
+	 * @param array $active_plugins
+	 * @return array
+	 */
+	public function cp_sort_plugins( $active_plugins ) {
+		$active_core_plugins = array_intersect( $this->cp_core_plugins, $active_plugins );
+		$plugin_list = array_values( array_unique( array_merge( $active_core_plugins, $active_plugins ) ) );
+		return $plugin_list;
 	}
 
 	/**
