@@ -4,13 +4,13 @@
  *
  * @package ClassicPress
  * @subpackage Blocks
- * @since 2.0.0
+ * @since CP-2.0.0
  */
 
 /**
  * Core class representing a block type.
  *
- * @since 2.0.0
+ * @since CP-2.0.0
  *
  * @see register_block_type()
  */
