@@ -13,8 +13,7 @@ class CP_Customization {
 	 * @var array
 	 */
 	public $cp_core_plugins = array(
-		'codepotent-update-manager/codepotent-update-manager.php',
-		'aaa.php',
+		'classicpress-directory-integration/classicpress-directory-integration.php',
 	);
 
 	public function __construct() {
@@ -36,7 +35,7 @@ class CP_Customization {
 	 */
 	public function cp_sort_plugins( $active_plugins ) {
 		$active_core_plugins = array_intersect( $this->cp_core_plugins, $active_plugins );
-		$plugin_list = array_values( array_unique( array_merge( $active_core_plugins, $active_plugins ) ) );
+		$plugin_list         = array_values( array_unique( array_merge( $active_core_plugins, $active_plugins ) ) );
 		return $plugin_list;
 	}
 
