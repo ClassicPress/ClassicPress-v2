@@ -42,9 +42,10 @@
  * the file. This is not checked however and the file is only opened for
  * reading.
  *
- * @since CP-1.5.0 Added support for `Requires CP` header
+ * @since 1.5.0
  * @since 5.3.0    Added support for `Requires at least` and `Requires PHP` headers.
  * @since 5.8.0    Added support for `Update URI` header.
+ * @since CP-1.5.0 Added support for `Requires CP` header
  * @since CP-2.0.0 Added fallback for `Requires CP` header.
  *
  * @param string $plugin_file Absolute path to the main plugin file.
