@@ -34,12 +34,12 @@ class Tests_Admin_IncludesPlugin extends WP_UnitTestCase {
 			$this->assertSame( $value, $data[ $name ] );
 		}
 
-		$data = get_plugin_data( DIR_TESTDATA . '/plugins/requirescp.php' );
+		$data = get_plugin_data( DIR_TESTDATA . '/plugins/test-requires-cp/test-requires-cp.php' );
 
 		$default_headers = array(
 			'Name'        => 'With requires CP and without Update URI',
 			'RequiresCP'  => '1.5',
-			'UpdateURI'   => 'https://directory.classicpress.net/wp-json/wp/v2/plugins?byslug=plugins',
+			'UpdateURI'   => 'https://directory.classicpress.net/wp-json/wp/v2/plugins?byslug=test-requires-cp',
 		);
 
 		$this->assertTrue( is_array( $data ) );
@@ -49,12 +49,12 @@ class Tests_Admin_IncludesPlugin extends WP_UnitTestCase {
 			$this->assertSame( $value, $data[ $name ] );
 		}
 
-		$data = get_plugin_data( DIR_TESTDATA . '/plugins/updateuri.php' );
+		$data = get_plugin_data( DIR_TESTDATA . '/plugins/test-update-uri.php' );
 
 		$default_headers = array(
 			'Name'        => 'With requires CP and with Update URI',
 			'RequiresCP'  => '1.5',
-			'UpdateURI'   => 'https://directory.classicpress.net/wp-json/wp/v2/plugins?byslug=keep-it-safe',
+			'UpdateURI'   => 'https://directory.classicpress.net/wp-json/wp/v2/plugins?byslug=test-update-uri',
 		);
 
 		$this->assertTrue( is_array( $data ) );
