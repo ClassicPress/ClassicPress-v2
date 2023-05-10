@@ -34,12 +34,12 @@ class Tests_Admin_IncludesPlugin extends WP_UnitTestCase {
 			$this->assertSame( $value, $data[ $name ] );
 		}
 
-		$data = get_plugin_data( DIR_TESTDATA . '/plugins/test-requires-cp/test-requires-cp.php' );
+		$data = get_plugin_data( DIR_TESTDATA . '/plugins/unit-test-1/unit-test-1.php' );
 
 		$default_headers = array(
 			'Name'        => 'With requires CP and without Update URI',
 			'RequiresCP'  => '1.5',
-			'UpdateURI'   => 'https://directory.classicpress.net/wp-json/wp/v2/plugins?byslug=test-requires-cp',
+			'UpdateURI'   => 'https://directory.classicpress.net/wp-json/wp/v2/plugins?byslug=unit-test-1',
 		);
 
 		$this->assertTrue( is_array( $data ) );
@@ -49,12 +49,12 @@ class Tests_Admin_IncludesPlugin extends WP_UnitTestCase {
 			$this->assertSame( $value, $data[ $name ] );
 		}
 
-		$data = get_plugin_data( DIR_TESTDATA . '/plugins/test-update-uri.php' );
+		$data = get_plugin_data( DIR_TESTDATA . '/plugins/unit-test-2.php' );
 
 		$default_headers = array(
 			'Name'        => 'With requires CP and with Update URI',
 			'RequiresCP'  => '1.5',
-			'UpdateURI'   => 'https://directory.classicpress.net/wp-json/wp/v2/plugins?byslug=test-update-uri',
+			'UpdateURI'   => 'https://directory.classicpress.net/wp-json/wp/v2/plugins?byslug=unit-test-2',
 		);
 
 		$this->assertTrue( is_array( $data ) );
