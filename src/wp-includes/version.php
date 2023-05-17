@@ -39,11 +39,7 @@ $cp_version = '2.0+dev';
  *
  * @global string $wp_version
  */
-<<<<<<< HEAD
-$wp_version = '6.2';
-=======
-$wp_version = '4.9.23-src';
->>>>>>> a392d874ae (Grouped backports to the 4.9 branch.)
+$wp_version = '6.2.1';
 
 /**
  * Holds the WordPress DB revision, increments when changes are made to the WordPress DB schema.
