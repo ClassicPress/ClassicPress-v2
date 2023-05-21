@@ -198,6 +198,15 @@ class WP_Compat {
 
 		$trace = debug_backtrace();
 
+		/*
+		 * Fires after WP_Compat::using_block_function() is called.
+		 *
+		 * @since: CP-2.0.0
+		 *
+		 * @param array $trace debug_backtrace() output
+		 */
+		do_action( 'using_block_function', $trace );
+
 		if ( 0 === strpos( $trace[1]['file'], realpath( get_stylesheet_directory() ) ) ) {
 			// Current theme is calling the function
 			update_option( 'theme_using_blocks', '1' );
