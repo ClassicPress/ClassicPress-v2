@@ -302,12 +302,14 @@ function update_core( $from, $to ) {
 	$skip              = array( 'wp-content', 'wp-includes/version.php' );
 	$check_is_writable = array();
 
-	// Check to see which files don't really need updating - only available for 3.7 and higher.
-	if ( function_exists( 'get_core_checksums' ) ) {
+	// Check to see which files don't really need updating.  The
+	// function_exists check is not necessary, but we'll keep it to preserve
+	// the code structure.
+	if ( function_exists( 'cp_get_core_checksums' ) ) {
 		// Find the local version of the working directory.
 		$working_dir_local = WP_CONTENT_DIR . '/upgrade/' . basename( $from ) . $distro;
 
-		$checksums = get_core_checksums( $wp_version, isset( $wp_local_package ) ? $wp_local_package : 'en_US' );
+		$checksums = cp_get_core_checksums( $cp_version );
 
 		if ( is_array( $checksums ) && isset( $checksums[ $wp_version ] ) ) {
 			$checksums = $checksums[ $wp_version ]; // Compat code for 3.7-beta2.
