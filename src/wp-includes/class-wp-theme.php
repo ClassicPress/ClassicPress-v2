@@ -25,8 +25,7 @@ final class WP_Theme implements ArrayAccess {
 	 * @since 3.4.0
 	 * @since 5.4.0 Added `Requires at least` and `Requires PHP` headers.
 	 * @since 6.1.0 Added `Update URI` header.
-	 * @since CP-2.0.0 Added support for `Requires CP` header.
-	 * @since CP-2.0.0 Added fallback for `Update URI` header.
+	 * @since CP-2.0.0 Added support for `Requires CP` header and fallback for `Update URI`.
 	 * @var string[]
 	 */
 	private static $file_headers = array(

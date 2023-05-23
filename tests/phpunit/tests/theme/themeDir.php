@@ -117,7 +117,6 @@ class Tests_Theme_ThemeDir extends WP_UnitTestCase {
 
 	/**
 	 * A theme with Requires CP and without Update URI
-	 *
 	 */
 	public function test_theme_unit_test_update_uri_auto() {
 		$theme = wp_get_theme( 'unit-test-update-uri-auto' );
@@ -127,7 +126,6 @@ class Tests_Theme_ThemeDir extends WP_UnitTestCase {
 
 	/**
 	 * A theme with Requires CP and Update URI
-	 *
 	 */
 	public function test_theme_unit_test_update_uri() {
 		$theme = wp_get_theme( 'unit-test-update-uri' );
@@ -137,7 +135,6 @@ class Tests_Theme_ThemeDir extends WP_UnitTestCase {
 
 	/**
 	 * Check not to add Update URI where there is not Requires CP header
-	 *
 	 */
 	public function test_theme_no_update_uri() {
 		$theme = wp_get_theme( 'default' );
