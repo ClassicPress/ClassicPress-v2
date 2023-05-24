@@ -724,12 +724,12 @@ class WP_Site_Health {
 	 * @return array The test results.
 	 */
 	public function get_test_php_version() {
-		$response = wp_check_php_version();
+		global $required_php_version;
 
 		$result = array(
 			'label'       => sprintf(
 				/* translators: %s: The current PHP version. */
-				__( 'Your site is running the current version of PHP (%s)' ),
+				__( 'Your site is running PHP version (%s)' ),
 				PHP_VERSION
 			),
 			'status'      => 'good',
@@ -742,7 +742,7 @@ class WP_Site_Health {
 				sprintf(
 					/* translators: %s: The minimum recommended PHP version. */
 					__( 'PHP is one of the programming languages used to build ClassicPress. Newer versions of PHP receive regular security updates and may increase your site&#8217;s performance. The minimum recommended version of PHP is %s.' ),
-					$response ? $response['recommended_version'] : ''
+					$required_php_version
 				)
 			),
 			'actions'     => sprintf(
@@ -756,73 +756,19 @@ class WP_Site_Health {
 		);
 
 		// PHP is up to date.
-		if ( ! $response || version_compare( PHP_VERSION, $response['recommended_version'], '>=' ) ) {
+		if ( version_compare( PHP_VERSION, $required_php_version, '>=' ) ) {
 			return $result;
-		}
-
-		// The PHP version is older than the recommended version, but still receiving active support.
-		if ( $response['is_supported'] ) {
-			$result['label'] = sprintf(
-				/* translators: %s: The server PHP version. */
-				__( 'Your site is running on an older version of PHP (%s)' ),
-				PHP_VERSION
-			);
-			$result['status'] = 'recommended';
-
-			return $result;
-		}
-
-		// The PHP version is still receiving security fixes, but is lower than
-		// the expected minimum version that will be required by ClassicPress in the near future.
-		if ( $response['is_secure'] && $response['is_lower_than_future_minimum'] ) {
-			// The `is_secure` array key name doesn't actually imply this is a secure version of PHP. It only means it receives security updates.
-
-			$result['label'] = sprintf(
-				/* translators: %s: The server PHP version. */
-				__( 'Your site is running on an outdated version of PHP (%s), which soon will not be supported by ClassicPress.' ),
-				PHP_VERSION
-			);
-
-			$result['status']         = 'critical';
-			$result['badge']['label'] = __( 'Requirements' );
-
-			return $result;
-		}
-
-		// The PHP version is only receiving security fixes.
-		if ( $response['is_secure'] ) {
-			$result['label'] = sprintf(
-				/* translators: %s: The server PHP version. */
-				__( 'Your site is running on an older version of PHP (%s), which should be updated' ),
-				PHP_VERSION
-			);
-			$result['status'] = 'recommended';
-
-			return $result;
-		}
-
-		// No more security updates for the PHP version, and lower than the expected minimum version required by ClassicPress.
-		if ( $response['is_lower_than_future_minimum'] ) {
-			$message = sprintf(
-				/* translators: %s: The server PHP version. */
-				__( 'Your site is running on an outdated version of PHP (%s), which does not receive security updates and soon will not be supported by ClassicPress.' ),
-				PHP_VERSION
-			);
 		} else {
-			// No more security updates for the PHP version, must be updated.
-			$message = sprintf(
+			// The PHP version is older than the recommended version.
+			$result['label'] = sprintf(
 				/* translators: %s: The server PHP version. */
-				__( 'Your site is running on an outdated version of PHP (%s), which does not receive security updates. It should be updated.' ),
+				__( 'Your site is running on an older and unsupported version of PHP (%s), which should be updated' ),
 				PHP_VERSION
 			);
+			$result['status'] = 'critical';
+
+			return $result;
 		}
-
-		$result['label']  = $message;
-		$result['status'] = 'critical';
-
-		$result['badge']['label'] = __( 'Security' );
-
-		return $result;
 	}
 
 	/**
@@ -1413,7 +1359,7 @@ class WP_Site_Health {
 	 */
 	public function get_test_dotorg_communication() {
 		$result = array(
-			'label'       => __( 'Can communicate with WordPress.org' ),
+			'label'       => __( 'Can communicate with ClassicPress.net' ),
 			'status'      => '',
 			'badge'       => array(
 				'label' => __( 'Security' ),
@@ -1428,7 +1374,7 @@ class WP_Site_Health {
 		);
 
 		$wp_dotorg = wp_remote_get(
-			'https://api.wordpress.org',
+			'http://api-v1.classicpress.net',
 			array(
 				'timeout' => 10,
 			)
@@ -1438,7 +1384,7 @@ class WP_Site_Health {
 		} else {
 			$result['status'] = 'critical';
 
-			$result['label'] = __( 'Could not reach WordPress.org' );
+			$result['label'] = __( 'Could not reach ClassicPress.net' );
 
 			$result['description'] .= sprintf(
 				'<p>%s</p>',
@@ -1448,8 +1394,8 @@ class WP_Site_Health {
 					__( 'Error' ),
 					sprintf(
 						/* translators: 1: The IP address WordPress.org resolves to. 2: The error returned by the lookup. */
-						__( 'Your site is unable to reach WordPress.org at %1$s, and returned the error: %2$s' ),
-						gethostbyname( 'api.wordpress.org' ),
+						__( 'Your site is unable to reach ClassicPress.net at %1$s, and returned the error: %2$s' ),
+						gethostbyname( 'api-v1.classicpress.net' ),
 						$wp_dotorg->get_error_message()
 					)
 				)
@@ -2532,9 +2478,9 @@ class WP_Site_Health {
 	public static function get_tests() {
 		$tests = array(
 			'direct' => array(
-				'wordpress_version'         => array(
+				'classicpress_version'         => array(
 					'label' => __( 'ClassicPress Version' ),
-					'test'  => 'wordpress_version',
+					'test'  => 'classicpress_version',
 				),
 				'plugin_version'            => array(
 					'label' => __( 'Plugin Versions' ),
@@ -2600,7 +2546,7 @@ class WP_Site_Health {
 			),
 			'async'  => array(
 				'dotorg_communication' => array(
-					'label'             => __( 'Communication with WordPress.org' ),
+					'label'             => __( 'Communication with ClassicPress.net' ),
 					'test'              => rest_url( 'wp-site-health/v1/tests/dotorg-communication' ),
 					'has_rest'          => true,
 					'async_direct_test' => array( WP_Site_Health::get_instance(), 'get_test_dotorg_communication' ),
