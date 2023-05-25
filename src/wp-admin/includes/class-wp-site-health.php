@@ -1374,7 +1374,7 @@ class WP_Site_Health {
 		);
 
 		$wp_dotorg = wp_remote_get(
-			'http://api-v1.classicpress.net',
+			'https://api-v1.classicpress.net',
 			array(
 				'timeout' => 10,
 			)
