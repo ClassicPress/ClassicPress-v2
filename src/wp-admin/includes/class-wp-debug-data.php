@@ -46,7 +46,7 @@ class WP_Debug_Data {
 		$blog_public            = get_option( 'blog_public' );
 		$default_comment_status = get_option( 'default_comment_status' );
 		$environment_type       = wp_get_environment_type();
-		$core_version           = classicpress_version();
+		$core_version           = classicpress_version() . ' (WP-' . get_bloginfo( 'version' ) . ')';
 		$core_updates           = get_core_updates();
 		$core_update_needed     = '';
 
@@ -63,6 +63,16 @@ class WP_Debug_Data {
 
 		// Set up the array that holds all debug information.
 		$info = array();
+
+		$info['classicpress'] = array(
+			'label'  => __( 'ClassicPress' ),
+			'fields' => array(
+				'platform' => array(
+					'label' => __( '** Platform **' ),
+					'value' => $core_version,
+				),
+			),
+		);
 
 		$info['wp-core'] = array(
 			'label'  => __( 'ClassicPress' ),
