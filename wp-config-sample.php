@@ -13,7 +13,7 @@
  * * Database table prefix
  * * ABSPATH
  *
- * @link https://wordpress.org/support/article/editing-wp-config-php/
+ * @link https://docs.classicpress.net/user-guides/editing-wp-config-php/
  *
  * @package ClassicPress
  */
