@@ -48,6 +48,24 @@ $_old_files = array(
 );
 
 /**
+ * Stores Requests files to be preloaded and deleted.
+ *
+ * For classes/interfaces, use the class/interface name
+ * as the array key.
+ *
+ * All other files/directories should not have a key.
+ *
+ * @since 6.2.0
+ *
+ * @global array $_old_requests_files
+ * @var array
+ * @name $_old_requests_files
+ */
+global $_old_requests_files;
+
+$_old_requests_files = array();
+
+/**
  * Stores new files in wp-content to copy
  *
  * The contents of this array indicate any new bundled plugins/themes which
