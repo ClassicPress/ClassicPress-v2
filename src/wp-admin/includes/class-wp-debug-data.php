@@ -64,23 +64,13 @@ class WP_Debug_Data {
 		// Set up the array that holds all debug information.
 		$info = array();
 
-		$info['classicpress'] = array(
-			'label'  => __( 'ClassicPress' ),
-			'fields' => array(
-				'platform' => array(
-					'label' => __( '** Platform **' ),
-					'value' => $core_version,
-				),
-			),
-		);
-
 		$info['wp-core'] = array(
 			'label'  => __( 'ClassicPress' ),
 			'fields' => array(
 				'version'                => array(
 					'label' => __( 'Version' ),
 					'value' => $core_version . $core_update_needed,
-					'debug' => $core_version,
+					'debug' => '**' . __( 'ClassicPress' ) . '** ' . $core_version,
 				),
 				'site_language'          => array(
 					'label' => __( 'Site Language' ),
