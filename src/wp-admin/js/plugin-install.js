@@ -228,7 +228,7 @@ jQuery( function( $ ) {
 	}
 
 	/* Plugin install Category filter JS */
-	$( '.plugin-categories-filter a' ).click( function( event ) {
+	$( '.plugin-categories-filter a' ).on( 'click', function( event ) {
 		event.preventDefault();
 		var category = $(this).attr( 'data-plugin-tag' );
 		$( '#typeselector' ).val( 'tag' );
