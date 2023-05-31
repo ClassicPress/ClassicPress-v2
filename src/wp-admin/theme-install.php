@@ -286,7 +286,7 @@ if ( $tab ) {
 		<div class="notice notice-success notice-alt"><p><?php _ex( 'Installed', 'theme' ); ?></p></div>
 	<# } #>
 
-	<# if ( ! data.compatible_wp || ! data.compatible_php ) { #>
+	<# if ( ! data.compatible_wp || ! data.compatible_php || ! data.compatible_cp ) { #>
 		<div class="notice notice-error notice-alt"><p>
 			<# if ( ! data.compatible_wp && ! data.compatible_php ) { #>
 				<?php
@@ -325,6 +325,10 @@ if ( $tab ) {
 					);
 				}
 				?>
+			<# } else if ( ! data.compatible_cp ) { #>
+				<?php
+				_e( 'Full site editing themes can\'t work with ClassicPress.' );
+				?>
 			<# } else if ( ! data.compatible_php ) { #>
 				<?php
 				_e( 'This theme does not work with your version of PHP.' );
@@ -354,7 +358,7 @@ if ( $tab ) {
 
 		<div class="theme-actions">
 			<# if ( data.installed ) { #>
-				<# if ( data.compatible_wp && data.compatible_php ) { #>
+				<# if ( data.compatible_wp && data.compatible_php && data.compatible_cp ) { #>
 					<?php
 					/* translators: %s: Theme name. */
 					$aria_label = sprintf( _x( 'Activate %s', 'theme' ), '{{ data.name }}' );
@@ -388,7 +392,7 @@ if ( $tab ) {
 					<# } #>
 				<# } #>
 			<# } else { #>
-				<# if ( data.compatible_wp && data.compatible_php ) { #>
+				<# if ( data.compatible_wp && data.compatible_php && data.compatible_cp ) { #>
 					<?php
 					/* translators: %s: Theme name. */
 					$aria_label = sprintf( _x( 'Install %s', 'theme' ), '{{ data.name }}' );
