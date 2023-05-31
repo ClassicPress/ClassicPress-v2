@@ -434,7 +434,7 @@ if ( $tab ) {
 				?>
 			</span></button>
 			<# if ( data.installed ) { #>
-				<# if ( data.compatible_wp && data.compatible_php ) { #>
+				<# if ( data.compatible_wp && data.compatible_php && data.compatible_cp ) { #>
 					<?php
 					/* translators: %s: Theme name. */
 					$aria_label = sprintf( _x( 'Activate %s', 'theme' ), '{{ data.name }}' );
@@ -448,7 +448,7 @@ if ( $tab ) {
 					<a class="button button-primary disabled" ><?php _ex( 'Cannot Activate', 'theme' ); ?></a>
 				<# } #>
 			<# } else { #>
-				<# if ( data.compatible_wp && data.compatible_php ) { #>
+				<# if ( data.compatible_wp && data.compatible_php && data.compatible_cp ) { #>
 					<a href="{{ data.install_url }}" class="button button-primary theme-install" data-name="{{ data.name }}" data-slug="{{ data.id }}"><?php _e( 'Install' ); ?></a>
 				<# } else { #>
 					<a class="button button-primary disabled" ><?php _ex( 'Cannot Install', 'theme' ); ?></a>
@@ -491,7 +491,7 @@ if ( $tab ) {
 							?>
 						</div>
 
-						<# if ( ! data.compatible_wp || ! data.compatible_php ) { #>
+						<# if ( ! data.compatible_wp || ! data.compatible_php || ! data.compatible_cp ) { #>
 							<div class="notice notice-error notice-alt notice-large"><p>
 								<# if ( ! data.compatible_wp && ! data.compatible_php ) { #>
 									<?php
@@ -529,6 +529,10 @@ if ( $tab ) {
 											self_admin_url( 'update-core.php' )
 										);
 									}
+									?>
+								<# } else if ( ! data.compatible_cp ) { #>
+									<?php
+									_e( 'Full site editing themes can\'t work with ClassicPress.' );
 									?>
 								<# } else if ( ! data.compatible_php ) { #>
 									<?php
