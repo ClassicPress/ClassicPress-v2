@@ -3554,7 +3554,7 @@ function wp_ajax_query_themes() {
 
 	/** This filter is documented in wp-admin/includes/class-wp-theme-install-list-table.php */
 	$args = apply_filters( 'install_themes_table_api_args_' . $old_filter, $args );
-	$args['fields']['tags']=true;
+	$args['fields']['tags'] = true;
 
 	$api = themes_api( 'query_themes', $args );
 

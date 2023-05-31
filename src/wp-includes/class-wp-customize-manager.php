@@ -5872,7 +5872,7 @@ final class WP_Customize_Manager {
 				$args['browse'] = 'new'; // Sort by latest themes by default.
 			}
 
-			$args['fields']['tags']=true;
+			$args['fields']['tags'] = true;
 
 			// Load themes from the .org API.
 			$themes = themes_api( 'query_themes', $args );
