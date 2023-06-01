@@ -327,7 +327,7 @@ if ( $tab ) {
 				?>
 			<# } else if ( ! data.compatible_cp ) { #>
 				<?php
-				_e( 'Full site editing themes can\'t work with ClassicPress.' );
+				_e( 'FSE themes don\'t work with ClassicPress.' );
 				?>
 			<# } else if ( ! data.compatible_php ) { #>
 				<?php
@@ -532,7 +532,7 @@ if ( $tab ) {
 									?>
 								<# } else if ( ! data.compatible_cp ) { #>
 									<?php
-									_e( 'Full site editing themes can\'t work with ClassicPress.' );
+									_e( 'FSE themes don\'t work with ClassicPress.' );
 									?>
 								<# } else if ( ! data.compatible_php ) { #>
 									<?php

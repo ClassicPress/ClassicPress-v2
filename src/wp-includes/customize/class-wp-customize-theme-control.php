@@ -217,7 +217,7 @@ class WP_Customize_Theme_Control extends WP_Customize_Control {
 						?>
 					<# } else if ( data.theme.compatibleCP === false ) { #>
 						<?php
-						_e( 'Full site editing themes can\'t work with ClassicPress.' );
+						_e( 'FSE themes don\'t work with ClassicPress.' );
 						?>
 					<# } else if ( ! data.theme.compatiblePHP ) { #>
 						<?php
