@@ -597,8 +597,11 @@ function wp_admin_bar_my_sites_menu( $wp_admin_bar ) {
 				( wp_lazy_loading_enabled( 'img', 'site_icon_in_toolbar' ) ? ' loading="lazy"' : '' )
 			);
 		} else {
-			$cp_logo_src = includes_url( 'images/classicpress-logo-dashicon-grey-on-transparent.svg' );
-			$cplogo      = '<img class="blavatar" src="' . $cp_logo_src . '" alt="" />';
+			$cplogo = sprintf(
+				'<img class="blavatar" src="%s" alt=""%s />',
+				esc_url( includes_url( 'images/classicpress-logo-dashicon-grey-on-transparent.svg' ) ),
+				( wp_lazy_loading_enabled( 'img', 'site_icon_in_toolbar' ) ? ' loading="lazy"' : '' )
+			);
 		}
 
 		$blogname = $blog->blogname;
