@@ -172,6 +172,11 @@ function wp_print_media_templates() {
 	<?php // Template for the media frame: used both in the media grid and in the media modal. ?>
 	<script type="text/html" id="tmpl-media-frame">
 		<div class="media-frame-title" id="media-frame-title"></div>
+		<h2 class="media-frame-menu-heading"><?php _ex( 'Actions', 'media modal menu actions' ); ?></h2>
+		<button type="button" class="button button-link media-frame-menu-toggle" aria-expanded="false">
+			<?php _ex( 'Menu', 'media modal menu' ); ?>
+			<span class="dashicons dashicons-arrow-down" aria-hidden="true"></span>
+		</button>
 		<div class="media-frame-menu"></div>
 		<div class="media-frame-tab-panel">
 			<div class="media-frame-router"></div>
@@ -190,12 +195,14 @@ function wp_print_media_templates() {
 	<?php // Template for the media modal. ?>
 	<script type="text/html" id="tmpl-media-modal">
 		<div tabindex="0" class="<?php echo $class; ?>" role="dialog" aria-labelledby="media-frame-title">
-			<button type="button" class="media-modal-close"><span class="media-modal-icon"><span class="screen-reader-text">
-				<?php
-				/* translators: Hidden accessibility text. */
-				_e( 'Close dialog' );
-				?>
-			</span></span></button>
+			<# if ( data.hasCloseButton ) { #>
+				<button type="button" class="media-modal-close"><span class="media-modal-icon"><span class="screen-reader-text">
+					<?php
+					/* translators: Hidden accessibility text. */
+					_e( 'Close dialog' );
+					?>
+				</span></span></button>
+			<# } #>
 			<div class="media-modal-content" role="document"></div>
 		</div>
 		<div class="media-modal-backdrop"></div>
@@ -530,7 +537,7 @@ function wp_print_media_templates() {
 					<label for="attachment-details-two-column-copy-link" class="name"><?php _e( 'File URL:' ); ?></label>
 					<input type="text" class="attachment-details-copy-link" id="attachment-details-two-column-copy-link" value="{{ data.url }}" readonly />
 					<span class="copy-to-clipboard-container">
-						<button type="button" class="button button-small copy-attachment-url" data-clipboard-target="#attachment-details-two-column-copy-link"><?php _e( 'Copy URL to clipboard' ); ?></button>
+						<button type="button" class="button button-small copy-attachment-url media-library" data-clipboard-target="#attachment-details-two-column-copy-link"><?php _e( 'Copy URL to clipboard' ); ?></button>
 						<span class="success hidden" aria-hidden="true"><?php _e( 'Copied!' ); ?></span>
 					</span>
 				</span>
@@ -775,7 +782,7 @@ function wp_print_media_templates() {
 			<label for="attachment-details-copy-link" class="name"><?php _e( 'File URL:' ); ?></label>
 			<input type="text" class="attachment-details-copy-link" id="attachment-details-copy-link" value="{{ data.url }}" readonly />
 			<div class="copy-to-clipboard-container">
-				<button type="button" class="button button-small copy-attachment-url" data-clipboard-target="#attachment-details-copy-link"><?php _e( 'Copy URL to clipboard' ); ?></button>
+				<button type="button" class="button button-small copy-attachment-url media-library" data-clipboard-target="#attachment-details-copy-link"><?php _e( 'Copy URL to clipboard' ); ?></button>
 				<span class="success hidden" aria-hidden="true"><?php _e( 'Copied!' ); ?></span>
 			</div>
 		</span>
