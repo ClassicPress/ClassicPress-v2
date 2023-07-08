@@ -186,7 +186,11 @@ class Walker_Nav_Menu extends Walker {
 
 		if ( ! empty( $menu_item->url ) ) {
 			if ( get_privacy_policy_url() === $menu_item->url ) {
-				$atts['rel'] = empty( $atts['rel'] ) ? 'privacy-policy' : $atts['rel'] . ' privacy-policy';
+				if ( ! empty( $menu_item->target && '_blank' === $menu_item->target && ! empty( $menu_item->xfn ) ) ) {
+					$atts['rel'] = 'nofollow privacy-policy';
+				} else {
+					$atts['rel'] = empty( $atts['rel'] ) ? 'privacy-policy' : $atts['rel'] . ' privacy-policy';
+				}
 			}
 
 			$atts['href'] = $menu_item->url;
