@@ -835,28 +835,28 @@ class WP_User_Query {
 				$this->total_users = $cache_value['total_users'];
 			} else {
 
-			if ( is_array( $qv['fields'] ) ) {
-				$this->results = $wpdb->get_results( $this->request );
-			} else {
-				$this->results = $wpdb->get_col( $this->request );
-			}
+				if ( is_array( $qv['fields'] ) ) {
+					$this->results = $wpdb->get_results( $this->request );
+				} else {
+					$this->results = $wpdb->get_col( $this->request );
+				}
 
-			if ( isset( $qv['count_total'] ) && $qv['count_total'] ) {
-				/**
-				 * Filters SELECT FOUND_ROWS() query for the current WP_User_Query instance.
-				 *
-				 * @since 3.2.0
-				 * @since 5.1.0 Added the `$this` parameter.
-				 *
-				 * @global wpdb $wpdb WordPress database abstraction object.
-				 *
-				 * @param string        $sql   The SELECT FOUND_ROWS() query for the current WP_User_Query.
-				 * @param WP_User_Query $query The current WP_User_Query instance.
-				 */
-				$found_users_query = apply_filters( 'found_users_query', 'SELECT FOUND_ROWS()', $this );
+				if ( isset( $qv['count_total'] ) && $qv['count_total'] ) {
+					/**
+					 * Filters SELECT FOUND_ROWS() query for the current WP_User_Query instance.
+					 *
+					 * @since 3.2.0
+					 * @since 5.1.0 Added the `$this` parameter.
+					 *
+					 * @global wpdb $wpdb WordPress database abstraction object.
+					 *
+					 * @param string        $sql   The SELECT FOUND_ROWS() query for the current WP_User_Query.
+					 * @param WP_User_Query $query The current WP_User_Query instance.
+					 */
+					$found_users_query = apply_filters( 'found_users_query', 'SELECT FOUND_ROWS()', $this );
 
-				$this->total_users = (int) $wpdb->get_var( $found_users_query );
-			}
+					$this->total_users = (int) $wpdb->get_var( $found_users_query );
+				}
 
 				if ( $qv['cache_results'] ) {
 					$cache_value = array(
