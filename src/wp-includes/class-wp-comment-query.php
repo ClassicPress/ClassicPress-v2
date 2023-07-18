@@ -1038,23 +1038,18 @@ class WP_Comment_Query {
 			$_parent_ids         = $levels[ $level ];
 			if ( $_parent_ids ) {
 				$cache_keys = array();
-			foreach ( $_parent_ids as $parent_id ) {
-<<<<<<< HEAD
-				$cache_key        = "get_comment_child_ids:$parent_id:$key:$last_changed";
-				$parent_child_ids = wp_cache_get( $cache_key, 'comment' );
-=======
+				foreach ( $_parent_ids as $parent_id ) {
 					$cache_keys[ $parent_id ] = "get_comment_child_ids:$parent_id:$key:$last_changed";
 				}
 				$cache_data = wp_cache_get_multiple( array_values( $cache_keys ), 'comment-queries' );
 				foreach ( $_parent_ids as $parent_id ) {
 					$parent_child_ids = $cache_data[ $cache_keys[ $parent_id ] ];
->>>>>>> c46a30eb1f (Comments: Use wp_cache_get_multiple in `WP_Comment_Query`.)
-				if ( false !== $parent_child_ids ) {
-					$child_ids = array_merge( $child_ids, $parent_child_ids );
-				} else {
-					$uncached_parent_ids[] = $parent_id;
+					if ( false !== $parent_child_ids ) {
+						$child_ids = array_merge( $child_ids, $parent_child_ids );
+					} else {
+						$uncached_parent_ids[] = $parent_id;
+					}
 				}
-			}
 			}
 
 			if ( $uncached_parent_ids ) {
