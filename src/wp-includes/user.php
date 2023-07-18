@@ -1907,6 +1907,7 @@ function clean_user_cache( $user ) {
 	}
 
 	wp_cache_delete( $user->ID, 'user_meta' );
+	wp_cache_set_users_last_changed();
 
 	/**
 	 * Fires immediately after the given user's cache is cleaned.
@@ -4969,3 +4970,62 @@ function wp_is_application_passwords_available_for_user( $user ) {
 	 */
 	return apply_filters( 'wp_is_application_passwords_available_for_user', true, $user );
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * Registers the user meta property for persisted preferences.
+ *
+ * This property is used to store user preferences across page reloads and is
+ * currently used by the block editor for preferences like 'fullscreenMode' and
+ * 'fixedToolbar'.
+ *
+ * @since 6.1.0
+ * @access private
+ *
+ * @global wpdb $wpdb WordPress database abstraction object.
+ */
+function wp_register_persisted_preferences_meta() {
+	/*
+	 * Create a meta key that incorporates the blog prefix so that each site
+	 * on a multisite can have distinct user preferences.
+	 */
+	global $wpdb;
+	$meta_key = $wpdb->get_blog_prefix() . 'persisted_preferences';
+
+	register_meta(
+		'user',
+		$meta_key,
+		array(
+			'type'         => 'object',
+			'single'       => true,
+			'show_in_rest' => array(
+				'name'   => 'persisted_preferences',
+				'type'   => 'object',
+				'schema' => array(
+					'type'                 => 'object',
+					'context'              => array( 'edit' ),
+					'properties'           => array(
+						'_modified' => array(
+							'description' => __( 'The date and time the preferences were updated.' ),
+							'type'        => 'string',
+							'format'      => 'date-time',
+							'readonly'    => false,
+						),
+					),
+					'additionalProperties' => true,
+				),
+			),
+		)
+	);
+}
+
+/**
+ * Sets the last changed time for the 'users' cache group.
+ *
+ * @since 6.3.0
+ */
+function wp_cache_set_users_last_changed() {
+	wp_cache_set( 'last_changed', microtime(), 'users' );
+}
+>>>>>>> 19bd759db5 (Users: Cache database queries within `WP_User_Query` class.)
