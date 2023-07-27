@@ -444,7 +444,7 @@
 	content: "\f348";
 }
 
-/* Dashboard WordPress news */
+/* Dashboard ClassicPress news */
 
 #dashboard_primary .inside {
 	margin: 0;
@@ -501,6 +501,44 @@ body #dashboard-widgets .postbox form .submit {
 #dashboard_primary .rss-widget ul li {
 	padding: 4px 0;
 	margin: 0;
+}
+
+.classicpress-news-inline-notice {
+	background-color: #f6f7f7;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f0f0f1;
+}
+
+.classicpress-news-inline-notice a {
+	text-decoration: none;
+}
+
+.classicpress-news {
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.classicpress-news-footer {
+	padding: 12px;
+}
+
+.classicpress-news-footer ul {
+	display: flex;
+    line-height: 1;
+    margin: 0;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.classicpress-news-footer ul li {
+	margin: 0;
+}
+
+.classicpress-news-footer ul li a {
+	display: flex;
+    align-items: center;
+    gap: 0.3rem;
 }
 
 /* Dashboard right now */
