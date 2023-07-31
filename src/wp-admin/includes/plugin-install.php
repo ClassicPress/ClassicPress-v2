@@ -166,7 +166,7 @@ function plugins_api( $action, $args = array() ) {
 				trigger_error(
 					sprintf(
 						/* translators: %s: Support forums URL. */
-						__( 'An unexpected error occurred. Something may be wrong with ClassicPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
+						__( 'An unexpected error occurred. Something may be wrong with WordPress.org, ClassicPress.net or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
 						__( 'https://forums.classicpress.net/c/support' )
 					) . ' ' . __( '(ClassicPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)' ),
 					headers_sent() || WP_DEBUG ? E_USER_WARNING : E_USER_NOTICE
@@ -182,7 +182,7 @@ function plugins_api( $action, $args = array() ) {
 					'plugins_api_failed',
 					sprintf(
 						/* translators: %s: Support forums URL. */
-						__( 'An unexpected error occurred. Something may be wrong with ClassicPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
+						__( 'An unexpected error occurred. Something may be wrong with WordPress.org, ClassicPress.net or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
 						__( 'https://wordpress.org/support/forums/' )
 					),
 					wp_remote_retrieve_body( $request )
@@ -351,11 +351,11 @@ function install_plugins_favorites_form() {
 	$user   = get_user_option( 'wporg_favorites' );
 	$action = 'save_wporg_username_' . get_current_user_id();
 	?>
-	<p><?php _e( 'If you have marked plugins as favorites on ClassicPress.org, you can browse them here.' ); ?></p>
+	<p><?php _e( 'If you have marked plugins as favorites on ClassicPress.net, you can browse them here.' ); ?></p>
 	<form method="get">
 		<input type="hidden" name="tab" value="favorites" />
 		<p>
-			<label for="user"><?php _e( 'Your ClassicPress.org username:' ); ?></label>
+			<label for="user"><?php _e( 'Your ClassicPress.net username:' ); ?></label>
 			<input type="search" id="user" name="user" value="<?php echo esc_attr( $user ); ?>" />
 			<input type="submit" class="button" value="<?php esc_attr_e( 'Get Favorites' ); ?>" />
 			<input type="hidden" id="wporg-username-nonce" name="_wpnonce" value="<?php echo esc_attr( wp_create_nonce( $action ) ); ?>" />
@@ -728,7 +728,7 @@ function install_plugin_information() {
 				?>
 				</li>
 			<?php } if ( ! empty( $api->slug ) && empty( $api->external ) ) { ?>
-				<li><a target="_blank" href="<?php echo esc_url( __( 'https://wordpress.org/plugins/' ) . $api->slug ); ?>/"><?php _e( 'ClassicPress.org Plugin Page &#187;' ); ?></a></li>
+				<li><a target="_blank" href="<?php echo esc_url( __( 'https://wordpress.org/plugins/' ) . $api->slug ); ?>/"><?php _e( 'WordPress.org Plugin Page &#187;' ); ?></a></li>
 			<?php } if ( ! empty( $api->homepage ) ) { ?>
 				<li><a target="_blank" href="<?php echo esc_url( $api->homepage ); ?>"><?php _e( 'Plugin Homepage &#187;' ); ?></a></li>
 			<?php } if ( ! empty( $api->donate_link ) && empty( $api->contributors ) ) { ?>
@@ -761,7 +761,7 @@ function install_plugin_information() {
 		if ( ! empty( $api->ratings ) && array_sum( (array) $api->ratings ) > 0 ) {
 			?>
 			<h3><?php _e( 'Reviews' ); ?></h3>
-			<p class="fyi-description"><?php _e( 'Read all reviews on ClassicPress.org or write your own!' ); ?></p>
+			<p class="fyi-description"><?php _e( 'Read all reviews on WordPress.org or write your own!' ); ?></p>
 			<?php
 			foreach ( $api->ratings as $key => $ratecount ) {
 				// Avoid div-by-zero.

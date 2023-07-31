@@ -52,7 +52,7 @@ class WP_REST_Plugins_Controller extends WP_REST_Controller {
 						'slug'   => array(
 							'type'        => 'string',
 							'required'    => true,
-							'description' => __( 'ClassicPress.org plugin directory slug.' ),
+							'description' => __( 'WordPress.org plugin directory slug.' ),
 							'pattern'     => '[\w\-]+',
 						),
 						'status' => array(

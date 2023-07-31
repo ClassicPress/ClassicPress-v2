@@ -872,7 +872,7 @@ class WP_Automatic_Updater {
 			);
 		} else {
 			// Add a note about the support forums.
-			$body .= "\n\n" . __( 'If you experience any issues or need support, the volunteers in the ClassicPress.org support forums may be able to help.' );
+			$body .= "\n\n" . __( 'If you experience any issues or need support, the volunteers in the ClassicPress.net support forums may be able to help.' );
 			$body .= "\n" . __( 'https://wordpress.org/support/forums/' );
 		}
 
@@ -1306,7 +1306,7 @@ class WP_Automatic_Updater {
 		}
 
 		// Add a note about the support forums.
-		$body[] = __( 'If you experience any issues or need support, the volunteers in the ClassicPress.org support forums may be able to help.' );
+		$body[] = __( 'If you experience any issues or need support, the volunteers in the ClassicPress.net support forums may be able to help.' );
 		$body[] = __( 'https://forums.classicpress.net/c/support/' );
 		$body[] = "\n" . __( 'The ClassicPress Team' );
 

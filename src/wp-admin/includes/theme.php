@@ -547,7 +547,7 @@ function themes_api( $action, $args = array() ) {
 				'themes_api_failed',
 				sprintf(
 					/* translators: %s: Support forums URL. */
-					__( 'An unexpected error occurred. Something may be wrong with ClassicPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
+					__( 'An unexpected error occurred. Something may be wrong with WordPress.org, ClassicPress.net or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
 					__( 'https://wordpress.org/support/forums/' )
 				),
 				$request->get_error_message()
@@ -562,7 +562,7 @@ function themes_api( $action, $args = array() ) {
 					'themes_api_failed',
 					sprintf(
 						/* translators: %s: Support forums URL. */
-						__( 'An unexpected error occurred. Something may be wrong with ClassicPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
+						__( 'An unexpected error occurred. Something may be wrong with WordPress.org, ClassicPress.net or this server&#8217;s configuration. If you continue to have problems, please try the <a href="%s">support forums</a>.' ),
 						__( 'https://wordpress.org/support/forums/' )
 					),
 					wp_remote_retrieve_body( $request )
