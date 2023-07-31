@@ -39,7 +39,7 @@ add_action( 'after_switch_theme', 'twentysixteen_switch_theme' );
  */
 function twentysixteen_upgrade_notice() {
 	/* translators: %s: The current WordPress version */
-	$message = sprintf( __( 'Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again.', 'twentysixteen' ), $GLOBALS['wp_version'] );
+	$message = sprintf( __( 'Twenty Sixteen requires at least ClassicPress version 4.4. You are running version %s. Please upgrade and try again.', 'twentysixteen' ), $GLOBALS['wp_version'] );
 	printf( '<div class="error"><p>%s</p></div>', $message );
 }
 
@@ -53,7 +53,7 @@ function twentysixteen_upgrade_notice() {
 function twentysixteen_customize() {
 	wp_die(
 		/* translators: %s: The current WordPress version */
-		sprintf( __( 'Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again.', 'twentysixteen' ), $GLOBALS['wp_version'] ),
+		sprintf( __( 'Twenty Sixteen requires at least ClassicPress version 4.4. You are running version %s. Please upgrade and try again.', 'twentysixteen' ), $GLOBALS['wp_version'] ),
 		'',
 		array(
 			'back_link' => true,
@@ -72,7 +72,7 @@ add_action( 'load-customize.php', 'twentysixteen_customize' );
 function twentysixteen_preview() {
 	if ( isset( $_GET['preview'] ) ) {
 		/* translators: %s: The current WordPress version */
-		wp_die( sprintf( __( 'Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again.', 'twentysixteen' ), $GLOBALS['wp_version'] ) );
+		wp_die( sprintf( __( 'Twenty Sixteen requires at least ClassicPress version 4.4. You are running version %s. Please upgrade and try again.', 'twentysixteen' ), $GLOBALS['wp_version'] ) );
 	}
 }
 add_action( 'template_redirect', 'twentysixteen_preview' );

@@ -5058,7 +5058,7 @@ final class WP_Customize_Manager {
 				array(
 					'title'       => $this->theme()->display( 'Name' ),
 					'description' => (
-					'<p>' . __( 'Looking for a theme? You can search or browse the WordPress.org theme directory, install and preview themes, then activate them right here.' ) . '</p>' .
+					'<p>' . __( 'Looking for a theme? You can search or browse the ClassicPress.org theme directory, install and preview themes, then activate them right here.' ) . '</p>' .
 					'<p>' . __( 'While previewing a new theme, you can continue to tailor things like widgets and menus, and explore theme-specific options.' ) . '</p>'
 					),
 					'capability'  => 'switch_themes',
@@ -5087,7 +5087,7 @@ final class WP_Customize_Manager {
 					$this,
 					'wporg_themes',
 					array(
-						'title'       => __( 'WordPress.org themes' ),
+						'title'       => __( 'ClassicPress.org themes' ),
 						'action'      => 'wporg',
 						'filter_type' => 'remote',
 						'capability'  => 'install_themes',
@@ -5191,7 +5191,7 @@ final class WP_Customize_Manager {
 				array(
 					'label'       => __( 'Site Icon' ),
 					'description' => sprintf(
-						'<p>' . __( 'Site Icons are what you see in browser tabs, bookmark bars, and within the WordPress mobile apps. Upload one here!' ) . '</p>' .
+						'<p>' . __( 'Site Icons are what you see in browser tabs, bookmark bars, and within the ClassicPress mobile apps. Upload one here!' ) . '</p>' .
 						/* translators: %s: Site icon size in pixels. */
 						'<p>' . __( 'Site Icons should be square and at least %s pixels.' ) . '</p>',
 						'<strong>512 &times; 512</strong>'
