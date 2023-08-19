@@ -17,6 +17,14 @@
 class Walker_Comment extends Walker {
 
 	/**
+	 * Adds default comment output to the comment construction
+	 */
+	function __construct() {
+		add_action( 'comment_author_data', 'Walker_Comment::display_comment_author_data', 10, 2 );
+		add_action( 'comment_metadata', 'Walker_Comment::display_comment_metadata', 10, 2 );
+	}
+
+	/**
 	 * What the class handles.
 	 *
 	 * @since 2.7.0
@@ -317,7 +325,6 @@ class Walker_Comment extends Walker {
 			);
 		}
 	}
-	add_action( 'comment_author_data', 'Walker_Comment::display_comment_author_data', 10, 2 );
 
 	/**
 	 * Outputs default comment metadata
@@ -353,7 +360,6 @@ class Walker_Comment extends Walker {
 
 		current_theme_supports( 'html5' ) ? edit_comment_link( __( 'Edit' ), ' <span class="edit-link">', '</span>' ) : edit_comment_link( __( '(Edit)' ), ' &nbsp;&nbsp;', '' );
 	}
-	add_action( 'comment_metadata', 'Walker_Comment::display_comment_metadata', 10, 2 );
 
 	/**
 	 * Outputs a single comment.
