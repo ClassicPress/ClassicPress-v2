@@ -20,7 +20,7 @@ class Walker_Comment extends Walker {
 	 * Adds default comment output to the comment construction
 	 */
 	function __construct() {
-		add_action( 'comment_author_data', 'Walker_Comment::display_comment_author_data', 10, 2 );
+		add_action( 'comment_author_data', 'Walker_Comment::display_comment_author_data', 10, 3 );
 		add_action( 'comment_metadata', 'Walker_Comment::display_comment_metadata', 10, 2 );
 	}
 
@@ -297,10 +297,11 @@ class Walker_Comment extends Walker {
 	/**
 	 * Outputs default comment author data
 	 *
-	 * @param $comment  Comment being displayed.
-	 * @param $args     An array of comments.
+	 * @param $comment             Comment being displayed.
+	 * @param $args                An array of comments.
+	 * @param $show_pending_links
 	 */
-	static function display_comment_author_data( $comment, $args ) {
+	static function display_comment_author_data( $comment, $args, $show_pending_links ) {
 		if ( 0 != $args['avatar_size'] ) {
 			echo get_avatar( $comment, $args['avatar_size'] );
 		}
@@ -395,7 +396,7 @@ class Walker_Comment extends Walker {
 		<div id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 		<?php endif; ?>
 		<div class="comment-author vcard">
-			<?php do_action( 'comment_author_data', $comment, $args ); ?>
+			<?php do_action( 'comment_author_data', $comment, $args, $show_pending_links ); ?>
 		</div>
 		<?php if ( '0' == $comment->comment_approved ) : ?>
 		<em class="comment-awaiting-moderation"><?php echo $moderation_note; ?></em>
@@ -468,7 +469,7 @@ class Walker_Comment extends Walker {
 			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 				<footer class="comment-meta">
 					<div class="comment-author vcard">
-						<?php do_action( 'comment_author_data', $comment, $args ); ?>
+						<?php do_action( 'comment_author_data', $comment, $args, $show_pending_links ); ?>
 					</div><!-- .comment-author -->
 
 					<div class="comment-metadata">
