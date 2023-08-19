@@ -17,6 +17,14 @@
 class Walker_Comment extends Walker {
 
 	/**
+	 * Adds default comment output to the comment construction
+	 */
+	function __construct() {
+		add_action( 'comment_author_data', 'Walker_Comment::display_comment_author_data', 10, 3 );
+		add_action( 'comment_metadata', 'Walker_Comment::display_comment_metadata', 10, 2 );
+	}
+
+	/**
 	 * What the class handles.
 	 *
 	 * @since 2.7.0
@@ -287,6 +295,74 @@ class Walker_Comment extends Walker {
 	}
 
 	/**
+	 * Outputs default comment author data
+	 *
+	 * @param $comment             Comment being displayed.
+	 * @param $args                An array of comments.
+	 * @param $show_pending_links
+	 */
+	static function display_comment_author_data( $comment, $args, $show_pending_links ) {
+		if ( 0 != $args['avatar_size'] ) {
+			echo get_avatar( $comment, $args['avatar_size'] );
+		}
+
+		$comment_author = get_comment_author_link( $comment );
+
+		if ( '0' == $comment->comment_approved && ! $show_pending_links ) {
+			$comment_author = get_comment_author( $comment );
+		}
+
+		if ( current_theme_supports( 'html5' ) ) {
+			printf(
+				/* translators: %s: Comment author link. */
+				__( '%s <span class="says">says:</span>' ),
+				sprintf( '<b class="fn">%s</b>', $comment_author )
+			);
+		} else {
+			printf(
+				/* translators: %s: Comment author link. */
+				__( '%s <span class="says">says:</span>' ),
+				sprintf( '<cite class="fn">%s</cite>', $comment_author )
+			);
+		}
+	}
+
+	/**
+	 * Outputs default comment metadata
+	 *
+	 * @params $comment  Comment being displayed.
+	 * @params $args     An array of comments.
+	 */
+	static function display_comment_metadata( $comment, $args ) {
+		if ( current_theme_supports( 'html5' ) ) {
+			printf(
+				'<a href="%s"><time datetime="%s">%s</time></a>',
+				esc_url( get_comment_link( $comment, $args ) ),
+				get_comment_time( 'c' ),
+				sprintf(
+					/* translators: 1: Comment date, 2: Comment time. */
+					__( '%1$s at %2$s' ),
+					get_comment_date( '', $comment ),
+					get_comment_time()
+				)
+			);
+		} else {
+			printf(
+				'<a href="%s">%s</a>',
+				esc_url( get_comment_link( $comment, $args ) ),
+				sprintf(
+					/* translators: 1: Comment date, 2: Comment time. */
+					__( '%1$s at %2$s' ),
+					get_comment_date( '', $comment ),
+					get_comment_time()
+				)
+			);
+		}
+
+		current_theme_supports( 'html5' ) ? edit_comment_link( __( 'Edit' ), ' <span class="edit-link">', '</span>' ) : edit_comment_link( __( '(Edit)' ), ' &nbsp;&nbsp;', '' );
+	}
+
+	/**
 	 * Outputs a single comment.
 	 *
 	 * @since 3.6.0
@@ -320,24 +396,7 @@ class Walker_Comment extends Walker {
 		<div id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 		<?php endif; ?>
 		<div class="comment-author vcard">
-			<?php
-			if ( 0 != $args['avatar_size'] ) {
-				echo get_avatar( $comment, $args['avatar_size'] );
-			}
-			?>
-			<?php
-			$comment_author = get_comment_author_link( $comment );
-
-			if ( '0' == $comment->comment_approved && ! $show_pending_links ) {
-				$comment_author = get_comment_author( $comment );
-			}
-
-			printf(
-				/* translators: %s: Comment author link. */
-				__( '%s <span class="says">says:</span>' ),
-				sprintf( '<cite class="fn">%s</cite>', $comment_author )
-			);
-			?>
+			<?php do_action( 'comment_author_data', $comment, $args, $show_pending_links ); ?>
 		</div>
 		<?php if ( '0' == $comment->comment_approved ) : ?>
 		<em class="comment-awaiting-moderation"><?php echo $moderation_note; ?></em>
@@ -345,20 +404,7 @@ class Walker_Comment extends Walker {
 		<?php endif; ?>
 
 		<div class="comment-meta commentmetadata">
-			<?php
-			printf(
-				'<a href="%s">%s</a>',
-				esc_url( get_comment_link( $comment, $args ) ),
-				sprintf(
-					/* translators: 1: Comment date, 2: Comment time. */
-					__( '%1$s at %2$s' ),
-					get_comment_date( '', $comment ),
-					get_comment_time()
-				)
-			);
-
-			edit_comment_link( __( '(Edit)' ), ' &nbsp;&nbsp;', '' );
-			?>
+			<?php do_action( 'comment_metadata', $comment, $args ); ?>
 		</div>
 
 		<?php
@@ -423,42 +469,11 @@ class Walker_Comment extends Walker {
 			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 				<footer class="comment-meta">
 					<div class="comment-author vcard">
-						<?php
-						if ( 0 != $args['avatar_size'] ) {
-							echo get_avatar( $comment, $args['avatar_size'] );
-						}
-						?>
-						<?php
-						$comment_author = get_comment_author_link( $comment );
-
-						if ( '0' == $comment->comment_approved && ! $show_pending_links ) {
-							$comment_author = get_comment_author( $comment );
-						}
-
-						printf(
-							/* translators: %s: Comment author link. */
-							__( '%s <span class="says">says:</span>' ),
-							sprintf( '<b class="fn">%s</b>', $comment_author )
-						);
-						?>
+						<?php do_action( 'comment_author_data', $comment, $args, $show_pending_links ); ?>
 					</div><!-- .comment-author -->
 
 					<div class="comment-metadata">
-						<?php
-						printf(
-							'<a href="%s"><time datetime="%s">%s</time></a>',
-							esc_url( get_comment_link( $comment, $args ) ),
-							get_comment_time( 'c' ),
-							sprintf(
-								/* translators: 1: Comment date, 2: Comment time. */
-								__( '%1$s at %2$s' ),
-								get_comment_date( '', $comment ),
-								get_comment_time()
-							)
-						);
-
-						edit_comment_link( __( 'Edit' ), ' <span class="edit-link">', '</span>' );
-						?>
+						<?php do_action( 'comment_metadata', $comment, $args ); ?>
 					</div><!-- .comment-metadata -->
 
 					<?php if ( '0' == $comment->comment_approved ) : ?>
