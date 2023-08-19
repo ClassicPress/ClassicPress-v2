@@ -293,12 +293,10 @@ class Walker_Comment extends Walker {
 	 * @param $args     An array of comments.
 	 */
 	static function display_comment_author_data( $comment, $args ) {
-	<?php
 		if ( 0 != $args['avatar_size'] ) {
 			echo get_avatar( $comment, $args['avatar_size'] );
 		}
-		?>
-		<?php
+
 		$comment_author = get_comment_author_link( $comment );
 
 		if ( '0' == $comment->comment_approved && ! $show_pending_links ) {
@@ -328,7 +326,6 @@ class Walker_Comment extends Walker {
 	 * @params $args     An array of comments.
 	 */
 	static function display_comment_metadata( $comment, $args ) {
-	<?php
 		if ( current_theme_supports( 'html5' ) ) {
 			printf(
 				'<a href="%s"><time datetime="%s">%s</time></a>',
