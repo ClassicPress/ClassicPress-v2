@@ -289,6 +289,9 @@ class Walker_Comment extends Walker {
 	/**
 	 * Outputs a single comment.
 	 *
+	 * New in ClassicPress 2.0.0, comment author and metadata are moved to template functions. They
+	 * are included in `html5_comment()` via the hooks `comment_author_data` and `comment_metadata`.
+	 *
 	 * @since 3.6.0
 	 *
 	 * @see wp_list_comments()
@@ -320,7 +323,10 @@ class Walker_Comment extends Walker {
 		<div id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 		<?php endif; ?>
 		<div class="comment-author vcard">
-			<?php do_action( 'comment_author_data', $comment, $args, $show_pending_links ); ?>
+		<?php
+			/* Provides a hook for including author data. Default action `display_comment_author_data` includes comment author's name and avatar. */
+			do_action( 'comment_author_data', $comment, $args, $show_pending_links );
+		?>
 		</div>
 		<?php if ( '0' == $comment->comment_approved ) : ?>
 		<em class="comment-awaiting-moderation"><?php echo $moderation_note; ?></em>
@@ -328,7 +334,10 @@ class Walker_Comment extends Walker {
 		<?php endif; ?>
 
 		<div class="comment-meta commentmetadata">
-			<?php do_action( 'comment_metadata', $comment, $args ); ?>
+		<?php
+			/* Provides a hook for including metadata. Default action `display_comment_metadata` includes a comment's date and an edit link. */
+			do_action( 'comment_metadata', $comment, $args );
+		?>
 		</div>
 
 		<?php
@@ -369,6 +378,9 @@ class Walker_Comment extends Walker {
 	/**
 	 * Outputs a comment in the HTML5 format.
 	 *
+	 * New in ClassicPress 2.0.0, comment author and metadata are moved to template functions. They
+	 * are included in `html5_comment()` via the hooks `comment_author_data` and `comment_metadata`.
+	 *
 	 * @since 3.6.0
 	 *
 	 * @see wp_list_comments()
@@ -393,11 +405,17 @@ class Walker_Comment extends Walker {
 			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 				<footer class="comment-meta">
 					<div class="comment-author vcard">
-						<?php do_action( 'comment_author_data', $comment, $args, $show_pending_links ); ?>
+					<?php
+						/* Provides a hook for including author data. Default action `display_comment_author_data` includes comment author's name and avatar. */
+						do_action( 'comment_author_data', $comment, $args, $show_pending_links );
+					?>
 					</div><!-- .comment-author -->
 
 					<div class="comment-metadata">
-						<?php do_action( 'comment_metadata', $comment, $args ); ?>
+					<?php
+						/* Provides a hook for including metadata. Default action `display_comment_metadata` includes a comment's date and an edit link. */
+						do_action( 'comment_metadata', $comment, $args );
+					?>
 					</div><!-- .comment-metadata -->
 
 					<?php if ( '0' == $comment->comment_approved ) : ?>

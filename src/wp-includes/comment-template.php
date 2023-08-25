@@ -1179,7 +1179,7 @@ function comment_type( $commenttxt = false, $trackbacktxt = false, $pingbacktxt 
  *
  * @param object $comment            Current comment information.
  * @param array  $args               An array of arguments.
- * @param        $show_pending_links 
+ * @param bool   $show_pending_links Whether to show author link on pending comment.
  */
 function display_comment_author_data( $comment, $args, $show_pending_links ) {
 	if ( 0 != $args['avatar_size'] ) {
