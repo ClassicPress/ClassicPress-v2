@@ -1177,6 +1177,8 @@ function comment_type( $commenttxt = false, $trackbacktxt = false, $pingbacktxt 
 /**
  * Outputs comment author data
  *
+ * @since CP-2.0.0
+ *
  * @param object $comment            Current comment information.
  * @param array  $args               An array of arguments.
  * @param bool   $show_pending_links Whether to show author link on pending comment.

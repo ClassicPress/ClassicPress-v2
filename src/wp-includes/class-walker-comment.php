@@ -289,10 +289,8 @@ class Walker_Comment extends Walker {
 	/**
 	 * Outputs a single comment.
 	 *
-	 * New in ClassicPress 2.0.0, comment author and metadata are moved to template functions. They
-	 * are included in `html5_comment()` via the hooks `comment_author_data` and `comment_metadata`.
-	 *
 	 * @since 3.6.0
+	 * @since CP-2.0.0 Comment author and metadata are moved to template functions and called via hooks.
 	 *
 	 * @see wp_list_comments()
 	 *
@@ -324,7 +322,12 @@ class Walker_Comment extends Walker {
 		<?php endif; ?>
 		<div class="comment-author vcard">
 		<?php
-			/* Provides a hook for including author data. Default action `display_comment_author_data` includes comment author's name and avatar. */
+			/**
+			 * Hook for including comment author data.
+			 * Default action `display_comment_author_data` in wp-includes/comment-template.php includes comment author's name and avatar.
+			 *
+			 * @since CP-2.0.0
+			 */
 			do_action( 'comment_author_data', $comment, $args, $show_pending_links );
 		?>
 		</div>
@@ -335,7 +338,12 @@ class Walker_Comment extends Walker {
 
 		<div class="comment-meta commentmetadata">
 		<?php
-			/* Provides a hook for including metadata. Default action `display_comment_metadata` includes a comment's date and an edit link. */
+			/**
+			 * Hook for including comment metadata.
+			 * Default action `display_comment_metadata` in wp-includes/comment-template.php includes a comment's date and an edit link.
+			 *
+			 * @since CP-2.0.0
+			 */
 			do_action( 'comment_metadata', $comment, $args );
 		?>
 		</div>
@@ -378,10 +386,8 @@ class Walker_Comment extends Walker {
 	/**
 	 * Outputs a comment in the HTML5 format.
 	 *
-	 * New in ClassicPress 2.0.0, comment author and metadata are moved to template functions. They
-	 * are included in `html5_comment()` via the hooks `comment_author_data` and `comment_metadata`.
-	 *
 	 * @since 3.6.0
+	 * @since CP-2.0.0 Comment author and metadata are moved to template functions and called via hooks.
 	 *
 	 * @see wp_list_comments()
 	 *
@@ -406,14 +412,24 @@ class Walker_Comment extends Walker {
 				<footer class="comment-meta">
 					<div class="comment-author vcard">
 					<?php
-						/* Provides a hook for including author data. Default action `display_comment_author_data` includes comment author's name and avatar. */
+						/**
+						 * Hook for including comment author data.
+						 * Default action `display_comment_author_data` in wp-includes/comment-template.php includes comment author's name and avatar.
+						 *
+						 * @since CP-2.0.0
+						 */
 						do_action( 'comment_author_data', $comment, $args, $show_pending_links );
 					?>
 					</div><!-- .comment-author -->
 
 					<div class="comment-metadata">
 					<?php
-						/* Provides a hook for including metadata. Default action `display_comment_metadata` includes a comment's date and an edit link. */
+						/**
+						 * Hook for including comment metadata.
+						 * Default action `display_comment_metadata` in wp-includes/comment-template.php includes a comment's date and an edit link.
+						 *
+						 * @since CP-2.0.0
+						 */
 						do_action( 'comment_metadata', $comment, $args );
 					?>
 					</div><!-- .comment-metadata -->
