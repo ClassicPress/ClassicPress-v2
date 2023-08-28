@@ -106,9 +106,11 @@ class Tests_Compat_isCountable extends WP_UnitTestCase {
 	}
 }
 
+// phpcs:ignore Generic.Files.OneObjectStructurePerFile
 class ArrayIteratorFakeForIsCountable extends ArrayIterator {
 }
 
+// phpcs:ignore Generic.Files.OneObjectStructurePerFile
 class CountableFakeForIsCountable implements Countable {
 	#[ReturnTypeWillChange]
 	public function count() {
