@@ -1229,6 +1229,8 @@ function display_comment_metadata( $comment, $args ) {
 				get_comment_time()
 			)
 		);
+
+		edit_comment_link( __( 'Edit' ), ' <span class="edit-link">', '</span>' );
 	} else {
 		printf(
 			'<a href="%s">%s</a>',
@@ -1240,9 +1242,9 @@ function display_comment_metadata( $comment, $args ) {
 				get_comment_time()
 			)
 		);
-	}
 
-	current_theme_supports( 'html5' ) ? edit_comment_link( __( 'Edit' ), ' <span class="edit-link">', '</span>' ) : edit_comment_link( __( '(Edit)' ), ' &nbsp;&nbsp;', '' );
+		edit_comment_link( __( '(Edit)' ), ' &nbsp;&nbsp;', '' );
+	}
 }
 add_action( 'comment_metadata', 'display_comment_metadata', 10, 2 );
 
