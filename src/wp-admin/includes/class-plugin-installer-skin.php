@@ -216,7 +216,7 @@ class Plugin_Installer_Skin extends WP_Upgrader_Skin {
 			'Name'        => __( 'Plugin name' ),
 			'Version'     => __( 'Version' ),
 			'Author'      => __( 'Author' ),
-			'RequiresWP'  => __( 'Required ClassicPress version' ),
+			'RequiresWP'  => __( 'Required WordPress version' ),
 			'RequiresPHP' => __( 'Required PHP version' ),
 		);
 
