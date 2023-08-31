@@ -84,7 +84,7 @@ class CP_Debug_Compat {
 		if ( $options['data']['plugins'] === array() ) {
 			return $result;
 		}
-		$action  = esc_html__( 'Plugins in this list may have issues. ' );
+		$action  = esc_html__( 'Plugins on this list may have issues.' );
 		$action .= ' <a href="https://docs.classicpress.net/user-guides/using-classicpress/site-health-screen/#block-compatibility">' . esc_html__( 'Learn more.' ) . '</a>';
 		$result = array(
 			'label'       => esc_html__( 'Plugins using block functions' ),
@@ -120,7 +120,7 @@ class CP_Debug_Compat {
 		if ( $themes === array() ) {
 			return $result;
 		}
-		$action  = esc_html__( 'Themes in this list may have issues. ' );
+		$action  = esc_html__( 'Themes on this list may have issues.' );
 		$action .= ' <a href="https://docs.classicpress.net/user-guides/using-classicpress/site-health-screen/#block-compatibility">' . esc_html__( 'Learn more.' ) . '</a>';
 		$result = array(
 			'label'       => esc_html__( 'Themes using block functions' ),
