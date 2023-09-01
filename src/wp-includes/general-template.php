@@ -4317,11 +4317,11 @@ function the_search_query() {
  * information for the page.
  *
  * @since 4.3.0
+ * @since CP-2.0.0 Remove `xhtml` as a possible doctype.
  *
- * @param string $doctype Optional. The type of HTML document. Accepts 'xhtml' or 'html'. Default 'html'.
  * @return string A space-separated list of language attributes.
  */
-function get_language_attributes( $doctype = 'html' ) {
+function get_language_attributes() {
 	$attributes = array();
 
 	if ( function_exists( 'is_rtl' ) && is_rtl() ) {
@@ -4330,13 +4330,7 @@ function get_language_attributes( $doctype = 'html' ) {
 
 	$lang = get_bloginfo( 'language' );
 	if ( $lang ) {
-		if ( 'text/html' === get_option( 'html_type' ) || 'html' === $doctype ) {
-			$attributes[] = 'lang="' . esc_attr( $lang ) . '"';
-		}
-
-		if ( 'text/html' !== get_option( 'html_type' ) || 'xhtml' === $doctype ) {
-			$attributes[] = 'xml:lang="' . esc_attr( $lang ) . '"';
-		}
+		$attributes[] = 'lang="' . esc_attr( $lang ) . '"';
 	}
 
 	$output = implode( ' ', $attributes );
@@ -4345,12 +4339,12 @@ function get_language_attributes( $doctype = 'html' ) {
 	 * Filters the language attributes for display in the 'html' tag.
 	 *
 	 * @since 2.5.0
-	 * @since 4.3.0 Added the `$doctype` parameter.
+	 * @since 4.3.0    Added the `$doctype` parameter.
+	 * @since CP-2.0.0 Removed the `$doctype` parameter to default to HTML.
 	 *
 	 * @param string $output A space-separated list of language attributes.
-	 * @param string $doctype The type of HTML document (xhtml|html).
 	 */
-	return apply_filters( 'language_attributes', $output, $doctype );
+	return apply_filters( 'language_attributes', $output );
 }
 
 /**
@@ -4360,12 +4354,11 @@ function get_language_attributes( $doctype = 'html' ) {
  * information for the page.
  *
  * @since 2.1.0
- * @since 4.3.0 Converted into a wrapper for get_language_attributes().
- *
- * @param string $doctype Optional. The type of HTML document. Accepts 'xhtml' or 'html'. Default 'html'.
+ * @since 4.3.0    Converted into a wrapper for get_language_attributes().
+ * @since CP-2.0.0 Removed attributes as doctype is always 'html' now.
  */
-function language_attributes( $doctype = 'html' ) {
-	echo get_language_attributes( $doctype );
+function language_attributes() {
+	echo get_language_attributes();
 }
 
 /**
