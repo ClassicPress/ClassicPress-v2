@@ -4948,7 +4948,7 @@ function wp_generator() {
 	 *
 	 * @param string $generator_type The XHTML generator.
 	 */
-	the_generator( apply_filters( 'wp_generator_type', 'xhtml' ) );
+	the_generator( apply_filters( 'wp_generator_type', 'html' ) );
 }
 
 /**
@@ -4959,7 +4959,7 @@ function wp_generator() {
  *
  * @since 2.5.0
  *
- * @param string $type The type of generator to output - (html|xhtml|atom|rss2|rdf|comment|export).
+ * @param string $type The type of generator to output - (html|atom|rss2|rdf|comment|export).
  */
 function the_generator( $type ) {
 	/**
@@ -4969,7 +4969,7 @@ function the_generator( $type ) {
 	 *
 	 * @param string $generator_type The generator output.
 	 * @param string $type           The type of generator to output. Accepts 'html',
-	 *                               'xhtml', 'atom', 'rss2', 'rdf', 'comment', 'export'.
+	 *                               'atom', 'rss2', 'rdf', 'comment', 'export'.
 	 */
 	echo apply_filters( 'the_generator', get_the_generator( $type ), $type ) . "\n";
 }
@@ -4983,7 +4983,7 @@ function the_generator( $type ) {
  *
  * @since 2.5.0
  *
- * @param string $type The type of generator to return - (html|xhtml|atom|rss2|rdf|comment|export).
+ * @param string $type The type of generator to return - (html|atom|rss2|rdf|comment|export).
  * @return string|void The HTML content for the generator.
  */
 function get_the_generator( $type = '' ) {
@@ -5018,9 +5018,6 @@ function get_the_generator( $type = '' ) {
 		case 'html':
 			$gen = '<meta name="generator" content="WordPress ' . esc_attr( get_bloginfo( 'version' ) ) . ' (compatible; ClassicPress ' . esc_attr( classicpress_version_short() ) . ')\">';
 			break;
-		case 'xhtml':
-			$gen = '<meta name="generator" content="WordPress ' . esc_attr( get_bloginfo( 'version' ) ) . ' (compatible; ClassicPress ' . esc_attr( classicpress_version_short() ) . ')\" />';
-			break;
 		case 'atom':
 			$gen = '<generator uri="https://www.classicpress.net/" version="' . esc_attr( get_bloginfo( 'version' ) ) . '-cp-' . esc_attr( classicpress_version_short() ) . '">ClassicPress</generator>';
 			break;
@@ -5051,13 +5048,12 @@ function get_the_generator( $type = '' ) {
 	 *  - `get_the_generator_html`
 	 *  - `get_the_generator_rdf`
 	 *  - `get_the_generator_rss2`
-	 *  - `get_the_generator_xhtml`
 	 *
 	 * @since 2.5.0
 	 *
 	 * @param string $gen  The HTML markup output to wp_head().
-	 * @param string $type The type of generator. Accepts 'html', 'xhtml', 'atom',
-	 *                     'rss2', 'rdf', 'comment', 'export'.
+	 * @param string $type The type of generator. Accepts 'html', atom', 'rss2',
+	 *                     'rdf', 'comment', 'export'.
 	 */
 	return apply_filters( "get_the_generator_{$type}", $gen, $type );
 }
