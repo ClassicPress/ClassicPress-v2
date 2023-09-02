@@ -119,7 +119,7 @@ if ( isset( $add_user_errors ) && is_wp_error( $add_user_errors ) ) {
 		?>
 	</div>
 <?php } ?>
-	<form action="<?php echo esc_url( network_admin_url( 'user-new.php?action=add-user' ) ); ?>" id="adduser" method="post" novalidate="novalidate">
+	<form action="<?php echo esc_url( network_admin_url( 'user-new.php?action=add-user' ) ); ?>" id="adduser" method="post">
 		<p><?php echo wp_required_field_message(); ?></p>
 		<table class="form-table" role="presentation">
 			<tr class="form-field form-required">

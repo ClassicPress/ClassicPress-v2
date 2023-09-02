@@ -246,7 +246,7 @@ switch ( $action ) {
 
 			<hr class="wp-header-end">
 
-			<form id="your-profile" action="<?php echo esc_url( self_admin_url( IS_PROFILE_PAGE ? 'profile.php' : 'user-edit.php' ) ); ?>" method="post" novalidate="novalidate"
+			<form id="your-profile" action="<?php echo esc_url( self_admin_url( IS_PROFILE_PAGE ? 'profile.php' : 'user-edit.php' ) ); ?>" method="post"
 				<?php
 				/**
 				 * Fires inside the your-profile form tag on the user editing screen.

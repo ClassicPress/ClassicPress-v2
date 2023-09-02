@@ -427,7 +427,7 @@ if ( is_multisite() && current_user_can( 'promote_users' ) ) {
 		$type  = 'text';
 	}
 	?>
-<form method="post" name="adduser" id="adduser" class="validate" novalidate="novalidate"
+<form method="post" name="adduser" id="adduser" class="validate"
 	<?php
 	/**
 	 * Fires inside the adduser form tag.
@@ -487,7 +487,7 @@ if ( current_user_can( 'create_users' ) ) {
 	}
 	?>
 <p><?php _e( 'Create a brand new user and add them to this site.' ); ?></p>
-<form method="post" name="createuser" id="createuser" class="validate" novalidate="novalidate"
+<form method="post" name="createuser" id="createuser" class="validate"
 	<?php
 	/** This action is documented in wp-admin/user-new.php */
 	do_action( 'user_new_form_tag' );

@@ -622,7 +622,7 @@ function signup_user( $user_name = '', $user_email = '', $errors = '' ) {
 		printf( __( 'Get your own %s account in seconds' ), get_network()->site_name );
 	?>
 	</h2>
-	<form id="setupform" method="post" action="wp-signup.php" novalidate="novalidate">
+	<form id="setupform" method="post" action="wp-signup.php">
 		<input type="hidden" name="stage" value="validate-user-signup">
 		<?php
 		/** This action is documented in wp-signup.php */

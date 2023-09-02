@@ -145,7 +145,7 @@ if ( isset( $_GET['updated'] ) ) {
 
 <div class="wrap">
 	<h1><?php echo esc_html( $title ); ?></h1>
-	<form method="post" action="settings.php" novalidate="novalidate">
+	<form method="post" action="settings.php">
 		<?php wp_nonce_field( 'siteoptions' ); ?>
 		<h2><?php _e( 'Operational Settings' ); ?></h2>
 		<table class="form-table" role="presentation">
