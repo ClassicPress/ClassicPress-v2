@@ -415,7 +415,7 @@ switch ( $action ) {
 				<table class="form-table" role="presentation">
 					<tr class="user-user-login-wrap">
 						<th><label for="user_login"><?php _e( 'Username' ); ?></label></th>
-						<td><input type="text" name="user_login" id="user_login" value="<?php echo esc_attr( $profile_user->user_login ); ?>" disabled="disabled" class="regular-text" /> <span class="description"><?php _e( 'Usernames cannot be changed.' ); ?></span></td>
+						<td><input type="text" name="user_login" id="user_login" value="<?php echo esc_attr( $profile_user->user_login ); ?>" disabled class="regular-text" /> <span class="description"><?php _e( 'Usernames cannot be changed.' ); ?></span></td>
 					</tr>
 
 					<?php if ( ! IS_PROFILE_PAGE && ! is_network_admin() && current_user_can( 'promote_user', $profile_user->ID ) ) : ?>
@@ -435,7 +435,7 @@ switch ( $action ) {
 									if ( $user_role ) {
 										echo '<option value="">' . __( '&mdash; No role for this site &mdash;' ) . '</option>';
 									} else {
-										echo '<option value="" selected="selected">' . __( '&mdash; No role for this site &mdash;' ) . '</option>';
+										echo '<option value="" selected>' . __( '&mdash; No role for this site &mdash;' ) . '</option>';
 									}
 									?>
 							</select>
@@ -943,7 +943,7 @@ switch ( $action ) {
 					);
 					?>
 				</label>
-				<input id="new-application-password-value" type="text" class="code" readonly="readonly" value="{{ data.password }}" />
+				<input id="new-application-password-value" type="text" class="code" readonly value="{{ data.password }}" />
 			</p>
 			<p><?php _e( 'Be sure to save this in a safe location. You will not be able to retrieve it.' ); ?></p>
 			<button type="button" class="notice-dismiss">

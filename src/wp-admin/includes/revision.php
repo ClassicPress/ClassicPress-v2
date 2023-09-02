@@ -381,7 +381,7 @@ function wp_print_revision_templates() {
 				<input type="checkbox" class="compare-two-revisions"
 				<#
 				if ( 'undefined' !== typeof data && data.model.attributes.compareTwoMode ) {
-					#> checked="checked"<#
+					#> checked<#
 				}
 				#>
 				/>
@@ -437,10 +437,10 @@ function wp_print_revision_templates() {
 					</div>
 				<# if ( 'to' === data.type && data.attributes.restoreUrl ) { #>
 					<input  <?php if ( wp_check_post_lock( $post->ID ) ) { ?>
-						disabled="disabled"
+						disabled
 					<?php } else { ?>
 						<# if ( data.attributes.current ) { #>
-							disabled="disabled"
+							disabled
 						<# } #>
 					<?php } ?>
 					<# if ( data.attributes.autosave ) { #>

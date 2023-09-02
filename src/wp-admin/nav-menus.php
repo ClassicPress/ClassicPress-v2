@@ -896,7 +896,7 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 			<label for="select-menu-to-edit" class="selected-menu"><?php _e( 'Select a menu to edit:' ); ?></label>
 			<select name="menu" id="select-menu-to-edit">
 				<?php if ( $add_new_screen ) : ?>
-					<option value="0" selected="selected"><?php _e( '&mdash; Select &mdash;' ); ?></option>
+					<option value="0" selected><?php _e( '&mdash; Select &mdash;' ); ?></option>
 				<?php endif; ?>
 				<?php foreach ( (array) $nav_menus as $_nav_menu ) : ?>
 					<option value="<?php echo esc_attr( $_nav_menu->term_id ); ?>" <?php selected( $_nav_menu->term_id, $nav_menu_selected_id ); ?>>
@@ -1012,7 +1012,7 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 					<div id="nav-menu-header">
 						<div class="major-publishing-actions wp-clearfix">
 							<label class="menu-name-label" for="menu-name"><?php _e( 'Menu Name' ); ?></label>
-							<input name="menu-name" id="menu-name" type="text" class="menu-name regular-text menu-item-textbox form-required" required="required" <?php echo $menu_name_val . $menu_name_aria_desc; ?> />
+							<input name="menu-name" id="menu-name" type="text" class="menu-name regular-text menu-item-textbox form-required" required <?php echo $menu_name_val . $menu_name_aria_desc; ?> />
 							<div class="publishing-action">
 								<?php submit_button( empty( $nav_menu_selected_id ) ? __( 'Create Menu' ) : __( 'Save Menu' ), 'primary large menu-save', 'save_menu', false, array( 'id' => 'save_menu_header' ) ); ?>
 							</div><!-- END .publishing-action -->

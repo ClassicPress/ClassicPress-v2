@@ -104,7 +104,7 @@ function wp_image_editor( $post_id, $msg = false ) {
 
 		<div class="imgedit-submit">
 			<input type="button" onclick="imageEdit.close(<?php echo $post_id; ?>, 1)" class="button imgedit-cancel-btn" value="<?php esc_attr_e( 'Cancel' ); ?>" />
-			<input type="button" onclick="imageEdit.save(<?php echo "$post_id, '$nonce'"; ?>)" disabled="disabled" class="button button-primary imgedit-submit-btn" value="<?php esc_attr_e( 'Save' ); ?>" />
+			<input type="button" onclick="imageEdit.save(<?php echo "$post_id, '$nonce'"; ?>)" disabled class="button button-primary imgedit-submit-btn" value="<?php esc_attr_e( 'Save' ); ?>" />
 		</div>
 	</div>
 
@@ -279,7 +279,7 @@ function wp_image_editor( $post_id, $msg = false ) {
 		<legend><?php _e( 'Apply changes to:' ); ?></legend>
 
 		<span class="imgedit-label">
-			<input type="radio" id="imgedit-target-all" name="imgedit-target-<?php echo $post_id; ?>" value="all" checked="checked" />
+			<input type="radio" id="imgedit-target-all" name="imgedit-target-<?php echo $post_id; ?>" value="all" checked />
 			<label for="imgedit-target-all"><?php _e( 'All image sizes' ); ?></label>
 		</span>
 

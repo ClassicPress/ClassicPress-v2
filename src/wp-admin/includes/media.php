@@ -1163,7 +1163,7 @@ function image_align_input_fields( $post, $checked = '' ) {
 	foreach ( $alignments as $name => $label ) {
 		$name     = esc_attr( $name );
 		$output[] = "<input type='radio' name='attachments[{$post->ID}][align]' id='image-align-{$name}-{$post->ID}' value='$name'" .
-			( $checked == $name ? " checked='checked'" : '' ) .
+			( $checked == $name ? " checked" : '' ) .
 			" /><label for='image-align-{$name}-{$post->ID}' class='align image-align-{$name}-label'>$label</label>";
 	}
 
@@ -1215,7 +1215,7 @@ function image_size_input_fields( $post, $check = '' ) {
 		// If this size is the default but that's not available, don't select it.
 		if ( $size == $check ) {
 			if ( $enabled ) {
-				$checked = " checked='checked'";
+				$checked = " checked";
 			} else {
 				$check = '';
 			}
@@ -1225,7 +1225,7 @@ function image_size_input_fields( $post, $check = '' ) {
 			 * that's bigger than a thumbnail.
 			 */
 			$check   = $size;
-			$checked = " checked='checked'";
+			$checked = " checked";
 		}
 
 		$html = "<div class='image-size-item'><input type='radio' " . disabled( $enabled, false, false ) . "name='attachments[$post->ID][image-size]' id='{$css_id}' value='{$size}'$checked />";
@@ -1415,7 +1415,7 @@ function get_attachment_fields_to_edit( $post, $errors = null ) {
 		'image_url'    => array(
 			'label' => __( 'File URL' ),
 			'input' => 'html',
-			'html'  => "<input type='text' class='text urlfield' readonly='readonly' name='attachments[$post->ID][url]' value='" . esc_attr( $image_url ) . "' /><br />",
+			'html'  => "<input type='text' class='text urlfield' readonly name='attachments[$post->ID][url]' value='" . esc_attr( $image_url ) . "' /><br />",
 			'value' => wp_get_attachment_url( $post->ID ),
 			'helps' => __( 'Location of the uploaded file.' ),
 		),
@@ -1976,7 +1976,7 @@ function get_compat_media_markup( $attachment_id, $args = null ) {
 			continue;
 		}
 
-		$readonly      = ! $user_can_edit && ! empty( $field['taxonomy'] ) ? " readonly='readonly' " : '';
+		$readonly      = ! $user_can_edit && ! empty( $field['taxonomy'] ) ? " readonly " : '';
 		$required      = $field['required'] ? ' ' . wp_required_field_indicator() : '';
 		$required_attr = $field['required'] ? ' required' : '';
 		$class         = 'compat-field-' . $id;
@@ -2615,7 +2615,7 @@ function media_upload_gallery_form( $errors ) {
 			<input type="radio" name="linkto" id="linkto-file" value="file" />
 			<label for="linkto-file" class="radio"><?php _e( 'Image File' ); ?></label>
 
-			<input type="radio" checked="checked" name="linkto" id="linkto-post" value="post" />
+			<input type="radio" checked name="linkto" id="linkto-post" value="post" />
 			<label for="linkto-post" class="radio"><?php _e( 'Attachment Page' ); ?></label>
 		</td>
 		</tr>
@@ -2628,7 +2628,7 @@ function media_upload_gallery_form( $errors ) {
 		</th>
 		<td class="field">
 			<select id="orderby" name="orderby">
-				<option value="menu_order" selected="selected"><?php _e( 'Menu order' ); ?></option>
+				<option value="menu_order" selected><?php _e( 'Menu order' ); ?></option>
 				<option value="title"><?php _e( 'Title' ); ?></option>
 				<option value="post_date"><?php _e( 'Date/Time' ); ?></option>
 				<option value="rand"><?php _e( 'Random' ); ?></option>
@@ -2643,7 +2643,7 @@ function media_upload_gallery_form( $errors ) {
 			</label>
 		</th>
 		<td class="field">
-			<input type="radio" checked="checked" name="order" id="order-asc" value="asc" />
+			<input type="radio" checked name="order" id="order-asc" value="asc" />
 			<label for="order-asc" class="radio"><?php _e( 'Ascending' ); ?></label>
 
 			<input type="radio" name="order" id="order-desc" value="desc" />
@@ -2661,7 +2661,7 @@ function media_upload_gallery_form( $errors ) {
 			<select id="columns" name="columns">
 				<option value="1">1</option>
 				<option value="2">2</option>
-				<option value="3" selected="selected">3</option>
+				<option value="3" selected>3</option>
 				<option value="4">4</option>
 				<option value="5">5</option>
 				<option value="6">6</option>
@@ -2854,7 +2854,7 @@ function media_upload_library_form( $errors ) {
 				$arc_row->mmonth = zeroise( $arc_row->mmonth, 2 );
 
 				if ( $arc_row->yyear . $arc_row->mmonth == $selected_month ) {
-					$default = ' selected="selected"';
+					$default = ' selected';
 				} else {
 					$default = '';
 				}
@@ -2971,13 +2971,13 @@ function wp_media_insert_url_form( $default_view = 'image' ) {
 		<tr class="align image-only">
 			<th scope="row" class="label"><p><label for="align">' . __( 'Alignment' ) . '</label></p></th>
 			<td class="field">
-				<input name="align" id="align-none" value="none" onclick="addExtImage.align=\'align\'+this.value" type="radio"' . ( 'none' === $default_align ? ' checked="checked"' : '' ) . ' />
+				<input name="align" id="align-none" value="none" onclick="addExtImage.align=\'align\'+this.value" type="radio"' . ( 'none' === $default_align ? ' checked' : '' ) . ' />
 				<label for="align-none" class="align image-align-none-label">' . __( 'None' ) . '</label>
-				<input name="align" id="align-left" value="left" onclick="addExtImage.align=\'align\'+this.value" type="radio"' . ( 'left' === $default_align ? ' checked="checked"' : '' ) . ' />
+				<input name="align" id="align-left" value="left" onclick="addExtImage.align=\'align\'+this.value" type="radio"' . ( 'left' === $default_align ? ' checked' : '' ) . ' />
 				<label for="align-left" class="align image-align-left-label">' . __( 'Left' ) . '</label>
-				<input name="align" id="align-center" value="center" onclick="addExtImage.align=\'align\'+this.value" type="radio"' . ( 'center' === $default_align ? ' checked="checked"' : '' ) . ' />
+				<input name="align" id="align-center" value="center" onclick="addExtImage.align=\'align\'+this.value" type="radio"' . ( 'center' === $default_align ? ' checked' : '' ) . ' />
 				<label for="align-center" class="align image-align-center-label">' . __( 'Center' ) . '</label>
-				<input name="align" id="align-right" value="right" onclick="addExtImage.align=\'align\'+this.value" type="radio"' . ( 'right' === $default_align ? ' checked="checked"' : '' ) . ' />
+				<input name="align" id="align-right" value="right" onclick="addExtImage.align=\'align\'+this.value" type="radio"' . ( 'right' === $default_align ? ' checked' : '' ) . ' />
 				<label for="align-right" class="align image-align-right-label">' . __( 'Right' ) . '</label>
 			</td>
 		</tr>
@@ -3064,7 +3064,7 @@ function media_upload_text_after() {}
  * @since 3.3.0
  */
 function media_upload_max_image_resize() {
-	$checked = get_user_setting( 'upload_resize' ) ? ' checked="true"' : '';
+	$checked = get_user_setting( 'upload_resize' ) ? ' checked' : '';
 	$a       = '';
 	$end     = '';
 
@@ -3340,7 +3340,7 @@ function attachment_submitbox_metadata() {
 
 	<div class="misc-pub-section misc-pub-attachment">
 		<label for="attachment_url"><?php _e( 'File URL:' ); ?></label>
-		<input type="text" class="widefat urlfield" readonly="readonly" name="attachment_url" id="attachment_url" value="<?php echo esc_attr( $att_url ); ?>" />
+		<input type="text" class="widefat urlfield" readonly name="attachment_url" id="attachment_url" value="<?php echo esc_attr( $att_url ); ?>" />
 		<span class="copy-to-clipboard-container">
 			<button type="button" class="button copy-attachment-url edit-media" data-clipboard-target="#attachment_url"><?php _e( 'Copy URL to clipboard' ); ?></button>
 			<span class="success hidden" aria-hidden="true"><?php _e( 'Copied!' ); ?></span>

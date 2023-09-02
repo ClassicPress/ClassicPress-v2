@@ -1226,13 +1226,13 @@ function link_target_meta_box( $link ) {
 	?>
 </span></legend>
 <p><label for="link_target_blank" class="selectit">
-<input id="link_target_blank" type="radio" name="link_target" value="_blank" <?php echo ( isset( $link->link_target ) && ( '_blank' === $link->link_target ) ? 'checked="checked"' : '' ); ?> />
+<input id="link_target_blank" type="radio" name="link_target" value="_blank" <?php echo ( isset( $link->link_target ) && ( '_blank' === $link->link_target ) ? 'checked' : '' ); ?> />
 	<?php _e( '<code>_blank</code> &mdash; new window or tab.' ); ?></label></p>
 <p><label for="link_target_top" class="selectit">
-<input id="link_target_top" type="radio" name="link_target" value="_top" <?php echo ( isset( $link->link_target ) && ( '_top' === $link->link_target ) ? 'checked="checked"' : '' ); ?> />
+<input id="link_target_top" type="radio" name="link_target" value="_top" <?php echo ( isset( $link->link_target ) && ( '_top' === $link->link_target ) ? 'checked' : '' ); ?> />
 	<?php _e( '<code>_top</code> &mdash; current window or tab, with no frames.' ); ?></label></p>
 <p><label for="link_target_none" class="selectit">
-<input id="link_target_none" type="radio" name="link_target" value="" <?php echo ( isset( $link->link_target ) && ( '' === $link->link_target ) ? 'checked="checked"' : '' ); ?> />
+<input id="link_target_none" type="radio" name="link_target" value="" <?php echo ( isset( $link->link_target ) && ( '' === $link->link_target ) ? 'checked' : '' ); ?> />
 	<?php _e( '<code>_none</code> &mdash; same window or tab.' ); ?></label></p>
 </fieldset>
 <p><?php _e( 'Choose the target frame for your link.' ); ?></p>
@@ -1266,7 +1266,7 @@ function xfn_check( $xfn_relationship, $xfn_value = '', $deprecated = '' ) {
 
 	// Mark the specified value as checked if it matches the current link's relationship.
 	if ( '' !== $xfn_value && in_array( $xfn_value, $link_rels, true ) ) {
-		echo ' checked="checked"';
+		echo ' checked';
 	}
 
 	if ( '' === $xfn_value ) {
@@ -1274,26 +1274,26 @@ function xfn_check( $xfn_relationship, $xfn_value = '', $deprecated = '' ) {
 		if ( 'family' === $xfn_relationship
 			&& ! array_intersect( $link_rels, array( 'child', 'parent', 'sibling', 'spouse', 'kin' ) )
 		) {
-			echo ' checked="checked"';
+			echo ' checked';
 		}
 
 		if ( 'friendship' === $xfn_relationship
 			&& ! array_intersect( $link_rels, array( 'friend', 'acquaintance', 'contact' ) )
 		) {
-			echo ' checked="checked"';
+			echo ' checked';
 		}
 
 		if ( 'geographical' === $xfn_relationship
 			&& ! array_intersect( $link_rels, array( 'co-resident', 'neighbor' ) )
 		) {
-			echo ' checked="checked"';
+			echo ' checked';
 		}
 
 		// Mark the 'me' value as checked if it matches the current link's relationship.
 		if ( 'identity' === $xfn_relationship
 			&& in_array( 'me', $link_rels, true )
 		) {
-			echo ' checked="checked"';
+			echo ' checked';
 		}
 	}
 }
@@ -1487,7 +1487,7 @@ function link_advanced_meta_box( $link ) {
 		for ( $rating = 0; $rating <= 10; $rating++ ) {
 			echo '<option value="' . $rating . '"';
 			if ( isset( $link->link_rating ) && $link->link_rating == $rating ) {
-				echo ' selected="selected"';
+				echo ' selected';
 			}
 			echo '>' . $rating . '</option>';
 		}

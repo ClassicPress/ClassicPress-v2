@@ -891,7 +891,7 @@ function install_plugin_information() {
 						echo '<a data-slug="' . esc_attr( $api->slug ) . '" id="plugin_install_from_iframe" class="button button-primary right" href="' . $status['url'] . '" target="_parent">' . __( 'Install Now' ) . '</a>';
 					} else {
 						printf(
-							'<button type="button" class="button button-primary button-disabled right" disabled="disabled">%s</button>',
+							'<button type="button" class="button button-primary button-disabled right" disabled>%s</button>',
 							_x( 'Cannot Install', 'plugin' )
 						);
 					}
@@ -903,7 +903,7 @@ function install_plugin_information() {
 						echo '<a data-slug="' . esc_attr( $api->slug ) . '" data-plugin="' . esc_attr( $status['file'] ) . '" id="plugin_update_from_iframe" class="button button-primary right" href="' . $status['url'] . '" target="_parent">' . __( 'Install Update Now' ) . '</a>';
 					} else {
 						printf(
-							'<button type="button" class="button button-primary button-disabled right" disabled="disabled">%s</button>',
+							'<button type="button" class="button button-primary button-disabled right" disabled>%s</button>',
 							_x( 'Cannot Update', 'plugin' )
 						);
 					}

@@ -225,7 +225,7 @@ $content = esc_textarea( $content );
 		foreach ( $plugins as $plugin_key => $a_plugin ) {
 			$plugin_name = $a_plugin['Name'];
 			if ( $plugin_key === $plugin ) {
-				$selected = " selected='selected'";
+				$selected = " selected";
 			} else {
 				$selected = '';
 			}

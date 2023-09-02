@@ -236,7 +236,7 @@ if ( $file_description !== $file_show ) {
 				continue;
 			}
 
-			$selected = ( $a_stylesheet === $stylesheet ) ? ' selected="selected"' : '';
+			$selected = ( $a_stylesheet === $stylesheet ) ? ' selected' : '';
 			echo "\n\t" . '<option value="' . esc_attr( $a_stylesheet ) . '"' . $selected . '>' . $a_theme->display( 'Name' ) . '</option>';
 		}
 		?>

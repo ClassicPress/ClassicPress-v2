@@ -416,7 +416,7 @@ if ( empty( $tzstring ) ) { // Create a UTC+- zone if no timezone string exists.
 foreach ( $date_formats as $format ) {
 	echo "\t<label><input type='radio' name='date_format' value='" . esc_attr( $format ) . "'";
 	if ( get_option( 'date_format' ) === $format ) { // checked() uses "==" rather than "===".
-		echo " checked='checked'";
+		echo " checked";
 		$custom = false;
 	}
 	echo ' /> <span class="date-time-text format-i18n">' . date_i18n( $format ) . '</span><code>' . esc_html( $format ) . "</code></label><br />\n";
@@ -464,7 +464,7 @@ foreach ( $date_formats as $format ) {
 foreach ( $time_formats as $format ) {
 	echo "\t<label><input type='radio' name='time_format' value='" . esc_attr( $format ) . "'";
 	if ( get_option( 'time_format' ) === $format ) { // checked() uses "==" rather than "===".
-		echo " checked='checked'";
+		echo " checked";
 		$custom = false;
 	}
 	echo ' /> <span class="date-time-text format-i18n">' . date_i18n( $format ) . '</span><code>' . esc_html( $format ) . "</code></label><br />\n";
@@ -500,7 +500,7 @@ foreach ( $time_formats as $format ) {
 global $wp_locale;
 
 for ( $day_index = 0; $day_index <= 6; $day_index++ ) :
-	$selected = ( get_option( 'start_of_week' ) == $day_index ) ? 'selected="selected"' : '';
+	$selected = ( get_option( 'start_of_week' ) == $day_index ) ? 'selected' : '';
 	echo "\n\t<option value='" . esc_attr( $day_index ) . "' $selected>" . $wp_locale->get_weekday( $day_index ) . '</option>';
 endfor;
 ?>

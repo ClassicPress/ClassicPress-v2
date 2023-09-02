@@ -131,7 +131,7 @@ $blog_details = get_blog_details();
 		<form name="activateform" id="activateform" method="post" action="<?php echo network_site_url( $blog_details->path . 'wp-activate.php' ); ?>">
 			<p>
 				<label for="key"><?php _e( 'Activation Key:' ); ?></label>
-				<br /><input type="text" name="key" id="key" value="" size="50" autofocus="autofocus" />
+				<br /><input type="text" name="key" id="key" value="" size="50" autofocus />
 			</p>
 			<p class="submit">
 				<input id="submit" type="submit" name="Submit" class="submit" value="<?php esc_attr_e( 'Activate' ); ?>" />

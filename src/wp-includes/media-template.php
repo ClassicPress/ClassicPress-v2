@@ -400,7 +400,7 @@ function wp_print_media_templates() {
 					}
 				#>
 				<div style="{{ w_rule }}" class="wp-media-wrapper wp-video">
-					<video controls="controls" class="wp-video-shortcode" preload="metadata"
+					<video controls class="wp-video-shortcode" preload="metadata"
 						<# if ( data.width ) { #>width="{{ data.width }}"<# } #>
 						<# if ( data.height ) { #>height="{{ data.height }}"<# } #>
 						<# if ( data.image && data.image.src !== data.icon ) { #>poster="{{ data.image.src }}"<# } #>>
@@ -667,7 +667,7 @@ function wp_print_media_templates() {
 				}
 			#>
 				<div style="{{ w_rule }}" class="wp-media-wrapper wp-video">
-					<video controls="controls" class="wp-video-shortcode" preload="metadata"
+					<video controls class="wp-video-shortcode" preload="metadata"
 						<# if ( data.width ) { #>width="{{ data.width }}"<# } #>
 						<# if ( data.height ) { #>height="{{ data.height }}"<# } #>
 						<# if ( data.image && data.image.src !== data.icon ) { #>poster="{{ data.image.src }}"<# } #>>
@@ -929,14 +929,14 @@ function wp_print_media_templates() {
 				<# } #>>
 
 				<option value="post" <# if ( ! wp.media.galleryDefaults.link || 'post' === wp.media.galleryDefaults.link ) {
-					#>selected="selected"<# }
+					#>selected<# }
 				#>>
 					<?php esc_html_e( 'Attachment Page' ); ?>
 				</option>
-				<option value="file" <# if ( 'file' === wp.media.galleryDefaults.link ) { #>selected="selected"<# } #>>
+				<option value="file" <# if ( 'file' === wp.media.galleryDefaults.link ) { #>selected<# } #>>
 					<?php esc_html_e( 'Media File' ); ?>
 				</option>
-				<option value="none" <# if ( 'none' === wp.media.galleryDefaults.link ) { #>selected="selected"<# } #>>
+				<option value="none" <# if ( 'none' === wp.media.galleryDefaults.link ) { #>selected<# } #>>
 					<?php esc_html_e( 'None' ); ?>
 				</option>
 			</select>
@@ -948,7 +948,7 @@ function wp_print_media_templates() {
 				data-setting="columns">
 				<?php for ( $i = 1; $i <= 9; $i++ ) : ?>
 					<option value="<?php echo esc_attr( $i ); ?>" <#
-						if ( <?php echo $i; ?> == wp.media.galleryDefaults.columns ) { #>selected="selected"<# }
+						if ( <?php echo $i; ?> == wp.media.galleryDefaults.columns ) { #>selected<# }
 					#>>
 						<?php echo esc_html( $i ); ?>
 					</option>
@@ -1000,7 +1000,7 @@ function wp_print_media_templates() {
 
 		<span class="setting">
 			<input type="checkbox" id="playlist-settings-show-list" data-setting="tracklist" <# if ( emptyModel ) { #>
-				checked="checked"
+				checked
 			<# } #> />
 			<label for="playlist-settings-show-list" class="checkbox-label-inline">
 				<# if ( isVideo ) { #>
@@ -1014,7 +1014,7 @@ function wp_print_media_templates() {
 		<# if ( ! isVideo ) { #>
 		<span class="setting">
 			<input type="checkbox" id="playlist-settings-show-artist" data-setting="artists" <# if ( emptyModel ) { #>
-				checked="checked"
+				checked
 			<# } #> />
 			<label for="playlist-settings-show-artist" class="checkbox-label-inline">
 				<?php _e( 'Show Artist Name in Tracklist' ); ?>
@@ -1024,7 +1024,7 @@ function wp_print_media_templates() {
 
 		<span class="setting">
 			<input type="checkbox" id="playlist-settings-show-images" data-setting="images" <# if ( emptyModel ) { #>
-				checked="checked"
+				checked
 			<# } #> />
 			<label for="playlist-settings-show-images" class="checkbox-label-inline">
 				<?php _e( 'Show Images' ); ?>
@@ -1245,7 +1245,7 @@ function wp_print_media_templates() {
 							</div>
 							<div class="advanced-link">
 								<span class="setting link-target">
-									<input type="checkbox" id="image-details-link-target" data-setting="linkTargetBlank" value="_blank" <# if ( data.model.linkTargetBlank ) { #>checked="checked"<# } #>>
+									<input type="checkbox" id="image-details-link-target" data-setting="linkTargetBlank" value="_blank" <# if ( data.model.linkTargetBlank ) { #>checked<# } #>>
 									<label for="image-details-link-target" class="checkbox-label"><?php _e( 'Open link in a new tab' ); ?></label>
 								</span>
 								<span class="setting link-rel">

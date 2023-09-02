@@ -6412,14 +6412,14 @@ function wp_timezone_choice( $selected_zone, $locale = null ) {
 	$structure = array();
 
 	if ( empty( $selected_zone ) ) {
-		$structure[] = '<option selected="selected" value="">' . __( 'Select a city' ) . '</option>';
+		$structure[] = '<option selected value="">' . __( 'Select a city' ) . '</option>';
 	}
 
 	// If this is a deprecated, but valid, timezone string, display it at the top of the list as-is.
 	if ( in_array( $selected_zone, $tz_identifiers, true ) === false
 		&& in_array( $selected_zone, timezone_identifiers_list( DateTimeZone::ALL_WITH_BC ), true )
 	) {
-		$structure[] = '<option selected="selected" value="' . esc_attr( $selected_zone ) . '">' . esc_html( $selected_zone ) . '</option>';
+		$structure[] = '<option selected value="' . esc_attr( $selected_zone ) . '">' . esc_html( $selected_zone ) . '</option>';
 	}
 
 	foreach ( $zonen as $key => $zone ) {
@@ -6453,7 +6453,7 @@ function wp_timezone_choice( $selected_zone, $locale = null ) {
 		$value    = implode( '/', $value );
 		$selected = '';
 		if ( $value === $selected_zone ) {
-			$selected = 'selected="selected" ';
+			$selected = 'selected ';
 		}
 		$structure[] = '<option ' . $selected . 'value="' . esc_attr( $value ) . '">' . esc_html( $display ) . '</option>';
 
@@ -6467,7 +6467,7 @@ function wp_timezone_choice( $selected_zone, $locale = null ) {
 	$structure[] = '<optgroup label="' . esc_attr__( 'UTC' ) . '">';
 	$selected    = '';
 	if ( 'UTC' === $selected_zone ) {
-		$selected = 'selected="selected" ';
+		$selected = 'selected ';
 	}
 	$structure[] = '<option ' . $selected . 'value="' . esc_attr( 'UTC' ) . '">' . __( 'UTC' ) . '</option>';
 	$structure[] = '</optgroup>';
@@ -6544,7 +6544,7 @@ function wp_timezone_choice( $selected_zone, $locale = null ) {
 		$offset_value = 'UTC' . $offset_value;
 		$selected     = '';
 		if ( $offset_value === $selected_zone ) {
-			$selected = 'selected="selected" ';
+			$selected = 'selected ';
 		}
 		$structure[] = '<option ' . $selected . 'value="' . esc_attr( $offset_value ) . '">' . esc_html( $offset_name ) . '</option>';
 

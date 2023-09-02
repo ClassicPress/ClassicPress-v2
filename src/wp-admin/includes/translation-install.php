@@ -170,7 +170,7 @@ function wp_install_language_form( $languages ) {
 
 	echo "<label class='screen-reader-text' for='language'>Select a default language</label>\n";
 	echo "<select size='14' name='language' id='language'>\n";
-	echo '<option value="" lang="en" selected="selected" data-continue="Continue" data-installed="1">English (United States)</option>';
+	echo '<option value="" lang="en" selected data-continue="Continue" data-installed="1">English (United States)</option>';
 	echo "\n";
 
 	if ( ! empty( $wp_local_package ) && isset( $languages[ $wp_local_package ] ) ) {

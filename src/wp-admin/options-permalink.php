@@ -477,7 +477,7 @@ printf(
 					<p>
 						<label for="rules"><?php _e( 'Rewrite rules:' ); ?></label><br />
 						<textarea rows="9" class="large-text readonly"
-							name="rules" id="rules" readonly="readonly"
+							name="rules" id="rules" readonly
 							aria-describedby="iis-description-a"
 						><?php echo esc_textarea( $wp_rewrite->iis7_url_rewrite_rules() ); ?></textarea>
 					</p>
@@ -509,7 +509,7 @@ printf(
 					<p>
 						<label for="rules"><?php _e( 'Rewrite rules:' ); ?></label><br />
 						<textarea rows="18" class="large-text readonly"
-							name="rules" id="rules" readonly="readonly"
+							name="rules" id="rules" readonly
 							aria-describedby="iis-description-b"
 						><?php echo esc_textarea( $wp_rewrite->iis7_url_rewrite_rules( true ) ); ?></textarea>
 					</p>
@@ -544,7 +544,7 @@ printf(
 				<p>
 					<label for="rules"><?php _e( 'Rewrite rules:' ); ?></label><br />
 					<textarea rows="8" class="large-text readonly"
-						name="rules" id="rules" readonly="readonly"
+						name="rules" id="rules" readonly
 						aria-describedby="htaccess-description"
 					><?php echo esc_textarea( $wp_rewrite->mod_rewrite_rules() ); ?></textarea>
 				</p>

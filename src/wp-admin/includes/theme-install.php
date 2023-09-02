@@ -135,7 +135,7 @@ function install_theme_search_form( $type_selector = true ) {
 		?>
 	</label>
 	<?php endif; ?>
-	<input type="search" name="s" id="s" size="30" value="<?php echo esc_attr( $term ); ?>" autofocus="autofocus" />
+	<input type="search" name="s" id="s" size="30" value="<?php echo esc_attr( $term ); ?>" autofocus />
 	<?php submit_button( __( 'Search' ), '', 'search', false ); ?>
 </form>
 	<?php

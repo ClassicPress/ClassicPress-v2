@@ -237,7 +237,7 @@ function wp_popular_terms_checklist( $taxonomy, $default_term = 0, $number = 10,
 		}
 
 		$id      = "popular-$taxonomy-$term->term_id";
-		$checked = in_array( $term->term_id, $checked_terms, true ) ? 'checked="checked"' : '';
+		$checked = in_array( $term->term_id, $checked_terms, true ) ? 'checked' : '';
 		?>
 
 		<li id="<?php echo $id; ?>" class="popular-category">
@@ -294,7 +294,7 @@ function wp_link_category_checklist( $link_id = 0 ) {
 
 		/** This filter is documented in wp-includes/category-template.php */
 		$name    = esc_html( apply_filters( 'the_category', $category->name, '', '' ) );
-		$checked = in_array( $cat_id, $checked_categories, true ) ? ' checked="checked"' : '';
+		$checked = in_array( $cat_id, $checked_categories, true ) ? ' checked' : '';
 		echo '<li id="link-category-', $cat_id, '"><label for="in-link-category-', $cat_id, '" class="selectit"><input value="', $cat_id, '" type="checkbox" name="link_category[]" id="in-link-category-', $cat_id, '"', $checked, '/> ', $name, '</label></li>';
 	}
 }
@@ -979,7 +979,7 @@ function wp_dropdown_roles( $selected = '' ) {
 		$name = translate_user_role( $details['name'] );
 		// Preselect specified role.
 		if ( $selected === $role ) {
-			$r .= "\n\t<option selected='selected' value='" . esc_attr( $role ) . "'>$name</option>";
+			$r .= "\n\t<option selected value='" . esc_attr( $role ) . "'>$name</option>";
 		} else {
 			$r .= "\n\t<option value='" . esc_attr( $role ) . "'>$name</option>";
 		}

@@ -2452,9 +2452,9 @@ function comment_form( $args = array(), $post = null ) {
 	$req   = get_option( 'require_name_email' );
 	$html5 = 'html5' === $args['format'];
 
-	// Define attributes in HTML5 or XHTML syntax.
-	$required_attribute = ( $html5 ? ' required' : ' required="required"' );
-	$checked_attribute  = ( $html5 ? ' checked' : ' checked="checked"' );
+	// Define attributes.
+	$required_attribute = ' required';
+	$checked_attribute  = ' checked';
 
 	// Identify required fields visually and create a message about the indicator.
 	$required_indicator = ' ' . wp_required_field_indicator();

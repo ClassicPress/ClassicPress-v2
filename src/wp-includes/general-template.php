@@ -583,7 +583,7 @@ function wp_login_form( $args = array() ) {
 			sprintf(
 				'<p class="login-remember"><label><input name="rememberme" type="checkbox" id="%1$s" value="forever"%2$s> %3$s</label></p>',
 				esc_attr( $args['id_remember'] ),
-				( $args['value_remember'] ? ' checked="checked"' : '' ),
+				( $args['value_remember'] ? ' checked' : '' ),
 				esc_html( $args['label_remember'] )
 			) : ''
 		) .
@@ -1883,7 +1883,7 @@ function get_archives_link( $url, $text, $format = 'html', $before = '', $after 
 	if ( 'link' === $format ) {
 		$link_html = "\t<link rel='archives' title='" . esc_attr( $text ) . "' href='$url'>\n";
 	} elseif ( 'option' === $format ) {
-		$selected_attr = $selected ? " selected='selected'" : '';
+		$selected_attr = $selected ? " selected" : '';
 		$link_html     = "\t<option value='$url'$selected_attr>$before $text $after</option>\n";
 	} elseif ( 'html' === $format ) {
 		$link_html = "\t<li>$before<a href='$url'$aria_current>$text</a>$after</li>\n";
