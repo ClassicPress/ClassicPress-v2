@@ -175,11 +175,11 @@ if ( ! empty( $messages ) ) {
 
 		<tr class="form-field">
 			<th scope="row"><label for="blog_registered"><?php _ex( 'Registered', 'site' ); ?></label></th>
-			<td><input name="blog[registered]" type="text" id="blog_registered" value="<?php echo esc_attr( $details->registered ); ?>" /></td>
+			<td><input name="blog[registered]" type="text" id="blog_registered" value="<?php echo esc_attr( $details->registered ); ?>"></td>
 		</tr>
 		<tr class="form-field">
 			<th scope="row"><label for="blog_last_updated"><?php _e( 'Last Updated' ); ?></label></th>
-			<td><input name="blog[last_updated]" type="text" id="blog_last_updated" value="<?php echo esc_attr( $details->last_updated ); ?>" /></td>
+			<td><input name="blog[last_updated]" type="text" id="blog_last_updated" value="<?php echo esc_attr( $details->last_updated ); ?>"></td>
 		</tr>
 		<?php
 		$attribute_fields = array( 'public' => _x( 'Public', 'site' ) );
@@ -201,8 +201,8 @@ if ( ! empty( $messages ) ) {
 				?>
 			</legend>
 			<?php foreach ( $attribute_fields as $field_key => $field_label ) : ?>
-				<label><input type="checkbox" name="blog[<?php echo $field_key; ?>]" value="1" <?php checked( (bool) $details->$field_key, true ); ?> <?php disabled( ! in_array( (int) $details->$field_key, array( 0, 1 ), true ) ); ?> />
-				<?php echo $field_label; ?></label><br />
+				<label><input type="checkbox" name="blog[<?php echo $field_key; ?>]" value="1" <?php checked( (bool) $details->$field_key, true ); ?> <?php disabled( ! in_array( (int) $details->$field_key, array( 0, 1 ), true ) ); ?>>
+				<?php echo $field_label; ?></label><br>
 			<?php endforeach; ?>
 			<fieldset>
 			</td>

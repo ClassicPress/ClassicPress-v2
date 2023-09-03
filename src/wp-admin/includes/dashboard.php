@@ -247,7 +247,7 @@ function _wp_dashboard_control_callback( $dashboard, $meta_box ) {
 	echo '<form method="post" class="dashboard-widget-control-form wp-clearfix">';
 	wp_dashboard_trigger_widget_control( $meta_box['id'] );
 	wp_nonce_field( 'edit-dashboard-widget_' . $meta_box['id'], 'dashboard-widget-nonce' );
-	echo '<input type="hidden" name="widget_id" value="' . esc_attr( $meta_box['id'] ) . '" />';
+	echo '<input type="hidden" name="widget_id" value="' . esc_attr( $meta_box['id'] ) . '">';
 	submit_button( __( 'Save Changes' ) );
 	echo '</form>';
 }
@@ -475,7 +475,7 @@ function wp_network_dashboard_right_now() {
 		echo '</ul>';
 	}
 	?>
-	<br class="clear" />
+	<br class="clear">
 
 	<p class="youhave"><?php echo $sentence; ?></p>
 
@@ -498,7 +498,7 @@ function wp_network_dashboard_right_now() {
 				_e( 'Search Users' );
 				?>
 			</label>
-			<input type="search" name="s" value="" size="30" autocomplete="off" id="search-users" />
+			<input type="search" name="s" value="" size="30" autocomplete="off" id="search-users">
 			<?php submit_button( __( 'Search Users' ), '', false, false, array( 'id' => 'submit_users' ) ); ?>
 		</p>
 	</form>
@@ -511,7 +511,7 @@ function wp_network_dashboard_right_now() {
 				_e( 'Search Sites' );
 				?>
 			</label>
-			<input type="search" name="s" value="" size="30" autocomplete="off" id="search-sites" />
+			<input type="search" name="s" value="" size="30" autocomplete="off" id="search-sites">
 			<?php submit_button( __( 'Search Sites' ), '', false, false, array( 'id' => 'submit_sites' ) ); ?>
 		</p>
 	</form>
@@ -585,7 +585,7 @@ function wp_dashboard_quick_press( $error_msg = false ) {
 				echo apply_filters( 'enter_title_here', __( 'Title' ), $post );
 				?>
 			</label>
-			<input type="text" name="post_title" id="title" autocomplete="off" />
+			<input type="text" name="post_title" id="title" autocomplete="off">
 		</div>
 
 		<div class="textarea-wrap" id="description-wrap">
@@ -594,12 +594,12 @@ function wp_dashboard_quick_press( $error_msg = false ) {
 		</div>
 
 		<p class="submit">
-			<input type="hidden" name="action" id="quickpost-action" value="post-quickdraft-save" />
-			<input type="hidden" name="post_ID" value="<?php echo $post_ID; ?>" />
-			<input type="hidden" name="post_type" value="post" />
+			<input type="hidden" name="action" id="quickpost-action" value="post-quickdraft-save">
+			<input type="hidden" name="post_ID" value="<?php echo $post_ID; ?>">
+			<input type="hidden" name="post_type" value="post">
 			<?php wp_nonce_field( 'add-post' ); ?>
 			<?php submit_button( __( 'Save Draft' ), 'primary', 'save', false, array( 'id' => 'save-post' ) ); ?>
-			<br class="clear" />
+			<br class="clear">
 		</p>
 
 	</form>
@@ -1481,7 +1481,7 @@ function wp_dashboard_browser_nag() {
 		if ( ! empty( $response['img_src'] ) ) {
 			$img_src = ( is_ssl() && ! empty( $response['img_src_ssl'] ) ) ? $response['img_src_ssl'] : $response['img_src'];
 
-			$notice           .= '<div class="alignright browser-icon"><img src="' . esc_url( $img_src ) . '" alt="" /></div>';
+			$notice           .= '<div class="alignright browser-icon"><img src="' . esc_url( $img_src ) . '" alt=""></div>';
 			$browser_nag_class = ' has-browser-icon';
 		}
 		$notice .= "<p class='browser-update-nag{$browser_nag_class}'>{$msg}</p>";
