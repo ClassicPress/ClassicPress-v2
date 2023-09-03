@@ -166,7 +166,7 @@ function dismissed_updates() {
 		$show_text = esc_js( __( 'Show hidden updates' ) );
 		$hide_text = esc_js( __( 'Hide hidden updates' ) );
 		?>
-		<script type="text/javascript">
+		<script>
 			jQuery( function( $ ) {
 				$( '#show-dismissed' ).on( 'click', function() {
 					var isExpanded = ( 'true' === $( this ).attr( 'aria-expanded' ) );
@@ -789,7 +789,7 @@ function do_core_upgrade( $reinstall = false ) {
 	show_message( '<span class="hide-if-js">' . sprintf( __( 'Welcome to ClassicPress %1$s. <a href="%2$s">Learn more</a>.' ), $result, esc_url( self_admin_url( 'about.php?updated' ) ) ) . '</span>' );
 	?>
 	</div>
-	<script type="text/javascript">
+	<script>
 	window.location = '<?php echo self_admin_url( 'about.php?updated' ); ?>';
 	</script>
 	<?php

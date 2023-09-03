@@ -1973,7 +1973,7 @@ function get_attachment_icon( $id = 0, $fullsize = false, $max_dims = false ) {
 
 	$post_title = esc_attr($post->post_title);
 
-	$icon = "<img src='$src' title='$post_title' alt='$post_title' $constraint/>";
+	$icon = "<img src='$src' title='$post_title' alt='$post_title' $constraint>";
 
 	return apply_filters( 'attachment_icon', $icon, $post->ID );
 }

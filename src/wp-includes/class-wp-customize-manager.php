@@ -2195,7 +2195,7 @@ final class WP_Customize_Manager {
 		}
 
 		?>
-		<script type="text/javascript">
+		<script>
 			var _wpCustomizeSettings = <?php echo wp_json_encode( $settings ); ?>;
 			_wpCustomizeSettings.values = {};
 			(function( v ) {
@@ -4970,7 +4970,7 @@ final class WP_Customize_Manager {
 		}
 
 		?>
-		<script type="text/javascript">
+		<script>
 			var _wpCustomizeSettings = <?php echo wp_json_encode( $settings ); ?>;
 			_wpCustomizeSettings.initialClientTimestamp = _.now();
 			_wpCustomizeSettings.controls = {};

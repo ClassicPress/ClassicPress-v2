@@ -3669,16 +3669,16 @@ function wp_customize_url( $stylesheet = '' ) {
  * to the body tag by default.
  *
  * @since 3.4.0
- * @since 4.7.0 Support for IE8 and below is explicitly removed via conditional comments.
- * @since 5.5.0 IE8 and older are no longer supported.
+ * @since 4.7.0    Support for IE8 and below is explicitly removed via conditional comments.
+ * @since 5.5.0    IE8 and older are no longer supported.
+ * @since CP-2.0.0 XHTML is no longer supported.
  */
 function wp_customize_support_script() {
 	$admin_origin = parse_url( admin_url() );
 	$home_origin  = parse_url( home_url() );
 	$cross_domain = ( strtolower( $admin_origin['host'] ) != strtolower( $home_origin['host'] ) );
-	$type_attr    = current_theme_supports( 'html5', 'script' ) ? '' : ' type="text/javascript"';
 	?>
-	<script<?php echo $type_attr; ?>>
+	<script>
 		(function() {
 			var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp('(^|\\s+)(no-)?'+cs+'(\\s+|$)');
 
