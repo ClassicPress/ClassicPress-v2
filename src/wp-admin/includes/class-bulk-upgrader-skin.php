@@ -70,7 +70,7 @@ class Bulk_Upgrader_Skin extends WP_Upgrader_Skin {
 			return;
 		}
 		if ( $this->in_loop ) {
-			echo "$feedback<br />\n";
+			echo "$feedback<br>\n";
 		} else {
 			echo "<p>$feedback</p>\n";
 		}
