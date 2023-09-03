@@ -1431,7 +1431,7 @@ function do_accordion_sections( $screen, $context, $data_object ) {
 
 	$hidden = get_hidden_meta_boxes( $screen );
 	?>
-	<div id="side-sortables" class="accordion-container">
+	<div id="side-sortables">
 		<ul class="outer-border">
 	<?php
 	$i          = 0;
