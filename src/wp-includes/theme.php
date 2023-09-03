@@ -713,12 +713,9 @@ function locale_stylesheet() {
 		return;
 	}
 
-	$type_attr = current_theme_supports( 'html5', 'style' ) ? '' : ' type="text/css"';
-
 	printf(
-		'<link rel="stylesheet" href="%s"%s media="screen" />',
-		$stylesheet,
-		$type_attr
+		'<link rel="stylesheet" href="%s" media="screen">',
+		$stylesheet
 	);
 }
 
@@ -1270,7 +1267,7 @@ function get_header_image_tag( $attr = array() ) {
 		$html .= ' ' . $name . '="' . $value . '"';
 	}
 
-	$html .= ' />';
+	$html .= '>';
 
 	/**
 	 * Filters the markup of header images.
@@ -1804,11 +1801,9 @@ function _custom_background_cb() {
 		$color = false;
 	}
 
-	$type_attr = current_theme_supports( 'html5', 'style' ) ? '' : ' type="text/css"';
-
 	if ( ! $background && ! $color ) {
 		if ( is_customize_preview() ) {
-			printf( '<style%s id="custom-background-css"></style>', $type_attr );
+			print( '<style id="custom-background-css"></style>' );
 		}
 		return;
 	}
@@ -1876,9 +1871,8 @@ body.custom-background { <?php echo trim( $style ); ?> }
 function wp_custom_css_cb() {
 	$styles = wp_get_custom_css();
 	if ( $styles || is_customize_preview() ) :
-		$type_attr = current_theme_supports( 'html5', 'style' ) ? '' : ' type="text/css"';
 		?>
-		<style<?php echo $type_attr; ?> id="wp-custom-css">
+		<style id="wp-custom-css">
 			<?php
 			// Note that esc_html() cannot be used because `div &gt; span` is not interpreted properly.
 			echo strip_tags( $styles );
@@ -2891,11 +2885,9 @@ function _custom_logo_header_styles() {
 		$classes = (array) get_theme_support( 'custom-logo', 'header-text' );
 		$classes = array_map( 'sanitize_html_class', $classes );
 		$classes = '.' . implode( ', .', $classes );
-
-		$type_attr = current_theme_supports( 'html5', 'style' ) ? '' : ' type="text/css"';
 		?>
 		<!-- Custom Logo: hide header text -->
-		<style id="custom-logo-css"<?php echo $type_attr; ?>>
+		<style id="custom-logo-css">
 			<?php echo $classes; ?> {
 				position: absolute;
 				clip: rect(1px, 1px, 1px, 1px);

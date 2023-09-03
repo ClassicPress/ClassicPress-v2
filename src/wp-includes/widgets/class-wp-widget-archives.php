@@ -108,7 +108,6 @@ class WP_Widget_Archives extends WP_Widget {
 		</select>
 
 <script>
-/* <![CDATA[ */
 (function() {
 	var dropdown = document.getElementById( "<?php echo esc_js( $dropdown_id ); ?>" );
 	function onSelectChange() {
@@ -118,7 +117,6 @@ class WP_Widget_Archives extends WP_Widget {
 	}
 	dropdown.onchange = onSelectChange;
 })();
-/* ]]> */
 </script>
 			<?php
 		} else {

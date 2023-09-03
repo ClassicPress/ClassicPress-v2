@@ -393,7 +393,7 @@ function get_image_tag( $id, $alt, $title, $align, $size = 'medium' ) {
 	 */
 	$class = apply_filters( 'get_image_tag_class', $class, $id, $align, $size );
 
-	$html = '<img src="' . esc_url( $img_src ) . '" alt="' . esc_attr( $alt ) . '" ' . $title . $hwstring . 'class="' . $class . '" />';
+	$html = '<img src="' . esc_url( $img_src ) . '" alt="' . esc_attr( $alt ) . '" ' . $title . $hwstring . 'class="' . $class . '">';
 
 	/**
 	 * Filters the HTML content for the image tag.
@@ -1107,7 +1107,7 @@ function wp_get_attachment_image( $attachment_id, $size = 'thumbnail', $icon = f
 			$html .= " $name=" . '"' . $value . '"';
 		}
 
-		$html .= ' />';
+		$html .= '>';
 	}
 
 	/**
@@ -1721,7 +1721,7 @@ function wp_image_add_srcset_and_sizes( $image, $image_meta, $attachment_id ) {
 		}
 
 		// Add the srcset and sizes attributes to the image markup.
-		return preg_replace( '/<img ([^>]+?)[\/ ]*>/', '<img $1' . $attr . ' />', $image );
+		return preg_replace( '/<img ([^>]+?)[\/ ]*>/', '<img $1' . $attr . '>', $image );
 	}
 
 	return $image;
@@ -2421,15 +2421,14 @@ function gallery_shortcode( $attr ) {
 		return $output;
 	}
 
-	$html5 = current_theme_supports( 'html5', 'gallery' );
 	$atts  = shortcode_atts(
 		array(
 			'order'      => 'ASC',
 			'orderby'    => 'menu_order ID',
 			'id'         => $post ? $post->ID : 0,
-			'itemtag'    => $html5 ? 'figure' : 'dl',
-			'icontag'    => $html5 ? 'div' : 'dt',
-			'captiontag' => $html5 ? 'figcaption' : 'dd',
+			'itemtag'    => 'figure',
+			'icontag'    => 'div',
+			'captiontag' => 'figcaption',
 			'columns'    => 3,
 			'size'       => 'thumbnail',
 			'include'    => '',
@@ -2532,14 +2531,11 @@ function gallery_shortcode( $attr ) {
 	 * @since 3.1.0
 	 *
 	 * @param bool $print Whether to print default gallery styles.
-	 *                    Defaults to false if the theme supports HTML5 galleries.
-	 *                    Otherwise, defaults to true.
+	 *                    Defaults to false.
 	 */
-	if ( apply_filters( 'use_default_gallery_style', ! $html5 ) ) {
-		$type_attr = current_theme_supports( 'html5', 'style' ) ? '' : ' type="text/css"';
-
+	if ( apply_filters( 'use_default_gallery_style', false ) ) {
 		$gallery_style = "
-		<style{$type_attr}>
+		<style>
 			#{$selector} {
 				margin: auto;
 			}
@@ -2608,15 +2604,6 @@ function gallery_shortcode( $attr ) {
 		}
 
 		$output .= "</{$itemtag}>";
-
-		if ( ! $html5 && $columns > 0 && 0 === ++$i % $columns ) {
-			$output .= '<br style="clear: both" />';
-		}
-	}
-
-	if ( ! $html5 && $columns > 0 && 0 !== $i % $columns ) {
-		$output .= "
-			<br style='clear: both' />";
 	}
 
 	$output .= "
@@ -2634,7 +2621,7 @@ function wp_underscore_playlist_templates() {
 	?>
 <script type="text/html" id="tmpl-wp-playlist-current-item">
 	<# if ( data.thumb && data.thumb.src ) { #>
-		<img src="{{ data.thumb.src }}" alt="" />
+		<img src="{{ data.thumb.src }}" alt="">
 	<# } #>
 	<div class="wp-playlist-caption">
 		<span class="wp-playlist-item-meta wp-playlist-item-title">
@@ -3183,7 +3170,7 @@ function wp_audio_shortcode( $attr, $content = '' ) {
 	$html .= sprintf( '<audio %s controls>', implode( ' ', $attr_strings ) );
 
 	$fileurl = '';
-	$source  = '<source type="%s" src="%s" />';
+	$source  = '<source type="%s" src="%s">';
 
 	foreach ( $default_types as $fallback ) {
 		if ( ! empty( $atts[ $fallback ] ) ) {
@@ -3454,7 +3441,7 @@ function wp_video_shortcode( $attr, $content = '' ) {
 	$html .= sprintf( '<video %s controls>', implode( ' ', $attr_strings ) );
 
 	$fileurl = '';
-	$source  = '<source type="%s" src="%s" />';
+	$source  = '<source type="%s" src="%s">';
 
 	foreach ( $default_types as $fallback ) {
 		if ( ! empty( $atts[ $fallback ] ) ) {
