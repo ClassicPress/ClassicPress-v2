@@ -355,7 +355,7 @@ function install_plugins_favorites_form() {
 	<form method="get">
 		<input type="hidden" name="tab" value="favorites">
 		<p>
-			<label for="user"><?php _e( 'Your WordPress.org username:' ); ?></label>
+			<label for="user"><?php _e( 'Your ClassicPress.net username:' ); ?></label>
 			<input type="search" id="user" name="user" value="<?php echo esc_attr( $user ); ?>">
 			<input type="submit" class="button" value="<?php esc_attr_e( 'Get Favorites' ); ?>">
 			<input type="hidden" id="wporg-username-nonce" name="_wpnonce" value="<?php echo esc_attr( wp_create_nonce( $action ) ); ?>">
