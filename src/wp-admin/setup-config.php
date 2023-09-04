@@ -223,22 +223,22 @@ switch ( $step ) {
 	<table class="form-table" role="presentation">
 		<tr>
 			<th scope="row"><label for="dbname"><?php _e( 'Database Name' ); ?></label></th>
-			<td><input name="dbname" id="dbname" type="text" aria-describedby="dbname-desc" size="25" placeholder="wordpress"<?php echo $autofocus; ?>/></td>
+			<td><input name="dbname" id="dbname" type="text" aria-describedby="dbname-desc" size="25" placeholder="wordpress"<?php echo $autofocus; ?>></td>
 			<td id="dbname-desc"><?php _e( 'The name of the database you want to use with ClassicPress.' ); ?></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="uname"><?php _e( 'Username' ); ?></label></th>
-			<td><input name="uname" id="uname" type="text" aria-describedby="uname-desc" size="25" placeholder="<?php echo htmlspecialchars( _x( 'username', 'example username' ), ENT_QUOTES ); ?>" /></td>
+			<td><input name="uname" id="uname" type="text" aria-describedby="uname-desc" size="25" placeholder="<?php echo htmlspecialchars( _x( 'username', 'example username' ), ENT_QUOTES ); ?>"></td>
 			<td id="uname-desc"><?php _e( 'Your database username.' ); ?></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="pwd"><?php _e( 'Password' ); ?></label></th>
-			<td><input name="pwd" id="pwd" type="text" aria-describedby="pwd-desc" size="25" placeholder="<?php echo htmlspecialchars( _x( 'password', 'example password' ), ENT_QUOTES ); ?>" autocomplete="off" spellcheck="false" /></td>
+			<td><input name="pwd" id="pwd" type="text" aria-describedby="pwd-desc" size="25" placeholder="<?php echo htmlspecialchars( _x( 'password', 'example password' ), ENT_QUOTES ); ?>" autocomplete="off" spellcheck="false"></td>
 			<td id="pwd-desc"><?php _e( 'Your database password.' ); ?></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="dbhost"><?php _e( 'Database Host' ); ?></label></th>
-			<td><input name="dbhost" id="dbhost" type="text" aria-describedby="dbhost-desc" size="25" value="localhost" /></td>
+			<td><input name="dbhost" id="dbhost" type="text" aria-describedby="dbhost-desc" size="25" value="localhost"></td>
 			<td id="dbhost-desc">
 			<?php
 				/* translators: %s: localhost */
@@ -248,16 +248,16 @@ switch ( $step ) {
 		</tr>
 		<tr>
 			<th scope="row"><label for="prefix"><?php _e( 'Table Prefix' ); ?></label></th>
-			<td><input name="prefix" id="prefix" type="text" aria-describedby="prefix-desc" value="wp_" size="25" /></td>
+			<td><input name="prefix" id="prefix" type="text" aria-describedby="prefix-desc" value="wp_" size="25"></td>
 			<td id="prefix-desc"><?php _e( 'If you want to run multiple ClassicPress installations in a single database, change this.' ); ?></td>
 		</tr>
 	</table>
 		<?php
 		if ( isset( $_GET['noapi'] ) ) {
 			?>
-<input name="noapi" type="hidden" value="1" /><?php } ?>
-	<input type="hidden" name="language" value="<?php echo esc_attr( $language ); ?>" />
-	<p class="step"><input name="submit" type="submit" value="<?php echo htmlspecialchars( __( 'Submit' ), ENT_QUOTES ); ?>" class="button button-large" /></p>
+<input name="noapi" type="hidden" value="1"><?php } ?>
+	<input type="hidden" name="language" value="<?php echo esc_attr( $language ); ?>">
+	<p class="step"><input name="submit" type="submit" value="<?php echo htmlspecialchars( __( 'Submit' ), ENT_QUOTES ); ?>" class="button button-large"></p>
 </form>
 		<?php
 		break;
