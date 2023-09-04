@@ -1873,7 +1873,7 @@ class wpdb {
 
 			printf(
 				'<div id="error"><p class="wpdberror"><strong>%s</strong> [%s]<br><code>%s</code></p></div>',
-				__( 'WordPress database error:' ),
+				__( 'ClassicPress database error:' ),
 				$str,
 				$query
 			);
