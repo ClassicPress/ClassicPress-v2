@@ -18,8 +18,8 @@ _deprecated_file(
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-<link rel="profile" href="https://gmpg.org/xfn/11" />
-<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
+<link rel="profile" href="https://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>">
 
 <title><?php echo wp_get_document_title(); ?></title>
 
