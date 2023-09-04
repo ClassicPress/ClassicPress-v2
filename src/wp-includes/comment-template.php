@@ -2646,7 +2646,7 @@ function comment_form( $args = array(), $post = null ) {
 				'<form action="%s" method="post" id="%s" class="%s">',
 				esc_url( $args['action'] ),
 				esc_attr( $args['id_form'] ),
-				esc_attr( $args['class_form'] ),
+				esc_attr( $args['class_form'] )
 			);
 
 			/**
