@@ -286,6 +286,7 @@ require ABSPATH . WPINC . '/sitemaps/providers/class-wp-sitemaps-posts.php';
 require ABSPATH . WPINC . '/sitemaps/providers/class-wp-sitemaps-taxonomies.php';
 require ABSPATH . WPINC . '/sitemaps/providers/class-wp-sitemaps-users.php';
 require ABSPATH . WPINC . '/classicpress/class-wp-compat.php';
+
 if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	require ABSPATH . WPINC . '/class-fix-wpcli.php';
 }
@@ -373,6 +374,9 @@ wp_ssl_constants();
 
 // Create common globals.
 require ABSPATH . WPINC . '/vars.php';
+
+// ClassicPress Site Health block compatibility debug.
+require_once ABSPATH . WPINC . '/classicpress/class-cp-debug-compat.php';
 
 // Make taxonomies and posts available to plugins and themes.
 // @plugin authors: warning: these get registered again on the init hook.

@@ -18,6 +18,10 @@ class CP_Debug_Compat {
 		}
 
 		add_action( 'using_block_function', array( $this, 'log' ) );
+		add_action( 'init', array( $this, 'add_to_site_health' ) );
+	}
+
+	public function add_to_site_health() {
 		add_filter( 'site_status_tests', array( $this, 'add_site_status_tests' ) );
 		add_filter( 'debug_information', array( $this, 'add_debug_information' ) );
 	}
@@ -175,12 +179,16 @@ class CP_Debug_Compat {
 				'themes'        => array(),
 				'parent_themes' => array(),
 				'plugins'       => array(),
-				'misc'          => array(),
 			),
 		);
 		$options = get_option( 'cp_dc_options', $default );
 		return $options;
 	}
+
+	private static function plugin_folder( $path ) {
+		return preg_replace( '~^' . preg_quote( WP_PLUGIN_DIR ) . preg_quote( DIRECTORY_SEPARATOR ) . '([^' . preg_quote( DIRECTORY_SEPARATOR ) . ']*).*~', '$1', $path );
+	}
+
 
 	public function log( $trace ) {
 		$options = $this->get_options();
@@ -197,21 +205,34 @@ class CP_Debug_Compat {
 				$options['data']['parent_themes'][ wp_get_theme()->parent()->get( 'Name' ) ][] = $func;
 			}
 		} else {
+			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 			$files  = array_column( $trace, 'file' );
-			$active = wp_get_active_and_valid_plugins();
-			$plugin = array_intersect( $files, $active );
-			if ( count( $plugin ) !== 1 ) {
-				// Hooked somewhere
-				if ( ! in_array( $func, $options['data']['misc'] ) ) {
-					$options['data']['misc'][] = $func;
+			$files = array_map(
+				function( $path ) {
+					return self::plugin_folder( $path );
+				},
+				$files
+			);
+			$active_paths = wp_get_active_and_valid_plugins();
+			$active = array_map(
+				function( $path ) {
+					return self::plugin_folder( $path );
+				},
+				$active_paths
+			);
+			$plugins = array_intersect( $files, $active );
+			$plugin  = array_pop( $plugins );
+			$active_paths = array_filter(
+				$active_paths,
+				function( $path ) use ( $plugin ) {
+					return str_starts_with( $path, WP_PLUGIN_DIR . '/' . $plugin );
 				}
-			} else {
-				// Plugin
-				$plugin_data = get_plugin_data( array_pop( $plugin ) );
-				$plugin_name = $plugin_data['Name'];
-				if ( ! isset( $options['data']['plugins'][ $plugin_name ] ) || ! in_array( $func, $options['data']['plugins'][ $plugin_name ] ) ) {
-					$options['data']['plugins'][ $plugin_name ][] = $func;
-				}
+			);
+			$plugin_path = array_pop( $active_paths );
+			$plugin_data = get_plugin_data( $plugin_path );
+			$plugin_name = $plugin_data['Name'];
+			if ( ! isset( $options['data']['plugins'][ $plugin_name ] ) || ! in_array( $func, $options['data']['plugins'][ $plugin_name ] ) ) {
+				$options['data']['plugins'][ $plugin_name ][] = $func;
 			}
 		}
 

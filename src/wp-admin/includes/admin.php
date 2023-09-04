@@ -21,9 +21,6 @@ if ( ! defined( 'WP_ADMIN' ) ) {
 /** ClassicPress Support URL changes */
 require_once ABSPATH . WPINC . '/classicpress/class-cp-customization.php';
 
-/** ClassicPress Site Health block compatibility debug */
-require_once ABSPATH . WPINC . '/classicpress/class-cp-debug-compat.php';
-
 /** ClassicPress Administration Hooks */
 require_once ABSPATH . 'wp-admin/includes/admin-filters.php';
 
