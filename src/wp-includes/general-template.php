@@ -5111,6 +5111,7 @@ if ( PHP_VERSION_ID < 80100 ) {
  * Compares the first two arguments and if identical marks as `$type`.
  *
  * @since 2.8.0
+ * @since CP-2.0.0 Output only an HTML5 value, not an attribute–value pair.
  * @access private
  *
  * @param mixed  $helper  One of the values to compare.
