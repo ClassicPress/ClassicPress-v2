@@ -121,7 +121,7 @@ $thread_comments_depth = '</label> <label for="thread_comments_depth"><select na
 for ( $i = 2; $i <= $maxdeep; $i++ ) {
 	$thread_comments_depth .= "<option value='" . esc_attr( $i ) . "'";
 	if ( (int) get_option( 'thread_comments_depth' ) === $i ) {
-		$thread_comments_depth .= " selected";
+		$thread_comments_depth .= ' selected';
 	}
 	$thread_comments_depth .= ">$i</option>";
 }

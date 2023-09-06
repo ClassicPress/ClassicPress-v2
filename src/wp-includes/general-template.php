@@ -1883,7 +1883,7 @@ function get_archives_link( $url, $text, $format = 'html', $before = '', $after 
 	if ( 'link' === $format ) {
 		$link_html = "\t<link rel='archives' title='" . esc_attr( $text ) . "' href='$url'>\n";
 	} elseif ( 'option' === $format ) {
-		$selected_attr = $selected ? " selected" : '';
+		$selected_attr = $selected ? ' selected' : '';
 		$link_html     = "\t<option value='$url'$selected_attr>$before $text $after</option>\n";
 	} elseif ( 'html' === $format ) {
 		$link_html = "\t<li>$before<a href='$url'$aria_current>$text</a>$after</li>\n";
