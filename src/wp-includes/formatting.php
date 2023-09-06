@@ -4899,7 +4899,7 @@ function sanitize_option( $option, $value ) {
 				if ( preg_match( '#http(s?)://(.+)#i', $value ) ) {
 					$value = sanitize_url( $value );
 				} else {
-					$error = __( 'The WordPress address you entered did not appear to be a valid URL. Please enter a valid URL.' );
+					$error = __( 'The ClassicPress address you entered did not appear to be a valid URL. Please enter a valid URL.' );
 				}
 			}
 			break;
@@ -5118,31 +5118,6 @@ function wp_pre_kses_less_than_callback( $matches ) {
 		return esc_html( $matches[0] );
 	}
 	return $matches[0];
-}
-
-/**
- * Removes non-allowable HTML from parsed block attribute values when filtering
- * in the post context.
- *
- * @since 5.3.1
- *
- * @param string         $content           Content to be run through KSES.
- * @param array[]|string $allowed_html      An array of allowed HTML elements
- *                                          and attributes, or a context name
- *                                          such as 'post'.
- * @param string[]       $allowed_protocols Array of allowed URL protocols.
- * @return string Filtered text to run through KSES.
- */
-function wp_pre_kses_block_attributes( $content, $allowed_html, $allowed_protocols ) {
-	/*
-	 * `filter_block_content` is expected to call `wp_kses`. Temporarily remove
-	 * the filter to avoid recursion.
-	 */
-	remove_filter( 'pre_kses', 'wp_pre_kses_block_attributes', 10 );
-	$content = filter_block_content( $content, $allowed_html, $allowed_protocols );
-	add_filter( 'pre_kses', 'wp_pre_kses_block_attributes', 10, 3 );
-
-	return $content;
 }
 
 /**
