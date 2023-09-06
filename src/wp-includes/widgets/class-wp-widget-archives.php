@@ -125,7 +125,7 @@ class WP_Widget_Archives extends WP_Widget {
 			$aria_label = $title ? $title : $default_title;
 			echo '<nav aria-label="' . esc_attr( $aria_label ) . '">';
 
-		?>
+			?>
 			<ul>
 				<?php
 				wp_get_archives(
