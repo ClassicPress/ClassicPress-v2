@@ -1446,10 +1446,10 @@ function do_accordion_sections( $screen, $context, $data_object ) {
 					}
 
 					/*
-     					* @since CP 2.0.0
-	  				* 
-	  				* Inserts details tag and replaces h3 tag with summary tag for accessibility
-	  				*/
+					 * @since CP 2.0.0
+					 *
+					 * Inserts details tag and replaces h3 tag with summary tag for accessibility
+					 */
 					$i++;
 					?>
 					<li class="control-section">
