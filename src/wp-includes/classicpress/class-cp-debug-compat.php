@@ -202,14 +202,14 @@ class CP_Debug_Compat {
 			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 			$files  = array_column( $trace, 'file' );
 			$files = array_map(
-				function( $path ) {
+				function ( $path ) {
 					return self::plugin_folder( $path );
 				},
 				$files
 			);
 			$active_paths = wp_get_active_and_valid_plugins();
 			$active = array_map(
-				function( $path ) {
+				function ( $path ) {
 					return self::plugin_folder( $path );
 				},
 				$active_paths
@@ -218,7 +218,7 @@ class CP_Debug_Compat {
 			$plugin  = array_pop( $plugins );
 			$active_paths = array_filter(
 				$active_paths,
-				function( $path ) use ( $plugin ) {
+				function ( $path ) use ( $plugin ) {
 					return str_starts_with( $path, WP_PLUGIN_DIR . '/' . $plugin );
 				}
 			);
@@ -236,7 +236,6 @@ class CP_Debug_Compat {
 	public static function clean_options() {
 		delete_option( 'cp_dc_options' );
 	}
-
 }
 
-new CP_Debug_Compat;
+new CP_Debug_Compat();

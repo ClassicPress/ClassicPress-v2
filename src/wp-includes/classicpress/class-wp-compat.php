@@ -33,7 +33,6 @@ class WP_Compat {
 
 		// ClassicPress Site Health block compatibility debug.
 		require_once ABSPATH . WPINC . '/classicpress/class-cp-debug-compat.php';
-
 	}
 
 	public function purge_options( $old_value, $value ) {
