@@ -34,6 +34,4 @@
 
 	<!-- Code which doesn't go into production may have different requirements. -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
-
-	</rule>
 </ruleset>
