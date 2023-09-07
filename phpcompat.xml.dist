@@ -35,8 +35,5 @@
 	<!-- Code which doesn't go into production may have different requirements. -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 
-	<!-- Allow the WP DB Class for use of `mysql_` extension in PHP < 7.0. -->
-	<rule ref="PHPCompatibility.Extensions.RemovedExtensions.mysql_DeprecatedRemoved">
-		<exclude-pattern>/src/wp-includes/class-wpdb\.php</exclude-pattern>
 	</rule>
 </ruleset>
