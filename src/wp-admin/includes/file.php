@@ -2429,7 +2429,7 @@ function request_filesystem_credentials( $form_post, $type = '', $error = false,
 	<?php
 	$label_user = __( 'Username' );
 	$label_pass = __( 'Password' );
-	_e( 'To perform the requested action, WordPress needs to access your web server.' );
+	_e( 'To perform the requested action, ClassicPress needs to access your web server.' );
 	echo ' ';
 	if ( ( isset( $types['ftp'] ) || isset( $types['ftps'] ) ) ) {
 		if ( isset( $types['ssh'] ) ) {
@@ -2684,7 +2684,7 @@ function wp_opcache_invalidate_directory( $dir ) {
 	 *                        with sub-directories represented as nested arrays.
 	 * @param string $path    Absolute path to the directory.
 	 */
-	$invalidate_directory = function( $dirlist, $path ) use ( &$invalidate_directory ) {
+	$invalidate_directory = function ( $dirlist, $path ) use ( &$invalidate_directory ) {
 		$path = trailingslashit( $path );
 
 		foreach ( $dirlist as $name => $details ) {

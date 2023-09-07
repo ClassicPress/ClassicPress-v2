@@ -219,14 +219,14 @@ class WP_Compat {
 			// A plugin is calling the function
 			$traces = array_column( $trace, 'file' );
 			$traces = array_map(
-				function( $path ) {
+				function ( $path ) {
 					return self::plugin_folder( $path );
 				},
 				$traces
 			);
 			$active = wp_get_active_and_valid_plugins();
 			$active = array_map(
-				function( $path ) {
+				function ( $path ) {
 					return self::plugin_folder( $path );
 				},
 				$active
@@ -262,6 +262,20 @@ class WP_Compat {
 			 * @return bool False.
 			 */
 			function register_block_type( ...$args ) {
+				WP_Compat::using_block_function();
+				return false;
+			}
+		}
+
+		if ( ! function_exists( 'unregister_block_type' ) ) {
+			/**
+			 * Polyfill for block functions.
+			 *
+			 * @since CP-2.0.0
+			 *
+			 * @return bool False.
+			 */
+			function unregister_block_type( ...$args ) {
 				WP_Compat::using_block_function();
 				return false;
 			}
@@ -323,6 +337,48 @@ class WP_Compat {
 			}
 		}
 
+		if ( ! function_exists( 'unregister_block_pattern' ) ) {
+			/**
+			 * Polyfill for block functions.
+			 *
+			 * @since CP-2.0.0
+			 *
+			 * @return bool False.
+			 */
+			function unregister_block_pattern( ...$args ) {
+				WP_Compat::using_block_function();
+				return false;
+			}
+		}
+
+		if ( ! function_exists( 'register_block_pattern_category' ) ) {
+			/**
+			 * Polyfill for block functions.
+			 *
+			 * @since CP-2.0.0
+			 *
+			 * @return bool False.
+			 */
+			function register_block_pattern_category( ...$args ) {
+				WP_Compat::using_block_function();
+				return false;
+			}
+		}
+
+		if ( ! function_exists( 'unregister_block_pattern_category' ) ) {
+			/**
+			 * Polyfill for block functions.
+			 *
+			 * @since CP-2.0.0
+			 *
+			 * @return bool False.
+			 */
+			function unregister_block_pattern_category( ...$args ) {
+				WP_Compat::using_block_function();
+				return false;
+			}
+		}
+
 		if ( ! function_exists( 'wp_is_block_theme' ) ) {
 			/**
 			 * Polyfill for block functions.
@@ -340,9 +396,7 @@ class WP_Compat {
 		// Load WP_Block_Type class file as polyfill.
 		require_once ABSPATH . WPINC . '/classicpress/class-wp-block-type.php';
 		require_once ABSPATH . WPINC . '/classicpress/class-wp-block-template.php';
-
 	}
-
 }
 
-$wp_compat = new WP_Compat;
+$wp_compat = new WP_Compat();

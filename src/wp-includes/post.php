@@ -2159,7 +2159,6 @@ function get_posts( $args = null ) {
 
 	$get_posts = new WP_Query();
 	return $get_posts->query( $parsed_args );
-
 }
 
 //
@@ -3709,7 +3708,6 @@ function wp_get_recent_posts( $args = array(), $output = ARRAY_A ) {
 	}
 
 	return $results ? $results : false;
-
 }
 
 /**
@@ -7827,6 +7825,7 @@ function wp_untrash_post_set_previous_status( $new_status, $post_id, $previous_s
  * @return bool Whether the post can be edited in the block editor.
  */
 function use_block_editor_for_post( $post ) {
+	WP_Compat::using_block_function();
 	return false;
 }
 
@@ -7843,5 +7842,6 @@ function use_block_editor_for_post( $post ) {
  * @return bool Whether the post type can be edited with the block editor.
  */
 function use_block_editor_for_post_type( $post_type ) {
+	WP_Compat::using_block_function();
 	return false;
 }

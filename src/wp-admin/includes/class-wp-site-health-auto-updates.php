@@ -42,7 +42,7 @@ class WP_Site_Health_Auto_Updates {
 
 		$tests = array_filter( $tests );
 		$tests = array_map(
-			static function( $test ) {
+			static function ( $test ) {
 				$test = (object) $test;
 
 				if ( empty( $test->severity ) ) {
@@ -349,7 +349,7 @@ class WP_Site_Health_Auto_Updates {
 				__( "Couldn't retrieve a list of the checksums for ClassicPress %s." ),
 				$wp_version
 			);
-			$description .= ' ' . __( 'This could mean that connections are failing to ClassicPress.org.' );
+			$description .= ' ' . __( 'This could mean that connections are failing to WordPress.org or ClassicPress.net.' );
 			return array(
 				'description' => $description,
 				'severity'    => 'warning',

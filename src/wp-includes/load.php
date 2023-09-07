@@ -130,7 +130,7 @@ function wp_populate_basic_auth_from_authorization_header() {
 }
 
 /**
- * Check for the required PHP version, and the MySQL extension or
+ * Checks for the required PHP version, and the mysqli extension or
  * a database drop-in.
  *
  * Dies if requirements are not met.
@@ -158,15 +158,16 @@ function wp_check_php_mysql_versions() {
 		exit( 1 );
 	}
 
-	if ( ! function_exists( 'mysqli_connect' ) && ! function_exists( 'mysql_connect' )
-		// This runs before default constants are defined, so we can't assume WP_CONTENT_DIR is set yet.
-		&& ( defined( 'WP_CONTENT_DIR' ) && ! file_exists( WP_CONTENT_DIR . '/db.php' )
-			|| ! file_exists( ABSPATH . 'wp-content/db.php' ) )
+	// This runs before default constants are defined, so we can't assume WP_CONTENT_DIR is set yet.
+	$wp_content_dir = defined( 'WP_CONTENT_DIR' ) ? WP_CONTENT_DIR : ABSPATH . 'wp-content';
+
+	if ( ! function_exists( 'mysqli_connect' )
+		&& ! file_exists( $wp_content_dir . '/db.php' )
 	) {
 		require_once ABSPATH . WPINC . '/functions.php';
 		wp_load_translations_early();
 
-		$message = '<p>' . __( 'Your PHP installation appears to be missing the MySQL extension which is required by WordPress.' ) . "</p>\n";
+		$message = '<p>' . __( 'Your PHP installation appears to be missing the MySQL extension which is required by ClassicPress.' ) . "</p>\n";
 
 		$message .= '<p>' . sprintf(
 			/* translators: %s: mysqli. */
@@ -176,7 +177,7 @@ function wp_check_php_mysql_versions() {
 
 		$message .= '<p>' . sprintf(
 			/* translators: %s: Support forums URL. */
-			__( 'If you are unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href="%s">WordPress support forums</a>.' ),
+			__( 'If you are unsure what these terms mean you should probably contact your host. If you still need help you can always visit the <a href="%s">ClassicPress support forums</a>.' ),
 			__( 'https://wordpress.org/support/forums/' )
 		) . "</p>\n";
 
@@ -1715,7 +1716,6 @@ function wp_is_json_request() {
 	}
 
 	return false;
-
 }
 
 /**
@@ -1743,7 +1743,6 @@ function wp_is_jsonp_request() {
 	$jsonp_enabled = apply_filters( 'rest_jsonp_enabled', true );
 
 	return $jsonp_enabled;
-
 }
 
 /**

@@ -1300,13 +1300,8 @@ class WP_Site_Health {
 			}
 		}
 
-		if ( $wpdb->use_mysqli ) {
 			// phpcs:ignore WordPress.DB.RestrictedFunctions.mysql_mysqli_get_client_info
 			$mysql_client_version = mysqli_get_client_info();
-		} else {
-			// phpcs:ignore WordPress.DB.RestrictedFunctions.mysql_mysql_get_client_info,PHPCompatibility.Extensions.RemovedExtensions.mysql_DeprecatedRemoved
-			$mysql_client_version = mysql_get_client_info();
-		}
 
 		/*
 		 * libmysql has supported utf8mb4 since 5.5.3, same as the MySQL server.
@@ -1443,7 +1438,7 @@ class WP_Site_Health {
 				'<p><a href="%s" target="_blank" rel="noopener">%s <span class="screen-reader-text">%s</span><span aria-hidden="true" class="dashicons dashicons-external"></span></a></p>',
 				/* translators: Documentation explaining debugging in WordPress. */
 				esc_url( __( 'https://wordpress.org/documentation/article/debugging-in-wordpress/' ) ),
-				__( 'Learn more about debugging in WordPress.' ),
+				__( 'Learn more about debugging in ClassicPress.' ),
 				/* translators: Hidden accessibility text. */
 				__( '(opens in a new tab)' )
 			),
@@ -3389,5 +3384,4 @@ class WP_Site_Health {
 		 */
 		return apply_filters( 'site_status_available_object_cache_services', $services );
 	}
-
 }
