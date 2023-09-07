@@ -11,12 +11,6 @@ class CP_Debug_Compat {
 
 	public function __construct() {
 		add_action( 'update_option_blocks_compatibility_level', array( $this, 'clean_options' ), 10, 2 );
-
-		$blocks_compatibility_level = (int) get_option( 'blocks_compatibility_level', 1 );
-		if ( $blocks_compatibility_level !== 2 ) {
-			return;
-		}
-
 		add_action( 'using_block_function', array( $this, 'log' ) );
 		add_action( 'init', array( $this, 'add_to_site_health' ) );
 	}
