@@ -6,10 +6,8 @@
 
 2. **Clone the ClassicPress `git` repository to your computer, if needed:**
 
-		```
 		git clone https://github.com/ClassicPress/ClassicPress.git
 		cd ClassicPress
-		```
 
 3. **Install MySQL and create an empty MySQL database.** The test suite will **delete all data** from all tables for whichever MySQL database is configured. *Use a separate database from any ClassicPress or WordPress installations on your computer*.
 
@@ -17,7 +15,7 @@
 
 5. **Install** the automated test files:
 
-		`composer install`
+		composer install
 
 	You will need to have the [composer](https://getcomposer.org) available on your system first.
 
