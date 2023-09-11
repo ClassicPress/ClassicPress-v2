@@ -1218,10 +1218,9 @@ final class WP_Customize_Nav_Menus {
 	 * To be used in the template #available-menu-items.
 	 *
 	 * @since 4.7.0
-	 * 
+	 * @since CP-2.0.0 - Implement HTML5 <details> tag
+	 *
 	 * Details and summary tags added for accessibility
-	 * 
-	 * @since CP 2.0.0
 	 *
 	 * @param array $available_item_type Menu item data to output, including title, type, and label.
 	 */
@@ -1256,10 +1255,10 @@ final class WP_Customize_Nav_Menus {
 	 * Prints the markup for available menu item custom links.
 	 *
 	 * @since 4.7.0
-	 * 
+	 * @since CP-2.0.0 - Implement HTML5 <details> tag
+	 *
 	 * Details and summary tags added for accessibility
-	 * 
-	 * @since CP 2.0.0
+	 *
 	 */
 	protected function print_custom_links_available_menu_item() {
 		?>
