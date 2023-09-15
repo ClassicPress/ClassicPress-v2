@@ -735,16 +735,16 @@
 
 					// Since CP 2.0.0
 					// Add message for accessibility purposes
-					let origLabel = ui.item.find('a')[2].getAttribute('aria-label').split('.').join('').replace('Menu', 'menu');
+					let origLabel = ui.item.find('a')[2].getAttribute('aria-label').split('.').join('').replace('Menu', 'menu').replace('Sub', menus.child);
 					let newLabel = '';
-					let newItemPosition = 'menu position ' + ui.item.index() + 1;
+					let newItemPosition = menus.menuPosition + ' ' + ui.item.index() + 1;
 					setTimeout(() => {
 						let newLabels = ui.item.find('a')[2].getAttribute('aria-label').split('. ');
 						if (newLabels[1] !== undefined) {
-							newLabel = ' ' + newLabels[1].replace('Menu', 'menu');
+							newLabel = ' ' + newLabels[1].replace('Menu', 'menu').replace('Sub', menus.child);
 							newItemPosition = '';
 						}
-						let positionSpeech = origLabel + ' moved to ' + newItemPosition + newLabel;
+						let positionSpeech = origLabel + ' ' + menus.movedTo + ' ' + newItemPosition + newLabel;
 						wp.a11y.speak( positionSpeech, 'polite' );
 					}, '1000');
 				},
