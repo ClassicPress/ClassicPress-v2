@@ -732,6 +732,21 @@
 
 					api.refreshKeyboardAccessibility();
 					api.refreshAdvancedAccessibility();
+
+					// Since CP 2.0.0
+					// Add message for accessibility purposes
+					let origLabel = ui.item.find('a')[2].getAttribute('aria-label').split('.').join('').replace('Menu', 'menu');
+					let newLabel = '';
+					let newItemPosition = 'menu position ' + ui.item.index() + 1;
+					setTimeout(() => {
+						let newLabels = ui.item.find('a')[2].getAttribute('aria-label').split('. ');
+						if (newLabels[1] !== undefined) {
+							newLabel = ' ' + newLabels[1].replace('Menu', 'menu');
+							newItemPosition = '';
+						}
+						let positionSpeech = origLabel + ' moved to ' + newItemPosition + newLabel;
+						wp.a11y.speak( positionSpeech, 'polite' );
+					}, '1000');
 				},
 				change: function(e, ui) {
 					// Make sure the placeholder is inside the menu.
