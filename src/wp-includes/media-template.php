@@ -592,7 +592,7 @@ function wp_print_media_templates() {
 							<img src="{{ data.image.src }}" class="thumbnail" draggable="false" alt="">
 						<# } else if ( data.sizes && data.sizes.medium ) { #>
 							<img src="{{ data.sizes.medium.url }}" class="thumbnail" draggable="false" alt="">
-						<# } else {
+						<# } else { #>
 							<img src="{{ data.icon }}" class="icon" draggable="false" alt="">
 						<# } #>
 					</div>

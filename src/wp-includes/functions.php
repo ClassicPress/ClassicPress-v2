@@ -4652,6 +4652,22 @@ function _mce_set_direction( $mce_init ) {
 	return $mce_init;
 }
 
+/**
+ * Sets elemenmt format to html.
+ *
+ * Fills in the 'element_format' setting
+ * This key is then returned in the $mce_init (TinyMCE settings) array.
+ *
+ * @since CP-2.0.0
+ * @access private
+ *
+ * @param array $mce_init MCE settings array.
+ * @return array Element format set to 'html'.
+ */
+function _mce_set_element_format( $mce_init ) {
+	$mce_init['element_format'] = 'html';
+	return $mce_init;
+}
 
 /**
  * Converts smiley code to the icon graphic file equivalent.
