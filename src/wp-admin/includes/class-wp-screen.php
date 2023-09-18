@@ -985,7 +985,7 @@ final class WP_Screen {
 			/**
 			 * Adds Previous and Next links alongside Add New link.
 			 *
-			 * @since CP 2.0.0
+			 * @since CP-2.0.0
 			 */
 			$metaboxhidden = (array) get_user_meta( get_current_user_id(), 'metaboxhidden_' . $this->post_type, true );
 
