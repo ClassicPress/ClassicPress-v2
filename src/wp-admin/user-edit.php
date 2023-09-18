@@ -271,7 +271,7 @@ switch ( $action ) {
 				 *
 				 * @param bool    Whether to show the personal options fields. Default true.
 				 * 
-				 * @since CP 2.0.0
+				 * @since CP-2.0.0
 				 */
 				if ( apply_filters( 'user_profile_personal_options', true ) ) : ?>
 
@@ -563,7 +563,7 @@ switch ( $action ) {
 					 * 
 					 * @param bool    Whether to show the contact methods fields. Default true.
 					 *
-					 * @since CP 2.0.0
+					 * @since CP-2.0.0
 					 */
 					if ( apply_filters( 'user_profile_contact_methods', true ) ) : ?>
 
@@ -608,7 +608,7 @@ switch ( $action ) {
 				 * Filters the user About Yourself section.
 				 * 
 				 * @param bool    Whether to show the about yourself fields. Default true.
-				 * @since CP 2.0.0
+				 * @since CP-2.0.0
 				 */
 				if ( apply_filters( 'user_profile_about_yourself', true ) ) : ?>
 
