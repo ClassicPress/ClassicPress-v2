@@ -436,7 +436,7 @@ if ( isset( $post_new_file ) && current_user_can( $post_type_object->cap->create
 	 * Adds Previous and Next links alongside Add New link.
 	 * Setting works per user per post type.
 	 *
-	 * @since CP 2.0.0
+	 * @since CP-2.0.0
 	 */
 	$nav_display = 'inline';
 	$metaboxhidden = (array) get_user_meta( get_current_user_id(), 'metaboxhidden_' . $post_type_object->name, true );
