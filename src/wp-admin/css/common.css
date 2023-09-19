@@ -2036,6 +2036,20 @@ html.wp-toolbar {
 	box-sizing: border-box;
 }
 
+.postbox-container summary {
+	font-size: 14px;
+	font-weight: 600;
+	padding: 8px 12px;
+	margin: 0;
+	line-height: 1.4;
+	border-bottom: 1px solid #c3c4c7;
+}
+
+.postbox-container .handle-actions {
+	float: right;
+	margin-top: -0.5em;
+}
+
 #wpbody-content .metabox-holder {
 	padding-top: 10px;
 }
