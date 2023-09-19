@@ -746,7 +746,7 @@
 						}
 						positionSpeech = origLabel + ' ' + menus.movedTo + ' ' + newItemPosition + newLabel;
 						wp.a11y.speak( positionSpeech, 'polite' );
-					}, '1000' );
+					}, '0' );
 				},
 				change: function(e, ui) {
 					// Make sure the placeholder is inside the menu.
