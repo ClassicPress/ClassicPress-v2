@@ -1269,11 +1269,11 @@ function do_meta_boxes( $screen, $context, $data_object ) {
 					/*
 					 * Uses details and summary tags instead of JavaScript
 					 * to toggle metaboxes and dashboard widgets open and closed
-					 * 
+					 *
 					 * @since CP-2.0.0
 					 */
-					$hidden_class = ( in_array( $box['id'], $hidden, true ) ) ? ' hide-if-js' : '';
-					$open_attribute = postbox_classes( $box['id'], $page ) ? '' : ' open'; 
+					$hidden_class   = ( in_array( $box['id'], $hidden, true ) ) ? ' hide-if-js' : '';
+					$open_attribute = postbox_classes( $box['id'], $page ) ? '' : ' open';
 					echo '<details id="' . $box['id'] . '" class="postbox' . $hidden_class . '"' . $open_attribute . '>' . "\n";
 
 					echo '<summary class="hndle">';
@@ -1285,7 +1285,7 @@ function do_meta_boxes( $screen, $context, $data_object ) {
 						' </span>';
 					}
 					echo $box['title'];
-					
+
 					if ( 'dashboard_browser_nag' !== $box['id'] ) {
 						$widget_title = $box['title'];
 
@@ -1324,8 +1324,8 @@ function do_meta_boxes( $screen, $context, $data_object ) {
 						) . '</span>';
 
 						echo '</span>';
-					}					
-					
+					}
+
 					echo "</summary>\n";
 
 					echo '<div class="inside" style="display:block">' . "\n";
