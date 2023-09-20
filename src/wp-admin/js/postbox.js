@@ -444,7 +444,7 @@
 		 * hidden postboxes.
 		 *
 		 * @since 2.7.0
-		 * 
+		 *
 		 * Closed postboxes are now identified by the lack of an open attribute
 		 * in the details element rather than by a class of "closed"
 		 *
@@ -460,7 +460,7 @@
 			if ( 'nav-menus' === page ) {
 				return;
 			}
-			setTimeout(() => {
+			setTimeout( function() {
 				closed = $( '.postbox' ).filter( ':not([open])' ).map( function() { return this.id; } ).get().join( ',' );
 				hidden = $( '.postbox' ).filter( ':hidden' ).map( function() { return this.id; } ).get().join( ',' );
 
@@ -471,7 +471,7 @@
 					closedpostboxesnonce: jQuery('#closedpostboxesnonce').val(),
 					page: page
 				});
-			}, 0);
+			}, 0 );
 		},
 
 		/**
