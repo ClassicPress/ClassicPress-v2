@@ -570,7 +570,7 @@ switch ( $action ) {
 					 * @since CP-2.0.0
 					 */
 					if ( apply_filters( 'user_profile_contact_methods', true ) ) :
-						?>
+					?>
 
 						<tr class="user-url-wrap">
 							<th><label for="url"><?php _e( 'Website' ); ?></label></th>
@@ -601,26 +601,27 @@ switch ( $action ) {
 							</td>
 						</tr>
 
-							<?php
+						<?php
 						endforeach;
 					endif; // end 'user_profile_contact_methods' filter
 					?>
 
 				</table>
 
-				<?php
-				/**
-				 * Filters the user About Yourself section.
-				 *
-				 * @param bool    Whether to show the about yourself fields. Default true.
-				 * @since CP-2.0.0
-				 */
-				if ( apply_filters( 'user_profile_about_yourself', true ) ) :
+				<h2><?php IS_PROFILE_PAGE ? _e( 'About Yourself' ) : _e( 'About the user' ); ?></h2>
+
+				<table class="form-table" role="presentation">
+
+					<?php
+					/**
+					* Filters the user About Yourself section.
+					* 
+					* @param bool    Whether to show the about yourself fields. Default true.
+					* @since CP 2.0.0
+					*/
+					if ( apply_filters( 'user_profile_about_yourself', true ) ) :
 					?>
 
-					<h2><?php IS_PROFILE_PAGE ? _e( 'About Yourself' ) : _e( 'About the user' ); ?></h2>
-
-					<table class="form-table" role="presentation">
 						<tr class="user-description-wrap">
 							<th><label for="description"><?php _e( 'Biographical Info' ); ?></label></th>
 							<td><textarea name="description" id="description" rows="5" cols="30"><?php echo $profile_user->description; // textarea_escaped ?></textarea>
@@ -628,9 +629,9 @@ switch ( $action ) {
 						</tr>
 
 					<?php
-				endif; // end 'user_profile_about_yourself' filter
+					endif; // end 'user_profile_about_yourself' filter
 
-				if ( get_option( 'show_avatars' ) ) :
+					if ( get_option( 'show_avatars' ) ) :
 					?>
 					<tr class="user-profile-picture">
 						<th><?php _e( 'Profile Picture' ); ?></th>
