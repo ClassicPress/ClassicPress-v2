@@ -608,17 +608,23 @@ switch ( $action ) {
 
 				</table>
 
-				<h2><?php IS_PROFILE_PAGE ? _e( 'About Yourself' ) : _e( 'About the user' ); ?></h2>
+				<?php
+				/**
+				* Filters the user About Yourself section.
+				* 
+				* @param bool    Whether to show the about yourself fields. Default true.
+				* @since CP 2.0.0
+				*/
+				if ( apply_filters( 'user_profile_about_yourself', true ) || get_option( 'show_avatars' ) ) {
+					echo '<h2>';
+					IS_PROFILE_PAGE ? _e( 'About Yourself' ) : _e( 'About the user' );
+					echo '</h2>';
+				}
+				?>
 
 				<table class="form-table" role="presentation">
 
 					<?php
-					/**
-					* Filters the user About Yourself section.
-					* 
-					* @param bool    Whether to show the about yourself fields. Default true.
-					* @since CP 2.0.0
-					*/
 					if ( apply_filters( 'user_profile_about_yourself', true ) ) :
 					?>
 
