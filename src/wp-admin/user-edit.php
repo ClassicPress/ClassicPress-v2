@@ -570,7 +570,7 @@ switch ( $action ) {
 					 * @since CP-2.0.0
 					 */
 					if ( apply_filters( 'user_profile_contact_methods', true ) ) :
-					?>
+						?>
 
 						<tr class="user-url-wrap">
 							<th><label for="url"><?php _e( 'Website' ); ?></label></th>
@@ -578,30 +578,30 @@ switch ( $action ) {
 						</tr>
 
 						<?php foreach ( wp_get_user_contact_methods( $profile_user ) as $name => $desc ) : ?>
-						<tr class="user-<?php echo $name; ?>-wrap">
-							<th>
-								<label for="<?php echo $name; ?>">
-								<?php
-								/**
-								 * Filters a user contactmethod label.
-								 *
-								 * The dynamic portion of the hook name, `$name`, refers to
-								 * each of the keys in the contact methods array.
-								 *
-								 * @since 2.9.0
-								 *
-								 * @param string $desc The translatable label for the contact method.
-								 */
-								echo apply_filters( "user_{$name}_label", $desc );
-								?>
-								</label>
-							</th>
-							<td>
-								<input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo esc_attr( $profile_user->$name ); ?>" class="regular-text" />
-							</td>
-						</tr>
+							<tr class="user-<?php echo $name; ?>-wrap">
+								<th>
+									<label for="<?php echo $name; ?>">
+									<?php
+									/**
+									 * Filters a user contactmethod label.
+									 *
+									 * The dynamic portion of the hook name, `$name`, refers to
+									 * each of the keys in the contact methods array.
+									 *
+									 * @since 2.9.0
+									 *
+									 * @param string $desc The translatable label for the contact method.
+									 */
+									echo apply_filters( "user_{$name}_label", $desc );
+									?>
+									</label>
+								</th>
+								<td>
+									<input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo esc_attr( $profile_user->$name ); ?>" class="regular-text" />
+								</td>
+							</tr>
 
-						<?php
+							<?php
 						endforeach;
 					endif; // end 'user_profile_contact_methods' filter
 					?>
@@ -611,7 +611,7 @@ switch ( $action ) {
 				<?php
 				/**
 				* Filters the user About Yourself section.
-				* 
+				*
 				* @param bool    Whether to show the about yourself fields. Default true.
 				* @since CP 2.0.0
 				*/
@@ -626,7 +626,7 @@ switch ( $action ) {
 
 					<?php
 					if ( apply_filters( 'user_profile_about_yourself', true ) ) :
-					?>
+						?>
 
 						<tr class="user-description-wrap">
 							<th><label for="description"><?php _e( 'Biographical Info' ); ?></label></th>
@@ -634,41 +634,41 @@ switch ( $action ) {
 							<p class="description"><?php _e( 'Share a little biographical information to fill out your profile. This may be shown publicly.' ); ?></p></td>
 						</tr>
 
-					<?php
+						<?php
 					endif; // end 'user_profile_about_yourself' filter
 
 					if ( get_option( 'show_avatars' ) ) :
-					?>
-					<tr class="user-profile-picture">
-						<th><?php _e( 'Profile Picture' ); ?></th>
-						<td>
-							<?php echo get_avatar( $user_id ); ?>
-							<p class="description">
-								<?php
-								if ( IS_PROFILE_PAGE ) {
-									$description = sprintf(
-										/* translators: %s: Gravatar URL. */
-										__( '<a href="%s" rel="noreferrer">You can change your profile picture on Gravatar</a>.' ),
-										__( 'https://en.gravatar.com/' )
-									);
-								} else {
-									$description = '';
-								}
+						?>
+						<tr class="user-profile-picture">
+							<th><?php _e( 'Profile Picture' ); ?></th>
+							<td>
+								<?php echo get_avatar( $user_id ); ?>
+								<p class="description">
+									<?php
+									if ( IS_PROFILE_PAGE ) {
+										$description = sprintf(
+											/* translators: %s: Gravatar URL. */
+											__( '<a href="%s" rel="noreferrer">You can change your profile picture on Gravatar</a>.' ),
+											__( 'https://en.gravatar.com/' )
+										);
+									} else {
+										$description = '';
+									}
 
-								/**
-								 * Filters the user profile picture description displayed under the Gravatar.
-								 *
-								 * @since 4.4.0
-								 * @since 4.7.0 Added the `$profile_user` parameter.
-								 *
-								 * @param string  $description  The description that will be printed.
-								 * @param WP_User $profile_user The current WP_User object.
-								 */
-								echo apply_filters( 'user_profile_picture_description', $description, $profile_user );
-								?>
-							</p>
-						</td>
-					</tr>
+									/**
+									 * Filters the user profile picture description displayed under the Gravatar.
+									 *
+									 * @since 4.4.0
+									 * @since 4.7.0 Added the `$profile_user` parameter.
+									 *
+									 * @param string  $description  The description that will be printed.
+									 * @param WP_User $profile_user The current WP_User object.
+									 */
+									echo apply_filters( 'user_profile_picture_description', $description, $profile_user );
+									?>
+								</p>
+							</td>
+						</tr>
 					<?php endif; ?>
 					<?php
 					/**
