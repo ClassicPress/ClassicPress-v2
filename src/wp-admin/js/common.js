@@ -2104,3 +2104,18 @@ $( function( $ ) {
 })();
 
 }( jQuery, window ));
+
+// Address Safari bug with details element
+document.querySelectorAll( 'details' ).forEach( (details) => {
+	details.addEventListener( 'toggle', () => {
+		if ( details.hasAttribute( 'open' ) ) {
+			details.querySelectorAll( '[inert]' ).forEach( (inert) => {
+				inert.removeAttribute( 'inert' );
+			});
+		} else {
+			for ( i = 1, n = details.children.length; i < n; i++ ) { // ignore first child (summary)
+				details.children[i].setAttribute( 'inert', 'inert' );
+			}
+		}
+	});
+});
