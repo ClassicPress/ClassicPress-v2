@@ -2060,6 +2060,20 @@ html.wp-toolbar {
 	position: relative;
 }
 
+/* Details element */
+.metabox-holder details > summary {
+	list-style: none;
+}
+
+.metabox-holder details summary::before {
+	content: '► ';
+	cursor: pointer;
+}
+
+.metabox-holder details[open] summary::before {
+	content: '▼ ';
+}
+
 #post-body-content {
 	width: 100%;
 	min-width: 463px;
