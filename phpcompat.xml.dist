@@ -35,25 +35,27 @@
 	<!-- Code which doesn't go into production may have different requirements. -->
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 
-	<!--
-		PHPCompatibilityParagonieRandomCompat prevents false positives in `random_compat`.
-		However, because these files are included in a non-standard path, false positives are triggered in WordPress Core.
-	-->
-	<rule ref="PHPCompatibility.IniDirectives.RemovedIniDirectives.mbstring_func_overloadDeprecated">
-		<exclude-pattern>/random_compat/byte_safe_strings\.php$</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.Constants.RemovedConstants.mcrypt_dev_urandomDeprecatedRemoved">
-		<exclude-pattern>/random_compat/random_bytes_mcrypt\.php$</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.Extensions.RemovedExtensions.mcryptDeprecatedRemoved">
-		<exclude-pattern>/random_compat/random_bytes_mcrypt\.php$</exclude-pattern>
-	</rule>
-	<rule ref="PHPCompatibility.FunctionUse.RemovedFunctions.mcrypt_create_ivDeprecatedRemoved">
-		<exclude-pattern>/random_compat/random_bytes_mcrypt\.php$</exclude-pattern>
-	</rule>
+	<!-- Drop-in plugins. -->
+	<exclude-pattern>/src/wp-content/advanced-cache\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/blog-deleted\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/blog-inactive\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/blog-suspended\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/db-error\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/db\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/fatal-error-handler\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/install\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/maintenance\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/object-cache\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/php-error\.php</exclude-pattern>
+	<exclude-pattern>/src/wp-content/sunrise\.php</exclude-pattern>
 
-	<!-- Allow the WP DB Class for use of `mysql_` extension in PHP < 7.0. -->
-	<rule ref="PHPCompatibility.Extensions.RemovedExtensions.mysql_DeprecatedRemoved">
-		<exclude-pattern>/src/wp-includes/class-wpdb\.php</exclude-pattern>
-	</rule>
+	<!-- Must-Use plugins. -->
+	<exclude-pattern>/src/wp-content/mu-plugins/*</exclude-pattern>
+
+	<!-- Plugins. -->
+	<exclude-pattern>/src/wp-content/plugins/*</exclude-pattern>
+
+	<!-- Themes except the twenty* themes. -->
+	<exclude-pattern>/src/wp-content/themes/(?!twenty)*</exclude-pattern>
+
 </ruleset>
