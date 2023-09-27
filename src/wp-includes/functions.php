@@ -4653,7 +4653,7 @@ function _mce_set_direction( $mce_init ) {
 }
 
 /**
- * Sets elemenmt format to html.
+ * Sets element format to html.
  *
  * Fills in the 'element_format' setting
  * This key is then returned in the $mce_init (TinyMCE settings) array.
