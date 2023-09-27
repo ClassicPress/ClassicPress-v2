@@ -2066,12 +2066,13 @@ html.wp-toolbar {
 }
 
 .metabox-holder details summary::before {
-	content: '► ';
+	content: '\25B8';
+	padding-right: 0.5em;
 	cursor: pointer;
 }
 
 .metabox-holder details[open] summary::before {
-	content: '▼ ';
+	content: '\25BE';
 }
 
 #post-body-content {
