@@ -27,7 +27,7 @@ class Tests_Functions_wpSanitizeScriptAttributes extends WP_UnitTestCase {
 		remove_theme_support( 'html5' );
 
 		$this->assertSame(
-			' src="https://DOMAIN.TLD/PATH/FILE.js" type="application/javascript" nomodule="nomodule"',
+			' src="https://DOMAIN.TLD/PATH/FILE.js" type="application/javascript" nomodule',
 			wp_sanitize_script_attributes(
 				array(
 					'src'      => 'https://DOMAIN.TLD/PATH/FILE.js',
@@ -56,7 +56,7 @@ class Tests_Functions_wpSanitizeScriptAttributes extends WP_UnitTestCase {
 		remove_theme_support( 'html5' );
 
 		$this->assertSame(
-			' src="https://DOMAIN.TLD/PATH/FILE.js" nomodule="nomodule"',
+			' src="https://DOMAIN.TLD/PATH/FILE.js" nomodule',
 			wp_sanitize_script_attributes(
 				array(
 					'src'      => 'https://DOMAIN.TLD/PATH/FILE.js',
