@@ -2274,6 +2274,10 @@ function img_caption_shortcode( $attr, $content = '' ) {
 
 	$class = trim( 'wp-caption ' . $atts['align'] . ' ' . $atts['class'] );
 
+	$html5 = current_theme_supports( 'html5', 'caption' );
+	// HTML5 captions never added the extra 10px to the image width.
+	$width = $html5 ? $atts['width'] : ( 10 + $atts['width'] );
+
 	/**
 	 * Filters the width of an image's caption.
 	 *
@@ -2289,7 +2293,7 @@ function img_caption_shortcode( $attr, $content = '' ) {
 	 * @param array  $atts     Attributes of the caption shortcode.
 	 * @param string $content  The image element, possibly wrapped in a hyperlink.
 	 */
-	$caption_width = apply_filters( 'img_caption_shortcode_width', $atts['width'], $atts, $content );
+	$caption_width = apply_filters( 'img_caption_shortcode_width', $width, $atts, $content );
 
 	$style = '';
 
