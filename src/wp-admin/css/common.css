@@ -2060,18 +2060,23 @@ html.wp-toolbar {
 	position: relative;
 }
 
-/* Details element */
-.metabox-holder details > summary {
+/* Replace default marker in details element */
+.metabox-holder details > summary,
+.metabox-holder details > summary::-webkit-details-marker {
 	list-style: none;
 }
+.metabox-holder details > summary::marker {
+	content: ''; // addresses Safari issue
+}
 
-.metabox-holder details summary::before {
+.metabox-holder details > summary::before {
 	content: '\25B8';
+	font-size: 1.5em;
 	padding-right: 0.5em;
 	cursor: pointer;
 }
 
-.metabox-holder details[open] summary::before {
+.metabox-holder details[open] > summary::before {
 	content: '\25BE';
 }
 
