@@ -261,7 +261,7 @@ window.wpWidgets = {
 				addNew = $widget.find('input.add_new').val();
 				widgetNumber = $widget.find('input.multi_number').val();
 
-				$widget.attr( 'style', '' ).removeClass('ui-draggable');
+				$widget.attr( 'style', '' ).removeClass('ui-draggable').find( '.widget-inside' ).removeAttr( 'inert' );
 				the_id = '';
 
 				if ( addNew ) {
