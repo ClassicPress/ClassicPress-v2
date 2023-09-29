@@ -2065,8 +2065,10 @@ html.wp-toolbar {
 .metabox-holder details > summary::-webkit-details-marker {
 	list-style: none;
 }
+
+/* Addresses Safari issue, see v2 PR#217 */
 .metabox-holder details > summary::marker {
-	content: ''; // addresses Safari issue
+	content: '';
 }
 
 .metabox-holder details > summary::before {
