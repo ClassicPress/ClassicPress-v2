@@ -275,10 +275,10 @@ window.wpWidgets = {
 						$widget.attr( 'id', id.replace( '__i__', widgetNumber ) );
 						widgetNumber++;
 
-						$( 'div#' + id ).find( 'input.multi_number' ).val( widgetNumber );
+						$( 'li#' + id ).find( 'input.multi_number' ).val( widgetNumber );
 					} else if ( 'single' === addNew ) {
 						$widget.attr( 'id', 'new-' + id );
-						rem = 'div#' + id;
+						rem = 'li#' + id;
 					}
 
 					wpWidgets.save( $widget, 0, 0, 1 );
