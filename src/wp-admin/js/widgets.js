@@ -408,6 +408,7 @@ window.wpWidgets = {
 						} );
 
 						// Add CSS class and insert the chooser at the end of the details element.
+						chooser[0].style.display = 'block'; // ensure that chooser remains available after dragging widget
 						e.target.closest( 'li' ).classList.add( 'widget-in-question' );
 						e.target.closest( '.widget-top' ).append( chooser[0] );
 						e.target.focus();
