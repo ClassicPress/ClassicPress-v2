@@ -89,32 +89,17 @@ function wp_list_widget_controls( $sidebar, $sidebar_name = '' ) {
 
 	echo '<details>';
 
-	echo '<summary class="sidebar-name">' . esc_html( $sidebar_name ) . ' <span class="spinner"></span></summary>';
-
-	echo '<ul id="' . esc_attr( $sidebar ) . '" class="widgets-sortables">';
-
-	if ( $sidebar_name ) {
-		$add_to = sprintf(
-			/* translators: %s: Widgets sidebar name. */
-			__( 'Add to: %s' ),
-			$sidebar_name
-		);
-		?>
-		<div class="sidebar-name" data-add-to="<?php echo esc_attr( $add_to ); ?>">
-			<button type="button" class="handlediv hide-if-no-js" aria-expanded="true">
-				<span class="screen-reader-text"><?php echo esc_html( $sidebar_name ); ?></span>
-			</button>
-		</div>
-		<?php
-	}
+	echo '<summary class="sidebar-name">' . esc_html( $sidebar_name ) . '</summary>';
 
 	if ( ! empty( $description ) ) {
-		?>
-		<div class="sidebar-description">
-			<p class="description"><?php echo $description; ?></p>
-		</div>
-		<?php
+
+		echo '<div class="sidebar-description">';
+		echo '<p class="description">' . $description . '</p>';
+		echo '</div>';
+
 	}
+
+	echo '<ul id="' . esc_attr( $sidebar ) . '" class="widgets-sortables">';
 
 	dynamic_sidebar( $sidebar );
 
