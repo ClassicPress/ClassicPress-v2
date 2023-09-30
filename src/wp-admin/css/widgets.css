@@ -649,7 +649,6 @@ div#widgets-right .closed .widgets-sortables {
 .widgets_access .widget-action,
 .widgets_access .handlediv,
 .widgets_access #access-on,
-.widgets_access .widget-holder .description,
 .no-js .widget-holder .description {
 	display: none;
 }
