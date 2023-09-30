@@ -2061,14 +2061,13 @@ html.wp-toolbar {
 }
 
 /* Replace default marker in details element */
-.metabox-holder details > summary,
-.metabox-holder details > summary::-webkit-details-marker {
+.metabox-holder details > summary {
 	list-style: none;
 }
 
 /* Addresses Safari issue, see v2 PR#217 */
-.metabox-holder details > summary::marker {
-	content: '';
+.metabox-holder details > summary::-webkit-details-marker {
+	display: none;
 }
 
 .metabox-holder details > summary::before {
