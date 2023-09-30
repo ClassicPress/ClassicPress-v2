@@ -28,6 +28,7 @@ window.wpWidgets = {
 			chooser = $('.widgets-chooser'),
 			selectSidebar = chooser.find('.widgets-chooser-sidebars'),
 			sidebars = $('ul.widgets-sortables'),
+			sidebarWrappers = $( '.widgets-holder-wrap' );
 			isRTL = !! ( 'undefined' !== typeof isRtl && isRtl );// Refresh the widgets containers in the right column.
 			
 		document.querySelector( '#widgets-right details' ).setAttribute( 'open', 'open' );
@@ -177,7 +178,14 @@ window.wpWidgets = {
 		 */
 		sidebars.droppable( {
 			tolerance: 'intersect',
+			over: function( event ) {
+				$( this ).sortable( 'refresh' );
+			}
+		} );
 
+		sidebarWrappers.droppable( {
+			tolerance: 'intersect',
+			greedy: true,
 			/**
 			 * Open Sidebar when a Widget gets dragged over it.
 			 *
@@ -186,19 +194,17 @@ window.wpWidgets = {
 			 * @param {Object} event jQuery event object.
 			 */
 			over: function( event ) {
-				var details = $( event.target ).closest( 'details' );
+				var details = $( event.target ).children( 'details' );
 
 				if ( wpWidgets.hoveredSidebar && ! details.children('ul').is( wpWidgets.hoveredSidebar ) ) {
 					// Close the previous Sidebar as the Widget has been dragged onto another Sidebar.
 					details.removeAttr( 'open' );
 				}
 
-				if ( ! details[0].hasAttribute( 'open' ) ) {
+				if ( ! details.attr( 'open' ) ) {
 					wpWidgets.hoveredSidebar = details.children('ul');
 					details.attr( 'open', 'open' );
 				}
-
-				$( this ).sortable( 'refresh' );
 			},
 
 			/**
@@ -209,11 +215,12 @@ window.wpWidgets = {
 			 * @param {Object} event jQuery event object.
 			 */
 			out: function( event ) {
-				var details = $( event.target ).closest( 'details' );
-
-				if ( wpWidgets.hoveredSidebar ) {
-					details.removeAttr( 'open' );
-				}
+				setTimeout( () => {
+					var sidebar = this.querySelector( 'ul' );
+					if ( ! sidebar.classList.contains( 'ui-droppable-hover' ) ) {
+						this.querySelector( 'details' ).removeAttribute( 'open' );
+					}
+				}, 0);
 			}
 		} );
 
@@ -620,6 +627,7 @@ window.wpWidgets = {
 		wpWidgets.save( widget, 0, 0, 1 );
 		// No longer "new" widget.
 		widget.find( 'input.add_new' ).val('');
+		widget.find( '.widgets-chooser' ).removeAttr( 'inert' );
 
 		$document.trigger( 'widget-added', [ widget ] );
 
