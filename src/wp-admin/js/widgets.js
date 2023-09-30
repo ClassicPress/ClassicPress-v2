@@ -62,7 +62,7 @@ window.wpWidgets = {
 				});
 				unsavedWidgetsElements.each( function() {
 					if ( ! $( this )[0].hasAttribute( 'open' ) ) {
-						$( this ).children( 'details' ).attr( 'open', 'open' );// or make click?
+						$( this ).children( 'details' ).attr( 'open', 'open' );
 					}
 				});
 
@@ -305,7 +305,7 @@ window.wpWidgets = {
 				}
 
 				if ( addNew ) {
-					$widget.find( '.widget-action' ).trigger( 'click' );
+					$widget.children( 'details' ).attr( 'open', 'open' );
 				} else {
 					wpWidgets.saveOrder( $sidebar.attr('id') );
 				}
