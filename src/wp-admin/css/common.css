@@ -2047,7 +2047,6 @@ html.wp-toolbar {
 
 .postbox-container .handle-actions {
 	float: right;
-	margin-top: -0.5em;
 }
 
 #wpbody-content .metabox-holder {
@@ -2061,8 +2060,13 @@ html.wp-toolbar {
 }
 
 /* Replace default marker in details element */
+details summary > * {
+	display: inline;
+}
+
 .metabox-holder details > summary {
 	list-style: none;
+	margin-top: -0.3em !important;
 }
 
 /* Addresses Safari issue, see v2 PR#217 */
@@ -2073,7 +2077,6 @@ html.wp-toolbar {
 .metabox-holder details > summary::before {
 	content: '\25B8';
 	font-size: 1.5em;
-	padding-right: 0.5em;
 	cursor: pointer;
 }
 
