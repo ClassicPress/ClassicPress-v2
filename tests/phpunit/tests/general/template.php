@@ -137,10 +137,10 @@ class Tests_General_Template extends WP_UnitTestCase {
 
 		$this->set_site_icon();
 		$output = array(
-			sprintf( '<link rel="icon" href="%s" sizes="32x32" />', esc_url( get_site_icon_url( 32 ) ) ),
-			sprintf( '<link rel="icon" href="%s" sizes="192x192" />', esc_url( get_site_icon_url( 192 ) ) ),
-			sprintf( '<link rel="apple-touch-icon" href="%s" />', esc_url( get_site_icon_url( 180 ) ) ),
-			sprintf( '<meta name="msapplication-TileImage" content="%s" />', esc_url( get_site_icon_url( 270 ) ) ),
+			sprintf( '<link rel="icon" href="%s" sizes="32x32">', esc_url( get_site_icon_url( 32 ) ) ),
+			sprintf( '<link rel="icon" href="%s" sizes="192x192">', esc_url( get_site_icon_url( 192 ) ) ),
+			sprintf( '<link rel="apple-touch-icon" href="%s">', esc_url( get_site_icon_url( 180 ) ) ),
+			sprintf( '<meta name="msapplication-TileImage" content="%s">', esc_url( get_site_icon_url( 270 ) ) ),
 			'',
 		);
 		$output = implode( "\n", $output );
@@ -160,11 +160,11 @@ class Tests_General_Template extends WP_UnitTestCase {
 
 		$this->set_site_icon();
 		$output = array(
-			sprintf( '<link rel="icon" href="%s" sizes="32x32" />', esc_url( get_site_icon_url( 32 ) ) ),
-			sprintf( '<link rel="icon" href="%s" sizes="192x192" />', esc_url( get_site_icon_url( 192 ) ) ),
-			sprintf( '<link rel="apple-touch-icon" href="%s" />', esc_url( get_site_icon_url( 180 ) ) ),
-			sprintf( '<meta name="msapplication-TileImage" content="%s" />', esc_url( get_site_icon_url( 270 ) ) ),
-			sprintf( '<link rel="apple-touch-icon" sizes="150x150" href="%s" />', esc_url( get_site_icon_url( 150 ) ) ),
+			sprintf( '<link rel="icon" href="%s" sizes="32x32">', esc_url( get_site_icon_url( 32 ) ) ),
+			sprintf( '<link rel="icon" href="%s" sizes="192x192">', esc_url( get_site_icon_url( 192 ) ) ),
+			sprintf( '<link rel="apple-touch-icon" href="%s">', esc_url( get_site_icon_url( 180 ) ) ),
+			sprintf( '<meta name="msapplication-TileImage" content="%s">', esc_url( get_site_icon_url( 270 ) ) ),
+			sprintf( '<link rel="apple-touch-icon" sizes="150x150" href="%s">', esc_url( get_site_icon_url( 150 ) ) ),
 			'',
 		);
 		$output = implode( "\n", $output );
@@ -189,7 +189,7 @@ class Tests_General_Template extends WP_UnitTestCase {
 		$wp_customize->register_controls();
 		$wp_customize->start_previewing_theme();
 
-		$this->expectOutputString( '<link rel="icon" href="/favicon.ico" sizes="32x32" />' . "\n" );
+		$this->expectOutputString( '<link rel="icon" href="/favicon.ico" sizes="32x32">' . "\n" );
 		wp_site_icon();
 	}
 
@@ -211,10 +211,10 @@ class Tests_General_Template extends WP_UnitTestCase {
 		$wp_customize->set_post_value( 'site_icon', $attachment_id );
 		$wp_customize->get_setting( 'site_icon' )->preview();
 		$output = array(
-			sprintf( '<link rel="icon" href="%s" sizes="32x32" />', esc_url( wp_get_attachment_image_url( $attachment_id, 32 ) ) ),
-			sprintf( '<link rel="icon" href="%s" sizes="192x192" />', esc_url( wp_get_attachment_image_url( $attachment_id, 192 ) ) ),
-			sprintf( '<link rel="apple-touch-icon" href="%s" />', esc_url( wp_get_attachment_image_url( $attachment_id, 180 ) ) ),
-			sprintf( '<meta name="msapplication-TileImage" content="%s" />', esc_url( wp_get_attachment_image_url( $attachment_id, 270 ) ) ),
+			sprintf( '<link rel="icon" href="%s" sizes="32x32">', esc_url( wp_get_attachment_image_url( $attachment_id, 32 ) ) ),
+			sprintf( '<link rel="icon" href="%s" sizes="192x192">', esc_url( wp_get_attachment_image_url( $attachment_id, 192 ) ) ),
+			sprintf( '<link rel="apple-touch-icon" href="%s">', esc_url( wp_get_attachment_image_url( $attachment_id, 180 ) ) ),
+			sprintf( '<meta name="msapplication-TileImage" content="%s">', esc_url( wp_get_attachment_image_url( $attachment_id, 270 ) ) ),
 			'',
 		);
 		$output = implode( "\n", $output );
@@ -231,7 +231,7 @@ class Tests_General_Template extends WP_UnitTestCase {
 	 * @return array
 	 */
 	public function custom_site_icon_meta_tag( $meta_tags ) {
-		$meta_tags[] = sprintf( '<link rel="apple-touch-icon" sizes="150x150" href="%s" />', esc_url( get_site_icon_url( 150 ) ) );
+		$meta_tags[] = sprintf( '<link rel="apple-touch-icon" sizes="150x150" href="%s">', esc_url( get_site_icon_url( 150 ) ) );
 
 		return $meta_tags;
 	}
@@ -634,7 +634,7 @@ class Tests_General_Template extends WP_UnitTestCase {
 	/*
 	 * @group login
 	 */
-	function test_login_html_default() {
+	public function test_login_html_default() {
 		if ( is_multisite() ) {
 			$expected_login_html = (
 				'<h1><a href="'
@@ -660,7 +660,7 @@ class Tests_General_Template extends WP_UnitTestCase {
 	/**
 	 * @group login
 	 */
-	function test_login_html_option_disabled_with_image_set() {
+	public function test_login_html_option_disabled_with_image_set() {
 		update_option( 'login_custom_image_state', '0' );
 		update_option( 'login_custom_image_id', (string) $this->insert_attachment() );
 
@@ -689,7 +689,7 @@ class Tests_General_Template extends WP_UnitTestCase {
 	/**
 	 * @group login
 	 */
-	function test_login_html_option_enabled_without_custom_image() {
+	public function test_login_html_option_enabled_without_custom_image() {
 		update_option( 'login_custom_image_state', '1' );
 		update_option( 'login_custom_image_id', '' );
 
@@ -718,7 +718,7 @@ class Tests_General_Template extends WP_UnitTestCase {
 	/**
 	 * @group login
 	 */
-	function test_login_html_option_enabled_with_custom_image() {
+	public function test_login_html_option_enabled_with_custom_image() {
 		update_option( 'login_custom_image_state', '1' );
 		update_option( 'login_custom_image_id', (string) $this->insert_attachment() );
 
@@ -751,7 +751,7 @@ class Tests_General_Template extends WP_UnitTestCase {
 	/**
 	 * @group login
 	 */
-	function test_login_html_option_enabled_with_custom_image_banner() {
+	public function test_login_html_option_enabled_with_custom_image_banner() {
 		update_option( 'login_custom_image_state', '2' );
 		update_option( 'login_custom_image_id', (string) $this->insert_attachment() );
 
@@ -784,16 +784,16 @@ class Tests_General_Template extends WP_UnitTestCase {
 	/**
 	 * @group login
 	 */
-	function test_login_html_default_with_filters() {
+	public function test_login_html_default_with_filters() {
 		add_filter(
 			'login_headerurl',
-			function() {
+			function () {
 				return 'https://example.com?"a&b"';
 			}
 		);
 		add_filter(
 			'login_headertitle',
-			function() {
+			function () {
 				return 'A <script>"special";</script> title';
 			}
 		);
@@ -834,19 +834,19 @@ class Tests_General_Template extends WP_UnitTestCase {
 	/**
 	 * @group login
 	 */
-	function test_login_html_option_enabled_with_custom_logo_and_filters() {
+	public function test_login_html_option_enabled_with_custom_logo_and_filters() {
 		update_option( 'login_custom_image_state', '1' );
 		update_option( 'login_custom_image_id', (string) $this->insert_attachment() );
 
 		add_filter(
 			'login_headerurl',
-			function() {
+			function () {
 				return 'https://example.com?"a&b"';
 			}
 		);
 		add_filter(
 			'login_headertitle',
-			function() {
+			function () {
 				return 'A <script>"special";</script> title';
 			}
 		);

@@ -713,9 +713,6 @@ class Tests_DB extends WP_UnitTestCase {
 	 */
 	public function test_mysqli_flush_sync() {
 		global $wpdb;
-		if ( ! $wpdb->use_mysqli ) {
-			$this->markTestSkipped( 'mysqli not being used.' );
-		}
 
 		$suppress = $wpdb->suppress_errors( true );
 
@@ -2471,5 +2468,15 @@ class Tests_DB extends WP_UnitTestCase {
 				false,
 			),
 		);
+	}
+
+	/**
+	 * The wpdb->use_mysqli is true (for now), purely for backwards compatibility reasons.
+	 */
+	public function test_mysqli_is_set() {
+		global $wpdb;
+
+		$this->assertObjectHasAttribute( 'use_mysqli', $wpdb );
+		$this->assertTrue( $wpdb->use_mysqli );
 	}
 }

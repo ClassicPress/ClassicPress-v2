@@ -555,7 +555,7 @@ EOF;
 			),
 			array(
 				'[caption caption="test" width="2"]<div>hello</div>[/caption]',
-				'<div style="width: 12px" class="wp-caption alignnone"><div>hello</div><p class="wp-caption-text">test</p></div>',
+				'<figure style="width: 12px" class="wp-caption alignnone"><div>hello</div><figcaption class="wp-caption-text">test</figcaption></figure>',
 			),
 			array(
 				'<div [gallery]>',
@@ -781,7 +781,6 @@ EOF;
 
 		$js = str_replace( "\'", "'", $matches[1] );
 		$this->assertSame( $php, $js );
-
 	}
 
 	/**

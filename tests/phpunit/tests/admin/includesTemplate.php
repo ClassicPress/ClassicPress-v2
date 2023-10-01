@@ -17,7 +17,7 @@ class Tests_Admin_IncludesTemplate extends WP_UnitTestCase {
 			)
 		);
 
-		$this->assertStringContainsString( "checked='checked'", $output );
+		$this->assertStringContainsString( 'checked', $output );
 	}
 
 	/**
@@ -287,5 +287,4 @@ class Tests_Admin_IncludesTemplate extends WP_UnitTestCase {
 		// This doesn't actually get removed due to the invalid priority.
 		remove_meta_box( 'dashboard2', 'dashboard', 'normal' );
 	}
-
 }
