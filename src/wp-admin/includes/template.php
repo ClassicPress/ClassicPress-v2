@@ -1276,7 +1276,9 @@ function do_meta_boxes( $screen, $context, $data_object ) {
 					$open_attribute = postbox_classes( $box['id'], $page ) ? '' : ' open';
 					echo '<details id="' . $box['id'] . '" class="postbox' . $hidden_class . '"' . $open_attribute . '>' . "\n";
 
-					echo '<summary class="hndle">';
+					echo '<summary>';
+					echo '<h2 class="hndle">';
+
 					if ( 'dashboard_php_nag' === $box['id'] ) {
 						echo '<span aria-hidden="true" class="dashicons dashicons-warning"></span>';
 						echo '<span class="screen-reader-text">' .
@@ -1285,7 +1287,7 @@ function do_meta_boxes( $screen, $context, $data_object ) {
 						' </span>';
 					}
 					echo $box['title'];
-
+					
 					if ( 'dashboard_browser_nag' !== $box['id'] ) {
 						$widget_title = $box['title'];
 
@@ -1324,8 +1326,9 @@ function do_meta_boxes( $screen, $context, $data_object ) {
 						) . '</span>';
 
 						echo '</span>';
-					}
+					}					
 
+					echo '</h2>';
 					echo "</summary>\n";
 
 					echo '<div class="inside" style="display:block">' . "\n";
@@ -1448,14 +1451,10 @@ function do_accordion_sections( $screen, $context, $data_object ) {
 					?>
 					<li class="control-section">
 						<details class="accordion-section open <?php echo esc_attr( $box['id'] ); ?>" id="<?php echo esc_attr( $box['id'] ); ?>">
-							<summary class="accordion-section-title hndle" tabindex="0">
-								<?php echo esc_html( $box['title'] ); ?>
-								<span class="screen-reader-text">
-									<?php
-									/* translators: Hidden accessibility text. */
-									_e( 'Press return or enter to open this section' );
-									?>
-								</span>
+							<summary>
+								<h3 class="accordion-section-title hndle" tabindex="0">
+									<?php echo esc_html( $box['title'] ); ?>
+								</h3>
 							</summary>
 							<div class="accordion-section-content <?php postbox_classes( $box['id'], $page ); ?>">
 								<div class="inside">
