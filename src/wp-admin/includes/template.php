@@ -1451,8 +1451,8 @@ function do_accordion_sections( $screen, $context, $data_object ) {
 					?>
 					<li class="control-section">
 						<details class="accordion-section open <?php echo esc_attr( $box['id'] ); ?>" id="<?php echo esc_attr( $box['id'] ); ?>">
-							<summary>
-								<h3 class="accordion-section-title hndle" tabindex="0">
+							<summary class="accordion-section-title hndle">
+								<h3 tabindex="0">
 									<?php echo esc_html( $box['title'] ); ?>
 								</h3>
 							</summary>
