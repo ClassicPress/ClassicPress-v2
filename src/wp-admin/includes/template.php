@@ -1287,7 +1287,7 @@ function do_meta_boxes( $screen, $context, $data_object ) {
 						' </span>';
 					}
 					echo $box['title'];
-					
+
 					if ( 'dashboard_browser_nag' !== $box['id'] ) {
 						$widget_title = $box['title'];
 
@@ -1326,7 +1326,7 @@ function do_meta_boxes( $screen, $context, $data_object ) {
 						) . '</span>';
 
 						echo '</span>';
-					}					
+					}
 
 					echo '</h2>';
 					echo "</summary>\n";
