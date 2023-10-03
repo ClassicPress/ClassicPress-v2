@@ -600,8 +600,8 @@ switch ( $action ) {
 									<input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo esc_attr( $profile_user->$name ); ?>" class="regular-text" />
 								</td>
 							</tr>
-						<?php
-            endforeach;
+							<?php
+						endforeach;
 					endif; // end 'user_profile_contact_methods' filter
 					?>
 				</table>
