@@ -138,8 +138,6 @@ JS;
 	 * @ticket 42804
 	 */
 	public function test_wp_enqueue_script_with_html5_support_does_not_contain_type_attribute() {
-		add_theme_support( 'html5', array( 'script' ) );
-
 		$GLOBALS['wp_scripts']                  = new WP_Scripts();
 		$GLOBALS['wp_scripts']->default_version = classicpress_asset_version( 'script' );
 
