@@ -3029,7 +3029,7 @@ function current_theme_supports( $feature, ...$args ) {
 		return current_theme_supports( 'custom-header', 'uploads' );
 	}
 
-	if ( 'html5' === strtolower( $feature) ) {
+	if ( 'html5' === strtolower( $feature ) ) {
 		return true;
 	}
 
