@@ -371,6 +371,7 @@ summary.widget-title::-webkit-details-marker {
 	overflow: hidden;
 	white-space: normal;
 	line-height: 1.5;
+	font-size: 1em;
 }
 
 summary.sidebar-name {
