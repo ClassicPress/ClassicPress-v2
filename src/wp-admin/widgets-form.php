@@ -422,7 +422,7 @@ do_action( 'widgets_admin_page' );
 <div id="widgets-left">
 	<div id="available-widgets" class="widgets-holder-wrap">
 		<details open>
-			<summary class="sidebar-name"><?php _e( 'Available Widgets' ); ?></summary>
+			<summary class="sidebar-name"><h2><?php _e( 'Available Widgets' ); ?></h2></summary>
 			<div class="widget-holder">
 				<div class="sidebar-description">
 					<p class="description"><?php _e( 'To activate a widget drag it to a sidebar or click on it. To deactivate a widget and delete its settings, drag it back.' ); ?></p>
