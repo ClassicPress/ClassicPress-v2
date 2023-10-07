@@ -389,6 +389,10 @@ summary.sidebar-name::before {
 	cursor: pointer;
 }
 
+#widgets-right .widgets-holder-wrap > details > summary.sidebar-name::before {
+	padding-right: 0;
+}
+
 details[open] > summary.sidebar-name::before {
 	content: '\25BE';
 }
