@@ -57,7 +57,7 @@ details[open] > summary.widget-title::before {
 }
 
 /* Fix for Safari */
-#available-widgets summary.widget-title::-webkit-details-marker {
+summary.widget-title::-webkit-details-marker {
 	display: none;
 }
 
@@ -378,6 +378,23 @@ summary.sidebar-name {
 	color: #1d2327;
 	font-size: 1.3em;
 	font-weight: 600;
+	list-style: none;
+}
+
+summary.sidebar-name::before {
+	content: '\25B8';
+	padding-right: 0.5em;
+	font-size: 1.2em;
+	cursor: pointer;
+}
+
+details[open] > summary.sidebar-name::before {
+	content: '\25BE';
+}
+
+/* Fix for Safari */
+summary.sidebar-name::-webkit-details-marker {
+	display: none;
 }
 
 .widgets-holder-wrap .description {
