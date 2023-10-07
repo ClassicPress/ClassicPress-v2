@@ -89,7 +89,7 @@ function wp_list_widget_controls( $sidebar, $sidebar_name = '' ) {
 
 	echo '<details>';
 
-	echo '<summary class="sidebar-name">' . esc_html( $sidebar_name ) . '</summary>';
+	echo '<summary class="sidebar-name"><h2>' . esc_html( $sidebar_name ) . '</h2></summary>';
 
 	if ( ! empty( $description ) ) {
 
