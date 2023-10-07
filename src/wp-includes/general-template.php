@@ -4979,7 +4979,7 @@ function get_the_generator( $type = '' ) {
 
 	switch ( $type ) {
 		case 'html':
-			$gen = '<meta name="generator" content="WordPress ' . esc_attr( get_bloginfo( 'version' ) ) . ' (compatible; ClassicPress ' . esc_attr( classicpress_version_short() ) . ')\">';
+			$gen = '<meta name="generator" content="WordPress ' . esc_attr( get_bloginfo( 'version' ) ) . ' (compatible; ClassicPress ' . esc_attr( classicpress_version_short() ) . ')">';
 			break;
 		case 'atom':
 			$gen = '<generator uri="https://www.classicpress.net/" version="' . esc_attr( get_bloginfo( 'version' ) ) . '-cp-' . esc_attr( classicpress_version_short() ) . '">ClassicPress</generator>';
@@ -4991,7 +4991,7 @@ function get_the_generator( $type = '' ) {
 			$gen = '<admin:generatorAgent rdf:resource="' . sanitize_url( 'https://www.classicpress.net/?v=' . get_bloginfo( 'version' ) . '-cp-' . classicpress_version_short() ) . '" />';
 			break;
 		case 'comment':
-			$gen = '<!-- generator="WordPress/' . esc_attr( get_bloginfo( 'version' ) ) . '(compatible; ClassicPress/' . esc_attr( classicpress_version_short() ) . ')\" -->';
+			$gen = '<!-- generator="WordPress/' . esc_attr( get_bloginfo( 'version' ) ) . '(compatible; ClassicPress/' . esc_attr( classicpress_version_short() ) . ')" -->';
 			break;
 		case 'export':
 			$gen = '<!-- generator="ClassicPress/' . esc_attr( classicpress_version_short() ) . '" created="' . esc_attr( date( 'Y-m-d H:i' ) ) . '" -->';
