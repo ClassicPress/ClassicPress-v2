@@ -390,7 +390,7 @@ summary.sidebar-name::before {
 }
 
 #widgets-right .widgets-holder-wrap > details > summary.sidebar-name::before {
-	padding-right: 0;
+	padding-right: 0.2em;
 }
 
 details[open] > summary.sidebar-name::before {
