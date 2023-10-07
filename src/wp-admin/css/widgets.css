@@ -31,7 +31,7 @@
 .widget-title h4,
 summary.widget-title {
 	margin: 0;
-	padding: 15px;
+	padding: 12px 15px 15px 10px;
 	font-size: 1em;
 	line-height: 1;
 	overflow: hidden;
@@ -40,6 +40,25 @@ summary.widget-title {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	user-select: none;
+}
+
+summary.widget-title {
+	list-style: none;
+}
+
+summary.widget-title::before {
+	content: '\25B8';
+	font-size: 1.4em;
+	cursor: pointer;
+}
+
+details[open] > summary.widget-title::before {
+	content: '\25BE';
+}
+
+/* Fix for Safari */
+#available-widgets summary.widget-title::-webkit-details-marker {
+	display: none;
 }
 
 .widgets-holder-wrap .widget-inside {
