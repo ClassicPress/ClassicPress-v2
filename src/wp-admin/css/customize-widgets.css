@@ -294,6 +294,11 @@ body.adding-widget #customize-preview {
 	padding: 10px 0;
 }
 
+/* Fix for Safari */
+#available-widgets summary::-webkit-details-marker {
+	display: none;
+}
+
 #available-widgets .widget-title:before {
 	content: "\f132";
 	position: inline;
