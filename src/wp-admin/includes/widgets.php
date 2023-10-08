@@ -127,7 +127,7 @@ function wp_list_widget_controls_dynamic_sidebar( $params ) {
 	$id        = isset( $params[0]['_temp_id'] ) ? $params[0]['_temp_id'] : $widget_id;
 	$tag       = $pagenow === 'customize.php' ? 'div' : 'li'; // use correct semantic tag according to whether in customizer or not
 
-	$params[0]['before_widget'] = '<'. $tag . ' id="widget-' . $i . '_' . $id . '" class="widget open">';
+	$params[0]['before_widget'] = '<' . $tag . ' id="widget-' . $i . '_' . $id . '" class="widget open">';
 	$params[0]['after_widget']  = '</' . $tag . '>';
 	$params[0]['before_title']  = '%BEG_OF_TITLE%'; // Deprecated.
 	$params[0]['after_title']   = '%END_OF_TITLE%'; // Deprecated.
