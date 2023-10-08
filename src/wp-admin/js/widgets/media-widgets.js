@@ -1206,7 +1206,7 @@ wp.mediaWidgets = ( function( $ ) {
 	 * @return {void}
 	 */
 	component.setupAccessibleMode = function setupAccessibleMode() {
-		var widgetForm, widgetId, idBase, widgetControl, ControlConstructor, ModelConstructor, modelAttributes, fieldContainer, syncContainer;
+		var widgetForm, widgetId, widgetContainer, idBase, widgetControl, ControlConstructor, ModelConstructor, modelAttributes, fieldContainer, syncContainer;
 		widgetForm = $( '.editwidget > form' );
 		if ( 0 === widgetForm.length ) {
 			return;

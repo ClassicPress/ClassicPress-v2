@@ -701,7 +701,7 @@
 		_setupControlToggle: function() {
 			var self = this, $closeBtn;
 
-			this.container.find( '.widget-top' ).on( 'click', function( e ) {
+			this.container.find( '.widget-top' ).on( 'click', function() {
 				var sidebarWidgetsControl = self.getSidebarWidgetsControl();
 				if ( sidebarWidgetsControl.isReordering ) {
 					return;
@@ -1400,7 +1400,7 @@
 		 * @param {Object} args  merged on top of this.defaultActiveArguments
 		 */
 		onChangeExpanded: function ( expanded, args ) {
-			var self = this, $widget, $inside, complete, prevComplete, expandControl, $toggleBtn;
+			var self = this, $widget, $inside, complete, prevComplete, expandControl, $details;
 
 			self.embedWidgetControl(); // Make sure the outer form is embedded so that the expanded state can be set in the UI.
 			if ( expanded ) {

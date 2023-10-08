@@ -28,24 +28,24 @@ window.wpWidgets = {
 			chooser = $('.widgets-chooser'),
 			selectSidebar = chooser.find('.widgets-chooser-sidebars'),
 			sidebars = $('ul.widgets-sortables'),
-			sidebarWrappers = $( '.widgets-holder-wrap' );
+			sidebarWrappers = $( '.widgets-holder-wrap' ),
 			isRTL = !! ( 'undefined' !== typeof isRtl && isRtl );// Refresh the widgets containers in the right column.
-			
+
 		document.querySelector( '#widgets-right details' ).setAttribute( 'open', 'open' );
 		document.querySelector( '.inactive-sidebar .sidebar-name' ).parentElement.setAttribute( 'open', 'open' );
 
 		// Hide elements on the Inactive Sidebar.
-		document.querySelector( '.inactive-sidebar .sidebar-name' ).addEventListener( 'click', (e) => {
+		document.querySelector( '.inactive-sidebar .sidebar-name' ).addEventListener( 'click', function( e ) {
 			e.target.parentElement.nextElementSibling.classList.toggle( 'hidden' );
 			e.target.closest( '.widget-holder' ).nextElementSibling.classList.toggle( 'hidden' );
-		});		
+		});
 
 		// Update the admin menu "sticky" state.
 		$( '#widgets-left .sidebar-name' ).on( 'click', function() {
 			$document.triggerHandler( 'wp-pin-menu' );
 		});
 
-		$( '#widgets-right summary' ).on( 'click', function() {	
+		$( '#widgets-right summary' ).on( 'click', function() {
 			$document.triggerHandler( 'wp-pin-menu' );
 		});
 
@@ -84,8 +84,7 @@ window.wpWidgets = {
 
 		$(document.body).on('click.widgets-toggle', function(e) {
 			var target = $(e.target), css = {},
-				widget, inside, targetWidth, widgetWidth, margin, saveButton, widgetId,
-				toggleBtn = target.closest( '.widget' ).find( '.widget-top button.widget-action' );
+				widget, inside, targetWidth, widgetWidth, margin, saveButton, widgetId;
 
 			if ( target.parents('.widget-top').length && ! target.parents('.widget-inside').length && ! target.parents('#available-widgets').length ) {
 				widget = target.closest('li.widget');
@@ -178,7 +177,7 @@ window.wpWidgets = {
 		 */
 		sidebars.droppable( {
 			tolerance: 'intersect',
-			over: function( event ) {
+			over: function() {
 				$( this ).sortable( 'refresh' );
 			}
 		} );
@@ -214,13 +213,13 @@ window.wpWidgets = {
 			 *
 			 * @param {Object} event jQuery event object.
 			 */
-			out: function( event ) {
-				setTimeout( () => {
+			out: function() {
+				setTimeout( function() {
 					var sidebar = this.querySelector( 'ul' );
 					if ( ! sidebar.classList.contains( 'ui-droppable-hover' ) ) {
 						this.querySelector( 'details' ).removeAttribute( 'open' );
 					}
-				}, 0);
+				}, 0 );
 			}
 		} );
 
@@ -398,14 +397,14 @@ window.wpWidgets = {
 			chooserButtons = selectSidebar.find( '.widgets-chooser-button' );
 
 		if ( document.querySelector( 'body' ).classList.contains( 'widgets-php' ) ) {
-			widgetTops.forEach( ( top ) => {
+			widgetTops.forEach( function ( top ) {
 				top.addEventListener( 'click', function( e ) {
 
 					// Open the chooser.
 					if ( ! e.target.closest( 'details' ).hasAttribute( 'open' ) ) {
 						self.clearWidgetSelection();
 						document.getElementById( 'widgets-left' ).classList.add( 'chooser' );
-						
+
 						chooserButtons.on( 'click.widgets-chooser', function() {
 							selectSidebar.find( '.widgets-chooser-selected' ).removeClass( 'widgets-chooser-selected' );
 							chooserButtons.attr( 'aria-pressed', 'false' );
@@ -428,13 +427,13 @@ window.wpWidgets = {
 
 		// Add event handlers for choosers.
 		var widgetActions = document.querySelectorAll( '.widgets-chooser-actions' );
-		widgetActions.forEach( ( action ) => {
+		widgetActions.forEach( function ( action ) {
 			action.addEventListener( 'click', function( e ) {
 				if ( e.target.classList.contains( 'button-primary' ) ) {
 					self.addWidget( chooser );
 				}
 				e.target.closest( '.widget-top' ).removeAttribute( 'open' );
-				setTimeout( () => {
+				setTimeout( function () {
 					document.querySelector( '.chooser' ).classList.remove( 'chooser' );
 				}, 0 );
 			});
@@ -442,7 +441,7 @@ window.wpWidgets = {
 
 		// Enable Escape key.
 		var openWidgets = document.querySelectorAll( '.widget.open' );
-		openWidgets.forEach( ( widget ) => {
+		openWidgets.forEach( function ( widget ) {
 			widget.addEventListener( 'keyup', function( e ) {
 				if ( e.key === 'Escape' ) {
 					e.target.closest( '.widget-top' ).removeAttribute( 'open' );

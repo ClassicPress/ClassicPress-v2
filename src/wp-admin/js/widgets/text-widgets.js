@@ -424,7 +424,7 @@ wp.textWidgets = ( function( $ ) {
 	 * @return {void}
 	 */
 	component.setupAccessibleMode = function setupAccessibleMode() {
-		var widgetForm, idBase, widgetControl, fieldContainer, syncContainer;
+		var widgetForm, widgetContainer, idBase, widgetControl, fieldContainer, syncContainer;
 		widgetForm = $( '.editwidget > form' );
 		if ( 0 === widgetForm.length ) {
 			return;
