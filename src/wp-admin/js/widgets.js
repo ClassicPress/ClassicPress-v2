@@ -213,11 +213,11 @@ window.wpWidgets = {
 			 *
 			 * @param {Object} event jQuery event object.
 			 */
-			out: function() {
+			out: function( event ) {
 				setTimeout( function() {
-					var sidebar = this.querySelector( 'ul' );
+					var sidebar = event.target.querySelector( 'ul' );
 					if ( ! sidebar.classList.contains( 'ui-droppable-hover' ) ) {
-						this.querySelector( 'details' ).removeAttribute( 'open' );
+						event.target.querySelector( 'details' ).removeAttribute( 'open' );
 					}
 				}, 0 );
 			}
