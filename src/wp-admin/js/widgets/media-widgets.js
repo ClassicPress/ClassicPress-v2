@@ -1182,7 +1182,7 @@ wp.mediaWidgets = ( function( $ ) {
 		 * can initialize with the proper dimensions.
 		 */
 		renderWhenAnimationDone = function() {
-			if ( ! widgetContainer.hasClass( 'open' ) ) {
+			if ( ! widgetContainer.children( 'details' ).attr( 'open' ) ) {
 				setTimeout( renderWhenAnimationDone, animatedCheckDelay );
 			} else {
 				widgetControl.render();
