@@ -42,23 +42,14 @@ summary.widget-title {
 	user-select: none;
 }
 
-summary.widget-title {
-	list-style: none;
+.widget-title h3 {
+	padding-left: 5px;
 }
 
-summary.widget-title::before {
-	content: '\25B8';
+summary.widget-title::marker,
+summary.widget-title::-webkit-details-marker {
 	font-size: 1.4em;
 	cursor: pointer;
-}
-
-details[open] > summary.widget-title::before {
-	content: '\25BE';
-}
-
-/* Fix for Safari */
-summary.widget-title::-webkit-details-marker {
-	display: none;
 }
 
 .widgets-holder-wrap .widget-inside {
@@ -379,27 +370,12 @@ summary.sidebar-name {
 	color: #1d2327;
 	font-size: 1.3em;
 	font-weight: 600;
-	list-style: none;
 }
 
-summary.sidebar-name::before {
-	content: '\25B8';
-	padding-right: 0.5em;
+summary.sidebar-name::marker,
+summary.sidebar-name::-webkit-details-marker {
 	font-size: 1.2em;
 	cursor: pointer;
-}
-
-#widgets-right .widgets-holder-wrap > details > summary.sidebar-name::before {
-	padding-right: 0.2em;
-}
-
-details[open] > summary.sidebar-name::before {
-	content: '\25BE';
-}
-
-/* Fix for Safari */
-summary.sidebar-name::-webkit-details-marker {
-	display: none;
 }
 
 .widgets-holder-wrap .description {
