@@ -82,18 +82,9 @@ require ABSPATH . 'wp-admin/admin-header.php';
 				<?php
 				printf(
 					/* translators: 1: link with instructions to join ClassicPress Slack, 2: link to community forums */
-					__( 'For general discussion about ClassicPress, <a href="%1$s"><strong>join our Slack group</strong></a> or our <a href="%2$s"><strong>community forum</strong></a>.' ),
-					'https://www.classicpress.net/join-slack/',
+					__( 'For general discussion about ClassicPress, <a href="%1$s"><strong>join our Zulip group</strong></a> or our <a href="%2$s"><strong>community forum</strong></a>.' ),
+					'https://classicpress.zulipchat.com/register/',
 					'https://forums.classicpress.net/c/support'
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: link to ClassicPress Petitions site for new features */
-					__( 'Suggestions for improvements to future versions of ClassicPress are welcome at <a href="%s"><strong>our petitions site</strong></a>.' ),
-					'https://petitions.classicpress.net/'
 				);
 				?>
 			</p>
@@ -118,6 +109,17 @@ require ABSPATH . 'wp-admin/admin-header.php';
 				?>
 			</p>
 			<h3><?php _e( 'ClassicPress changelogs' ); ?></h3>
+			<h4><?php _e( 'ClassicPress 2.0.0' ); ?></h4>
+			<p>
+				<?php
+				printf(
+					/* translators: link to ClassicPress 1.0.0 changelog */
+					__( 'For a list of new features and other changes from WordPress %1$s, see the <a href="%2$s"><strong>ClassicPress 2.0.0 (Bella) release notes</strong></a>.' ),
+					'6.2.x',
+					'https://forums.classicpress.net/t/classicpress-2-0-0-bella-release-notes/910'
+				);
+				?>
+			</p>
 			<h4>
 			<?php
 			printf(
@@ -141,7 +143,8 @@ require ABSPATH . 'wp-admin/admin-header.php';
 				<?php
 				printf(
 					/* translators: link to ClassicPress 1.0.0 changelog */
-					__( 'For a list of new features and other changes from ClassicPress 4.9.x, see the <a href="%s"><strong>ClassicPress 1.0.0 (Aurora) release notes</strong></a>.' ),
+					__( 'For a list of new features and other changes in WordPress %1$s, see the <a href="%2$s"><strong>ClassicPress 1.0.0 (Aurora) release notes</strong></a>.' ),
+					'4.9.x',
 					'https://forums.classicpress.net/t/classicpress-1-0-0-aurora-release-notes/910'
 				);
 				?>
@@ -157,382 +160,26 @@ require ABSPATH . 'wp-admin/admin-header.php';
 			<p>
 				<?php
 				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed one security issue.' ),
-					'4.9.22'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.22' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.21'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.21' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed one security issue.' ),
-					'4.9.20'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.20' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.19'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.19' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed one security issue.' ),
-					'4.9.18'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.18' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.17'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.17' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.16'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.16' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.15'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.15' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.14'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.14' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.13'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.13' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.12'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.12' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.11'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.11' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: WordPress version number */
-					__( '<strong>WordPress version %s</strong> addressed some security issues.' ),
-					'4.9.10'
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: HelpHub URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					sprintf(
-						/* translators: %s: WordPress version */
-						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
-						sanitize_title( '4.9.10' )
-					)
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				/* translators: %s: WordPress version number */
-				printf( __( '<strong>WordPress version %s</strong> addressed some security issues.' ), '4.9.9' );
-				?>
-				<?php
-				/* translators: %s: Codex URL */
-				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.9' );
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: 1: WordPress version number, 2: plural number of bugs. */
-					_n(
-						'<strong>WordPress version %1$s</strong> addressed %2$s bug.',
-						'<strong>WordPress version %1$s</strong> addressed %2$s bugs.',
-						46
-					),
-					'4.9.8',
-					number_format_i18n( 46 )
-				);
-				?>
-				<?php
-				printf(
-					/* translators: %s: Codex URL */
-					__( 'For more information, see <a href="%s">the release notes</a>.' ),
-					'https://codex.wordpress.org/Version_4.9.8'
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
 					/* translators: 1: WordPress version number, 2: plural number of bugs. */
 					_n(
 						'<strong>WordPress version %1$s</strong> addressed some security issues and fixed %2$s bug.',
 						'<strong>WordPress version %1$s</strong> addressed some security issues and fixed %2$s bugs.',
-						17
-					),
-					'4.9.7',
-					number_format_i18n( 17 )
-				);
-				?>
-				<?php
-				/* translators: %s: Codex URL */
-				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.7' );
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: 1: WordPress version number, 2: plural number of bugs. */
-					_n(
-						'<strong>WordPress version %1$s</strong> addressed %2$s bug.',
-						'<strong>WordPress version %1$s</strong> addressed %2$s bugs.',
-						18
-					),
-					'4.9.6',
-					number_format_i18n( 18 )
-				);
-				?>
-				<?php
-				/* translators: %s: Codex URL */
-				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.6' );
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: 1: WordPress version number, 2: plural number of bugs. */
-					_n(
-						'<strong>WordPress version %1$s</strong> addressed some security issues and fixed %2$s bug.',
-						'<strong>WordPress version %1$s</strong> addressed some security issues and fixed %2$s bugs.',
-						28
-					),
-					'4.9.5',
-					number_format_i18n( 28 )
-				);
-				?>
-				<?php
-				/* translators: %s: Codex URL */
-				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.5' );
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: 1: WordPress version number, 2: plural number of bugs. */
-					_n(
-						'<strong>WordPress version %1$s</strong> addressed %2$s bug.',
-						'<strong>WordPress version %1$s</strong> addressed %2$s bugs.',
 						1
 					),
-					'4.9.4',
+					'6.2.2',
 					number_format_i18n( 1 )
 				);
 				?>
 				<?php
-				/* translators: %s: Codex URL */
-				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.4' );
-				?>
-			</p>
-			<p>
-				<?php
 				printf(
-					/* translators: 1: WordPress version number, 2: plural number of bugs. */
-					_n(
-						'<strong>WordPress version %1$s</strong> addressed %2$s bug.',
-						'<strong>WordPress version %1$s</strong> addressed %2$s bugs.',
-						34
-					),
-					'4.9.3',
-					number_format_i18n( 34 )
+					/* translators: %s: HelpHub URL */
+					__( 'For more information, see <a href="%s">the release notes</a>.' ),
+					sprintf(
+						/* translators: %s: WordPress version */
+						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
+						sanitize_title( '6.2.2' )
+					)
 				);
-				?>
-				<?php
-				/* translators: %s: Codex URL */
-				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.3' );
 				?>
 			</p>
 			<p>
@@ -542,33 +189,22 @@ require ABSPATH . 'wp-admin/admin-header.php';
 					_n(
 						'<strong>WordPress version %1$s</strong> addressed some security issues and fixed %2$s bug.',
 						'<strong>WordPress version %1$s</strong> addressed some security issues and fixed %2$s bugs.',
-						22
+						20
 					),
-					'4.9.2',
-					number_format_i18n( 22 )
+					'6.2.1',
+					number_format_i18n( 20 )
 				);
 				?>
-				<?php
-				/* translators: %s: Codex URL */
-				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.2' );
-				?>
-			</p>
-			<p>
 				<?php
 				printf(
-					/* translators: 1: WordPress version number, 2: plural number of bugs. */
-					_n(
-						'<strong>WordPress version %1$s</strong> addressed some security issues and fixed %2$s bug.',
-						'<strong>WordPress version %1$s</strong> addressed some security issues and fixed %2$s bugs.',
-						11
-					),
-					'4.9.1',
-					number_format_i18n( 11 )
+					/* translators: %s: HelpHub URL */
+					__( 'For more information, see <a href="%s">the release notes</a>.' ),
+					sprintf(
+						/* translators: %s: WordPress version */
+						esc_url( __( 'https://wordpress.org/support/wordpress-version/version-%s/' ) ),
+						sanitize_title( '6.2.1' )
+					)
 				);
-				?>
-				<?php
-				/* translators: %s: Codex URL */
-				printf( __( 'For more information, see <a href="%s">the release notes</a>.' ), 'https://codex.wordpress.org/Version_4.9.1' );
 				?>
 			</p>
 		</div>
