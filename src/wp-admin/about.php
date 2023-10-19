@@ -81,7 +81,7 @@ require ABSPATH . 'wp-admin/admin-header.php';
 			<p>
 				<?php
 				printf(
-					/* translators: 1: link with instructions to join ClassicPress Slack, 2: link to community forums */
+					/* translators: 1: link with instructions to join ClassicPress Zulip, 2: link to community forums */
 					__( 'For general discussion about ClassicPress, <a href="%1$s"><strong>join our Zulip group</strong></a> or our <a href="%2$s"><strong>community forum</strong></a>.' ),
 					'https://classicpress.zulipchat.com/register/',
 					'https://forums.classicpress.net/c/support'
@@ -93,7 +93,7 @@ require ABSPATH . 'wp-admin/admin-header.php';
 				printf(
 					/* translators: 1: link to ClassicPress FAQs page, 2: link to ClassicPress support forum */
 					__( 'If you need help with something else, please see our <a href="%1$s"><strong>FAQs page</strong></a>. If your question is not answered there, you can make a new post on our <a href="%2$s"><strong>support forum</strong></a>.' ),
-					'https://docs.classicpress.net/faq-support/',
+					'https://www.classicpress.net/faq/',
 					'https://forums.classicpress.net/c/support/'
 				);
 				?>
@@ -102,7 +102,7 @@ require ABSPATH . 'wp-admin/admin-header.php';
 				<?php
 				printf(
 					/* translators: 1: link to ClassicPress GitHub repository, 2: link to GitHub issues list */
-					__( 'ClassicPress is developed <a href="%1$s"><strong>on GitHub</strong></a>. For specific bug reports or technical suggestions, see the <a href="%1$s"><strong>issues list</strong></a> and add your report if it is not already present.' ),
+					__( 'ClassicPress is developed <a href="%1$s"><strong>on GitHub</strong></a>. For specific bug reports or technical suggestions, see the <a href="%2$s"><strong>issues list</strong></a> and add your report if it is not already present.' ),
 					'https://github.com/ClassicPress/ClassicPress',
 					'https://github.com/ClassicPress/ClassicPress/issues'
 				);
