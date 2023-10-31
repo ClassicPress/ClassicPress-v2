@@ -5356,21 +5356,14 @@ function wp_get_loading_attr_default( $context ) {
 	}
 
 	// Do not lazy-load images in the header block template part, as they are likely above the fold.
-<<<<<<< HEAD
 	$header_area = 'header';
-=======
-	// For classic themes, this is handled in the condition below using the 'get_header' action.
-	$header_area = WP_TEMPLATE_PART_AREA_HEADER;
->>>>>>> 71140f327f (Media: Conditionally skip lazy-loading on images before the loop to improve LCP performance.)
 	if ( "template_part_{$header_area}" === $context ) {
 		return false;
 	}
 
 	// Special handling for programmatically created image tags.
 	if ( ( 'the_post_thumbnail' === $context || 'wp_get_attachment_image' === $context ) ) {
-	/*
-<<<<<<< HEAD
-=======
+		/*
 		 * Skip programmatically created images within post content as they need to be handled together with the other
 		 * images within the post content.
 		 * Without this clause, they would already be counted below which skews the number and can result in the first
@@ -5396,7 +5389,6 @@ function wp_get_loading_attr_default( $context ) {
 	}
 
 	/*
->>>>>>> 71140f327f (Media: Conditionally skip lazy-loading on images before the loop to improve LCP performance.)
 	 * The first elements in 'the_content' or 'the_post_thumbnail' should not be lazy-loaded,
 	 * as they are likely above the fold.
 	 */
