@@ -235,12 +235,18 @@ wp.textWidgets = ( function( $ ) {
 
 				// The user has disabled TinyMCE.
 				if ( typeof window.tinymce === 'undefined' ) {
+					wp.oldEditor.initialize( id, {
+						quicktags: true,
+						mediaButtons: true
+					});
+
 					return;
 				}
 
 				// Destroy any existing editor so that it can be re-initialized after a widget-updated event.
 				if ( tinymce.get( id ) ) {
 					restoreTextMode = tinymce.get( id ).isHidden();
+					wp.oldEditor.remove( id );
 				}
 
 				// Add or enable the `wpview` plugin.
@@ -252,6 +258,14 @@ wp.textWidgets = ( function( $ ) {
 					} else if ( ! /\bwpview\b/.test( init.plugins ) ) {
 						init.plugins += ',wpview';
 					}
+				} );
+
+				wp.oldEditor.initialize( id, {
+					tinymce: {
+						wpautop: true
+					},
+					quicktags: true,
+					mediaButtons: true
 				} );
 
 				/**
