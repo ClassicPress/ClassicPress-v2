@@ -526,8 +526,8 @@ CSS;
 	 * @covers ::wp_maybe_inline_styles
 	 */
 	public function test_wp_maybe_inline_styles() {
-		wp_register_style( 'test-handle', '/' . WPINC . '/css/dashicons.css' );
-		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/dashicons.css' );
+		wp_register_style( 'test-handle', '/' . WPINC . '/css/wp-pointer.css' );
+		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/wp-pointer.css' );
 
 		wp_enqueue_style( 'test-handle' );
 
@@ -535,7 +535,7 @@ CSS;
 
 		$this->assertFalse( $GLOBALS['wp_styles']->registered['test-handle']->src, 'Source of style should be reset to false' );
 
-		$css = file_get_contents( ABSPATH . WPINC . '/css/dashicons.css' );
+		$css = file_get_contents( ABSPATH . WPINC . '/css/wp-pointer.css' );
 		$this->assertSameSets( $GLOBALS['wp_styles']->registered['test-handle']->extra['after'], array( $css ), 'Source of style should set to after property' );
 	}
 
@@ -547,8 +547,8 @@ CSS;
 	public function test_wp_maybe_inline_styles_dequeue_styles() {
 		$filter = new MockAction();
 		add_filter( 'pre_wp_filesize', array( $filter, 'filter' ) );
-		wp_register_style( 'test-handle', '/' . WPINC . '/css/classic-themes.css' );
-		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/classic-themes.css' );
+		wp_register_style( 'test-handle', '/' . WPINC . '/css/wp-pointer.css' );
+		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/wp-pointer.css' );
 
 		wp_enqueue_style( 'test-handle' );
 
@@ -570,8 +570,8 @@ CSS;
 	public function test_wp_maybe_inline_styles_multiple_runs() {
 		$filter = new MockAction();
 		add_filter( 'pre_wp_filesize', array( $filter, 'filter' ) );
-		wp_register_style( 'test-handle', '/' . WPINC . '/css/dashicons.css' );
-		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/dashicons.css' );
+		wp_register_style( 'test-handle', '/' . WPINC . '/css/wp-pointer.css' );
+		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/wp-pointer.css' );
 
 		wp_enqueue_style( 'test-handle' );
 
@@ -609,7 +609,7 @@ CSS;
 	 */
 	public function test_wp_maybe_inline_styles_no_src() {
 		wp_register_style( 'test-handle', false );
-		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/dashicons.css' );
+		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/wp-pointer.css' );
 
 		wp_enqueue_style( 'test-handle' );
 
@@ -625,7 +625,7 @@ CSS;
 	 * @covers ::wp_maybe_inline_styles
 	 */
 	public function test_wp_maybe_inline_styles_no_path() {
-		$url = '/' . WPINC . '/css/dashicons.css';
+		$url = '/' . WPINC . '/css/wp-pointer.css';
 		wp_register_style( 'test-handle', $url );
 
 		wp_enqueue_style( 'test-handle' );
