@@ -212,6 +212,88 @@ function wp_default_packages_inline_scripts( $scripts ) {
 		),
 		'after'
 	);
+
+	$scripts->add_inline_script(
+		'wp-data',
+		implode(
+			"\n",
+			array(
+				'( function() {',
+				'	var userId = ' . get_current_user_ID() . ';',
+				'	var storageKey = "WP_DATA_USER_" + userId;',
+				'	wp.data',
+				'		.use( wp.data.plugins.persistence, { storageKey: storageKey } );',
+				'	wp.data.plugins.persistence.__unstableMigrate( { storageKey: storageKey } );',
+				'} )();',
+			)
+		)
+	);
+
+	// Calculate the timezone abbr (EDT, PST) if possible.
+	$timezone_string = get_option( 'timezone_string', 'UTC' );
+	$timezone_abbr   = '';
+	if ( ! empty( $timezone_string ) ) {
+		$timezone_date = new DateTime( null, new DateTimeZone( $timezone_string ) );
+		$timezone_abbr = $timezone_date->format( 'T' );
+	}
+	$scripts->add_inline_script(
+		'wp-date',
+		sprintf(
+			'wp.date.setSettings( %s );',
+			wp_json_encode(
+				array(
+					'l10n'     => array(
+						'locale'        => get_user_locale(),
+						'months'        => array_values( $wp_locale->month ),
+						'monthsShort'   => array_values( $wp_locale->month_abbrev ),
+						'weekdays'      => array_values( $wp_locale->weekday ),
+						'weekdaysShort' => array_values( $wp_locale->weekday_abbrev ),
+						'meridiem'      => (object) $wp_locale->meridiem,
+						'relative'      => array(
+							/* translators: %s: Duration. */
+							'future' => __( '%s from now' ),
+							/* translators: %s: Duration. */
+							'past'   => __( '%s ago' ),
+						),
+					),
+					'formats'  => array(
+						/* translators: Time format, see https://www.php.net/manual/datetime.format.php */
+						'time'                => get_option( 'time_format', __( 'g:i a' ) ),
+						/* translators: Date format, see https://www.php.net/manual/datetime.format.php */
+						'date'                => get_option( 'date_format', __( 'F j, Y' ) ),
+						/* translators: Date/Time format, see https://www.php.net/manual/datetime.format.php */
+						'datetime'            => __( 'F j, Y g:i a' ),
+						/* translators: Abbreviated date/time format, see https://www.php.net/manual/datetime.format.php */
+						'datetimeAbbreviated' => __( 'M j, Y g:i a' ),
+					),
+					'timezone' => array(
+						'offset' => get_option( 'gmt_offset', 0 ),
+						'string' => $timezone_string,
+						'abbr'   => $timezone_abbr,
+					),
+				)
+			)
+		),
+		'after'
+	);
+
+	// Loading the old editor and its config to ensure the classic block works as expected.
+	$scripts->add_inline_script(
+		'editor',
+		'window.wp.oldEditor = window.wp.editor;',
+		'after'
+	);
+
+	
+	// wp-editor module is exposed as window.wp.editor
+	// Problem: there is quite some code expecting window.wp.oldEditor object available under window.wp.editor
+	// Solution: fuse the two objects together to maintain backward compatibility
+	// For more context, see https://github.com/WordPress/gutenberg/issues/33203
+	$scripts->add_inline_script(
+		'wp-editor',
+		'Object.assign( window.wp.editor, window.wp.oldEditor );',
+		'after'
+	);
 }
 
 /**
