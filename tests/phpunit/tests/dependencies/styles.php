@@ -519,113 +519,6 @@ CSS;
 			),
 		);
 	}
-<<<<<<< HEAD
-=======
-
-	/**
-	 * Tests that visual block styles are not be enqueued in the editor when there is not theme support for 'wp-block-styles'.
-	 *
-	 * @ticket 57561
-	 *
-	 * @covers ::wp_enqueue_style
-	 */
-	public function test_block_styles_for_editing_without_theme_support() {
-		// Confirm we are without theme support by default.
-		$this->assertFalse( current_theme_supports( 'wp-block-styles' ) );
-
-		wp_default_styles( $GLOBALS['wp_styles'] );
-
-		$this->assertFalse( wp_style_is( 'wp-block-library-theme' ) );
-		wp_enqueue_style( 'wp-edit-blocks' );
-		$this->assertFalse( wp_style_is( 'wp-block-library-theme' ), "The 'wp-block-library-theme' style should not be in the queue after enqueuing 'wp-edit-blocks'" );
-	}
-
-	/**
-	 * Tests that visual block styles are enqueued when there is theme support for 'wp-block-styles'.
-	 *
-	 * Visual block styles should always be enqueued when editing to avoid the appearance of a broken editor.
-	 *
-	 * @covers ::wp_common_block_scripts_and_styles
-	 */
-	public function test_block_styles_for_editing_with_theme_support() {
-		add_theme_support( 'wp-block-styles' );
-
-		wp_default_styles( $GLOBALS['wp_styles'] );
-
-		$this->assertFalse( wp_style_is( 'wp-block-library-theme' ) );
-		wp_common_block_scripts_and_styles();
-		$this->assertTrue( wp_style_is( 'wp-block-library-theme' ) );
-	}
-
-	/**
-	 * Tests that visual block styles are not enqueued for viewing when there is no theme support for 'wp-block-styles'.
-	 *
-	 * Visual block styles should not be enqueued unless a theme opts in.
-	 * This way we avoid style conflicts with existing themes.
-	 *
-	 * @covers ::wp_enqueue_style
-	 */
-	public function test_no_block_styles_for_viewing_without_theme_support() {
-		// Confirm we are without theme support by default.
-		$this->assertFalse( current_theme_supports( 'wp-block-styles' ) );
-
-		wp_default_styles( $GLOBALS['wp_styles'] );
-
-		$this->assertFalse( wp_style_is( 'wp-block-library-theme' ) );
-		wp_enqueue_style( 'wp-block-library' );
-		$this->assertFalse( wp_style_is( 'wp-block-library-theme' ) );
-	}
-
-	/**
-	 * Tests that visual block styles are enqueued for viewing when there is theme support for 'wp-block-styles'.
-	 *
-	 * Visual block styles should be enqueued when a theme opts in.
-	 *
-	 * @covers ::wp_common_block_scripts_and_styles
-	 */
-	public function test_block_styles_for_viewing_with_theme_support() {
-		add_theme_support( 'wp-block-styles' );
-
-		wp_default_styles( $GLOBALS['wp_styles'] );
-
-		$this->assertFalse( wp_style_is( 'wp-block-library-theme' ) );
-		wp_common_block_scripts_and_styles();
-		$this->assertTrue( wp_style_is( 'wp-block-library-theme' ) );
-	}
-
-	/**
-	 * Tests that the main "style.css" file gets enqueued when the site doesn't opt in to separate core block assets.
-	 *
-	 * @ticket 50263
-	 *
-	 * @covers ::wp_default_styles
-	 */
-	public function test_block_styles_for_viewing_without_split_styles() {
-		add_filter( 'should_load_separate_core_block_assets', '__return_false' );
-		wp_default_styles( $GLOBALS['wp_styles'] );
-
-		$this->assertSame(
-			'/' . WPINC . '/css/dist/block-library/style.css',
-			$GLOBALS['wp_styles']->registered['wp-block-library']->src
-		);
-	}
-
-	/**
-	 * Tests that the "common.css" file gets enqueued when the site opts in to separate core block assets.
-	 *
-	 * @ticket 50263
-	 *
-	 * @covers ::wp_default_styles
-	 */
-	public function test_block_styles_for_viewing_with_split_styles() {
-		add_filter( 'should_load_separate_core_block_assets', '__return_true' );
-		wp_default_styles( $GLOBALS['wp_styles'] );
-
-		$this->assertSame(
-			'/' . WPINC . '/css/dist/block-library/common.css',
-			$GLOBALS['wp_styles']->registered['wp-block-library']->src
-		);
-	}
 
 	/**
 	 * @ticket 58394
@@ -633,8 +526,8 @@ CSS;
 	 * @covers ::wp_maybe_inline_styles
 	 */
 	public function test_wp_maybe_inline_styles() {
-		wp_register_style( 'test-handle', '/' . WPINC . '/css/classic-themes.css' );
-		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/classic-themes.css' );
+		wp_register_style( 'test-handle', '/' . WPINC . '/css/dashicons.css' );
+		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/dashicons.css' );
 
 		wp_enqueue_style( 'test-handle' );
 
@@ -642,7 +535,7 @@ CSS;
 
 		$this->assertFalse( $GLOBALS['wp_styles']->registered['test-handle']->src, 'Source of style should be reset to false' );
 
-		$css = file_get_contents( ABSPATH . WPINC . '/css/classic-themes.css' );
+		$css = file_get_contents( ABSPATH . WPINC . '/css/dashicons.css' );
 		$this->assertSameSets( $GLOBALS['wp_styles']->registered['test-handle']->extra['after'], array( $css ), 'Source of style should set to after property' );
 	}
 
@@ -657,8 +550,8 @@ CSS;
 	public function test_wp_maybe_inline_styles_multiple_runs() {
 		$filter = new MockAction();
 		add_filter( 'pre_wp_filesize', array( $filter, 'filter' ) );
-		wp_register_style( 'test-handle', '/' . WPINC . '/css/classic-themes.css' );
-		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/classic-themes.css' );
+		wp_register_style( 'test-handle', '/' . WPINC . '/css/dashicons.css' );
+		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/dashicons.css' );
 
 		wp_enqueue_style( 'test-handle' );
 
@@ -696,7 +589,7 @@ CSS;
 	 */
 	public function test_wp_maybe_inline_styles_no_src() {
 		wp_register_style( 'test-handle', false );
-		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/classic-themes.css' );
+		wp_style_add_data( 'test-handle', 'path', ABSPATH . WPINC . '/css/dashicons.css' );
 
 		wp_enqueue_style( 'test-handle' );
 
@@ -712,7 +605,7 @@ CSS;
 	 * @covers ::wp_maybe_inline_styles
 	 */
 	public function test_wp_maybe_inline_styles_no_path() {
-		$url = '/' . WPINC . '/css/classic-themes.css';
+		$url = '/' . WPINC . '/css/dashicons.css';
 		wp_register_style( 'test-handle', $url );
 
 		wp_enqueue_style( 'test-handle' );
@@ -721,5 +614,4 @@ CSS;
 
 		$this->assertSame( $GLOBALS['wp_styles']->registered['test-handle']->src, $url );
 	}
->>>>>>> 582ddb82f4 (Script Loader: Improve performance of wp_maybe_inline_styles function. )
 }
