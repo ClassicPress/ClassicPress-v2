@@ -75,6 +75,16 @@ CAP;
 		parent::tear_down_after_class();
 	}
 
+	/**
+	 * Ensures that the static content media count and related filter are reset between tests.
+	 */
+	public function set_up() {
+		parent::set_up();
+
+		$this->reset_content_media_count();
+		$this->reset_omit_loading_attr_filter();
+	}
+
 	public function test_img_caption_shortcode_added() {
 		global $shortcode_tags;
 		$this->assertSame( 'img_caption_shortcode', $shortcode_tags['caption'] );
@@ -3357,8 +3367,6 @@ EOF;
 		$this->assertSame( 'lazy', wp_get_loading_attr_default( $context ) );
 
 		$query = $this->get_new_wp_query_for_published_post();
-		$this->reset_content_media_count();
-		$this->reset_omit_loading_attr_filter();
 
 		while ( have_posts() ) {
 			the_post();
@@ -3399,8 +3407,6 @@ EOF;
 	public function test_wp_omit_loading_attr_threshold_filter() {
 		$query = $this->get_new_wp_query_for_published_post();
 		$this->set_main_query( $query );
-		$this->reset_content_media_count();
-		$this->reset_omit_loading_attr_filter();
 
 		// Use the filter to alter the threshold for not lazy-loading to the first five elements.
 		$this->force_omit_loading_attr_threshold( 5 );
@@ -3441,8 +3447,6 @@ EOF;
 
 		$query = $this->get_new_wp_query_for_published_post();
 		$this->set_main_query( $query );
-		$this->reset_content_media_count();
-		$this->reset_omit_loading_attr_filter();
 
 		while ( have_posts() ) {
 			the_post();
@@ -3493,8 +3497,6 @@ EOF;
 		global $wp_query;
 
 		$wp_query = $this->get_new_wp_query_for_published_post();
-		$this->reset_content_media_count();
-		$this->reset_omit_loading_attr_filter();
 
 		do_action( 'get_header' );
 
@@ -3518,8 +3520,6 @@ EOF;
 
 		$wp_query = $this->get_new_wp_query_for_published_post();
 		$this->set_main_query( $wp_query );
-		$this->reset_content_media_count();
-		$this->reset_omit_loading_attr_filter();
 
 		// Lazy if header not called.
 		$this->assertSame( 'lazy', wp_get_loading_attr_default( $context ) );
@@ -3541,8 +3541,6 @@ EOF;
 
 		$wp_query = $this->get_new_wp_query_for_published_post();
 		$this->set_main_query( $wp_query );
-		$this->reset_content_media_count();
-		$this->reset_omit_loading_attr_filter();
 
 		do_action( 'get_header' );
 		$this->assertFalse( wp_get_loading_attr_default( $context ) );
@@ -3564,8 +3562,6 @@ EOF;
 
 		$wp_query = $this->get_new_wp_query_for_published_post();
 		$this->set_main_query( $wp_query );
-		$this->reset_content_media_count();
-		$this->reset_omit_loading_attr_filter();
 
 		do_action( 'get_header' );
 
@@ -3591,8 +3587,6 @@ EOF;
 
 		$wp_query = $this->get_new_wp_query_for_published_post();
 		$this->set_main_query( $wp_query );
-		$this->reset_content_media_count();
-		$this->reset_omit_loading_attr_filter();
 
 		// Ensure header and footer is called.
 		do_action( 'get_header' );
@@ -3614,6 +3608,346 @@ EOF;
 		);
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * Tests that wp_filter_content_tags() does not add loading="lazy" to the first
+	 * image in the loop when using a block theme.
+	 *
+	 * @ticket 56930
+	 *
+	 * @covers ::wp_filter_content_tags
+	 * @covers ::wp_get_loading_attr_default
+	 */
+	public function test_wp_filter_content_tags_does_not_lazy_load_first_image_in_block_theme() {
+		global $_wp_current_template_content, $wp_query, $wp_the_query, $post;
+
+		// Do not add srcset, sizes, or decoding attributes as they are irrelevant for this test.
+		add_filter( 'wp_img_tag_add_srcset_and_sizes_attr', '__return_false' );
+		add_filter( 'wp_img_tag_add_decoding_attr', '__return_false' );
+		$this->force_omit_loading_attr_threshold( 1 );
+
+		$img1      = get_image_tag( self::$large_id, '', '', '', 'large' );
+		$img2      = get_image_tag( self::$large_id, '', '', '', 'medium' );
+		$lazy_img2 = wp_img_tag_add_loading_attr( $img2, 'the_content' );
+
+		// Only the second image should be lazy-loaded.
+		$post_content     = $img1 . $img2;
+		$expected_content = wpautop( $img1 . $lazy_img2 );
+
+		// Update the post to test with so that it has the above post content.
+		wp_update_post(
+			array(
+				'ID'                    => self::$post_ids['publish'],
+				'post_content'          => $post_content,
+				'post_content_filtered' => $post_content,
+			)
+		);
+
+		$wp_query     = new WP_Query( array( 'p' => self::$post_ids['publish'] ) );
+		$wp_the_query = $wp_query;
+		$post         = get_post( self::$post_ids['publish'] );
+
+		$_wp_current_template_content = '<!-- wp:post-content /-->';
+
+		$html = get_the_block_template_html();
+		$this->assertSame( '<div class="wp-site-blocks"><div class="entry-content wp-block-post-content is-layout-flow">' . $expected_content . '</div></div>', $html );
+	}
+
+	/**
+	 * Tests that wp_filter_content_tags() does not add loading="lazy"
+	 * to the featured image when using a block theme.
+	 *
+	 * @ticket 56930
+	 *
+	 * @covers ::wp_filter_content_tags
+	 * @covers ::wp_get_loading_attr_default
+	 */
+	public function test_wp_filter_content_tags_does_not_lazy_load_first_featured_image_in_block_theme() {
+		global $_wp_current_template_content, $wp_query, $wp_the_query, $post;
+
+		// Do not add srcset, sizes, or decoding attributes as they are irrelevant for this test.
+		add_filter( 'wp_img_tag_add_srcset_and_sizes_attr', '__return_false' );
+		add_filter( 'wp_img_tag_add_decoding_attr', '__return_false' );
+		add_filter(
+			'wp_get_attachment_image_attributes',
+			static function( $attr ) {
+				unset( $attr['srcset'], $attr['sizes'], $attr['decoding'] );
+				return $attr;
+			}
+		);
+		$this->force_omit_loading_attr_threshold( 1 );
+
+		$content_img      = get_image_tag( self::$large_id, '', '', '', 'large' );
+		$lazy_content_img = wp_img_tag_add_loading_attr( $content_img, 'the_content' );
+
+		// The featured image should not be lazy-loaded as it is the first image.
+		$featured_image_id = self::$large_id;
+		update_post_meta( self::$post_ids['publish'], '_thumbnail_id', $featured_image_id );
+		$expected_featured_image = '<figure class="wp-block-post-featured-image">' . get_the_post_thumbnail( self::$post_ids['publish'], 'post-thumbnail', array( 'loading' => false ) ) . '</figure>';
+
+		// The post content image should be lazy-loaded since the featured image appears above.
+		$post_content     = $content_img;
+		$expected_content = wpautop( $lazy_content_img );
+
+		// Update the post to test with so that it has the above post content.
+		wp_update_post(
+			array(
+				'ID'                    => self::$post_ids['publish'],
+				'post_content'          => $post_content,
+				'post_content_filtered' => $post_content,
+			)
+		);
+
+		$wp_query     = new WP_Query( array( 'p' => self::$post_ids['publish'] ) );
+		$wp_the_query = $wp_query;
+		$post         = get_post( self::$post_ids['publish'] );
+
+		$_wp_current_template_content = '<!-- wp:post-featured-image /--> <!-- wp:post-content /-->';
+
+		$html = get_the_block_template_html();
+		$this->assertSame( '<div class="wp-site-blocks">' . $expected_featured_image . ' <div class="entry-content wp-block-post-content is-layout-flow">' . $expected_content . '</div></div>', $html );
+	}
+
+	/**
+	 * Tests that wp_filter_content_tags() does not add loading="lazy" to images
+	 * in a "Header" template part.
+	 *
+	 * @ticket 56930
+	 *
+	 * @covers ::wp_filter_content_tags
+	 * @covers ::wp_get_loading_attr_default
+	 */
+	public function test_wp_filter_content_tags_does_not_lazy_load_images_in_header() {
+		global $_wp_current_template_content;
+
+		// Do not add srcset, sizes, or decoding attributes as they are irrelevant for this test.
+		add_filter( 'wp_img_tag_add_srcset_and_sizes_attr', '__return_false' );
+		add_filter( 'wp_img_tag_add_decoding_attr', '__return_false' );
+
+		// Use a single image for each header and footer template parts.
+		$header_img = get_image_tag( self::$large_id, '', '', '', 'large' );
+		$footer_img = get_image_tag( self::$large_id, '', '', '', 'medium' );
+
+		// Create header and footer template parts.
+		$header_post_id = self::factory()->post->create(
+			array(
+				'post_type'    => 'wp_template_part',
+				'post_status'  => 'publish',
+				'post_name'    => 'header',
+				'post_content' => $header_img,
+			)
+		);
+		wp_set_post_terms( $header_post_id, WP_TEMPLATE_PART_AREA_HEADER, 'wp_template_part_area' );
+		wp_set_post_terms( $header_post_id, get_stylesheet(), 'wp_theme' );
+		$footer_post_id = self::factory()->post->create(
+			array(
+				'post_type'    => 'wp_template_part',
+				'post_status'  => 'publish',
+				'post_name'    => 'footer',
+				'post_content' => $footer_img,
+			)
+		);
+		wp_set_post_terms( $footer_post_id, WP_TEMPLATE_PART_AREA_FOOTER, 'wp_template_part_area' );
+		wp_set_post_terms( $footer_post_id, get_stylesheet(), 'wp_theme' );
+
+		$_wp_current_template_content = '<!-- wp:template-part {"slug":"header","theme":"' . get_stylesheet() . '","tagName":"header"} /--><!-- wp:template-part {"slug":"footer","theme":"' . get_stylesheet() . '","tagName":"footer"} /-->';
+
+		// Header image should not be lazy-loaded, footer image should be lazy-loaded.
+		$expected_template_content  = '<header class="wp-block-template-part">' . $header_img . '</header>';
+		$expected_template_content .= '<footer class="wp-block-template-part">' . wp_img_tag_add_loading_attr( $footer_img, 'force-lazy' ) . '</footer>';
+
+		$html = get_the_block_template_html();
+		$this->assertSame( '<div class="wp-site-blocks">' . $expected_template_content . '</div>', $html );
+	}
+
+	/**
+	 * @ticket 58089
+	 *
+	 * @covers ::wp_filter_content_tags
+	 * @covers ::wp_get_loading_attr_default
+	 */
+	public function test_wp_filter_content_tags_does_not_lazy_load_special_images_within_the_content() {
+		global $wp_query, $wp_the_query;
+
+		// Force no lazy-loading on the image tag expected in the content.
+		$expected_content = wpautop( wp_get_attachment_image( self::$large_id, 'large', false, array( 'loading' => false ) ) );
+
+		// Overwrite post content with an image.
+		add_filter(
+			'the_content',
+			static function() {
+				// Replace content with an image tag, i.e. the 'wp_get_attachment_image' context is used while running 'the_content' filter.
+				return wp_get_attachment_image( self::$large_id, 'large', false );
+			},
+			9 // Run before wp_filter_content_tags().
+		);
+
+		/*
+		 * We have to run a main query loop so that the first 'the_content' context image is not
+		 * lazy-loaded.
+		 * Without the fix from 58089, the image would still be lazy-loaded since the check for the
+		 * separately invoked 'wp_get_attachment_image' context would lead to that.
+		 */
+		$wp_query     = new WP_Query( array( 'post__in' => array( self::$post_ids['publish'] ) ) );
+		$wp_the_query = $wp_query;
+
+		$content = '';
+		while ( have_posts() ) {
+			the_post();
+			$content = get_echo( 'the_content' );
+		}
+
+		// Ensure that parsed content has the image without lazy-loading.
+		$this->assertSame( $expected_content, $content );
+	}
+
+	/**
+	 * Tests that wp_get_loading_attr_default() returns 'lazy' for special contexts when they're used outside of 'the_content' filter.
+	 *
+	 * @ticket 58089
+	 *
+	 * @covers ::wp_get_loading_attr_default
+	 *
+	 * @dataProvider data_special_contexts_for_the_content
+	 *
+	 * @param string $context Context for the element for which the `loading` attribute value is requested.
+	 */
+	public function test_wp_get_loading_attr_default_should_return_lazy_for_special_contexts_outside_of_the_content( $context ) {
+		$this->assertSame( 'lazy', wp_get_loading_attr_default( $context ) );
+	}
+
+	/**
+	 * Tests that wp_get_loading_attr_default() returns false for special contexts when they're used within 'the_content' filter.
+	 *
+	 * @ticket 58089
+	 *
+	 * @covers ::wp_get_loading_attr_default
+	 *
+	 * @dataProvider data_special_contexts_for_the_content
+	 *
+	 * @param string $context Context for the element for which the `loading` attribute value is requested.
+	 */
+	public function test_wp_get_loading_attr_default_should_return_false_for_special_contexts_within_the_content( $context ) {
+		remove_all_filters( 'the_content' );
+
+		$result = null;
+		add_filter(
+			'the_content',
+			function( $content ) use ( &$result, $context ) {
+				$result = wp_get_loading_attr_default( $context );
+				return $content;
+			}
+		);
+		apply_filters( 'the_content', '' );
+		$this->assertFalse( $result );
+	}
+
+	/**
+	 * Data provider.
+	 *
+	 * @return array[]
+	 */
+	public function data_special_contexts_for_the_content() {
+		return array(
+			'the_post_thumbnail'      => array( 'context' => 'the_post_thumbnail' ),
+			'wp_get_attachment_image' => array( 'context' => 'wp_get_attachment_image' ),
+		);
+	}
+
+	/**
+	 * Tests that the content media count is not affected by `the_excerpt()` calls for posts that contain images.
+	 *
+	 * @ticket 56588
+	 *
+	 * @covers ::wp_trim_excerpt
+	 */
+	public function test_the_excerpt_does_not_affect_content_media_count() {
+		global $wp_query, $wp_the_query;
+
+		/*
+		 * Use the filter to alter the threshold for not lazy-loading to the first 2 elements,
+		 * then use a post that contains exactly 2 images.
+		 */
+		$this->force_omit_loading_attr_threshold( 2 );
+		$post_content  = '<img src="example.jpg" width="800" height="600">';
+		$post_content .= '<p>Some text.</p>';
+		$post_content .= '<img src="example2.jpg" width="800" height="600">';
+
+		$post_id = self::factory()->post->create(
+			array(
+				'post_content' => $post_content,
+				'post_excerpt' => '',
+			)
+		);
+
+		$wp_query     = new WP_Query( array( 'post__in' => array( $post_id ) ) );
+		$wp_the_query = $wp_query;
+
+		while ( have_posts() ) {
+			the_post();
+
+			// Call `the_excerpt()` without generating output.
+			get_echo( 'the_excerpt' );
+		}
+
+		// The only way to access the value is by calling this function without increasing the value.
+		$content_media_count = wp_increase_content_media_count( 0 );
+
+		// Assert that the media count was not increased even though there are 3 images in the post's content.
+		$this->assertSame( 0, $content_media_count );
+	}
+
+	/**
+	 * Tests that the lazy-loading result is not affected by `the_excerpt()` calls for posts that
+	 * contain images.
+	 *
+	 * Printing the excerpt for a post that contains images in its content prior to its featured image should result in
+	 * that featured image not being lazy-loaded, since the images in the post content aren't displayed in the excerpt.
+	 *
+	 * @ticket 56588
+	 *
+	 * @covers ::wp_trim_excerpt
+	 */
+	public function test_the_excerpt_does_not_affect_omit_lazy_loading_logic() {
+		global $wp_query, $wp_the_query;
+
+		/*
+		 * Use the filter to alter the threshold for not lazy-loading to the first 2 elements,
+		 * then use a post that contains exactly 2 images.
+		 */
+		$this->force_omit_loading_attr_threshold( 2 );
+		$post_content  = '<img src="example.jpg" width="800" height="600">';
+		$post_content .= '<p>Some text.</p>';
+		$post_content .= '<img src="example2.jpg" width="800" height="600">';
+
+		$post_id           = self::factory()->post->create(
+			array(
+				'post_content' => $post_content,
+				'post_excerpt' => '',
+			)
+		);
+		$featured_image_id = self::$large_id;
+		update_post_meta( $post_id, '_thumbnail_id', $featured_image_id );
+
+		$expected_image_tag = get_the_post_thumbnail( $post_id, 'post-thumbnail', array( 'loading' => false ) );
+
+		$wp_query     = new WP_Query( array( 'post__in' => array( $post_id ) ) );
+		$wp_the_query = $wp_query;
+
+		$output = '';
+		while ( have_posts() ) {
+			the_post();
+
+			// Print excerpt first, then the featured image.
+			$output .= get_echo( 'the_excerpt' );
+			$output .= get_echo( 'the_post_thumbnail' );
+		}
+
+		$this->assertStringContainsString( $expected_image_tag, $output );
+	}
+
+>>>>>>> 6ff355e87d (Media: Fix lazy-loading bug by avoiding to modify content images when creating an excerpt.)
 	private function reset_content_media_count() {
 		// Get current value without increasing.
 		$content_media_count = wp_increase_content_media_count( 0 );
