@@ -3994,7 +3994,7 @@ function _prime_term_caches( $term_ids, $update_meta_cache = true ) {
 		update_term_cache( $fresh_terms );
 	}
 
-		if ( $update_meta_cache ) {
+	if ( $update_meta_cache ) {
 		wp_lazyload_term_meta( $term_ids );
 	}
 }
