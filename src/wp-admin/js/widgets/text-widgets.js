@@ -87,7 +87,7 @@ wp.textWidgets = ( function( $ ) {
 			// Sync input fields to hidden sync fields which actually get sent to the server.
 			_.each( control.fields, function( fieldInput, fieldName ) {
 				fieldInput.on( 'input change', function updateSyncField() {
-					var syncInput = control.syncContainer.find( '.sync-input.' + fieldName );
+					var syncInput = $(control.syncContainer).find( '.sync-input.' + fieldName );
 					if ( syncInput.val() !== fieldInput.val() ) {
 						syncInput.val( fieldInput.val() );
 						syncInput.trigger( 'change' );
@@ -95,7 +95,7 @@ wp.textWidgets = ( function( $ ) {
 				});
 
 				// Note that syncInput cannot be re-used because it will be destroyed with each widget-updated event.
-				fieldInput.val( control.syncContainer.querySelector( '.sync-input.' + fieldName ).value );
+				fieldInput.val( $(control.syncContainer).find( '.sync-input.' + fieldName ).val() );
 			});
 		},
 
