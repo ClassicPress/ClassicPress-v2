@@ -214,12 +214,7 @@ class Tests_Term_GetTheTerms extends WP_UnitTestCase {
 		$this->assertSameSets( $terms, wp_list_pluck( $found, 'term_id' ) );
 
 		$num_queries++;
-<<<<<<< HEAD
-		$this->assertSame( $num_queries, $wpdb->num_queries );
-=======
 		$this->assertSame( $num_queries, get_num_queries() );
-
->>>>>>> 07fc459e7a (Tests: Use the function `get_num_queries` across all unit tests.)
 	}
 
 	/**

@@ -64,13 +64,8 @@ class Tests_Post_GetPages extends WP_UnitTestCase {
 		// Force last_changed to increment.
 		clean_post_cache( $pages[0]->ID );
 		$this->assertNotEquals( $time1, $time2 = wp_cache_get( 'last_changed', 'posts' ) );
-<<<<<<< HEAD
-
-		$num_queries = $wpdb->num_queries;
-=======
 		get_post( $pages[0]->ID );
 		$num_queries = get_num_queries();
->>>>>>> 07fc459e7a (Tests: Use the function `get_num_queries` across all unit tests.)
 
 		// last_changed bumped so num_queries should increment.
 		$pages = get_pages( array( 'number' => 2 ) );
@@ -103,29 +98,6 @@ class Tests_Post_GetPages extends WP_UnitTestCase {
 	}
 
 	/**
-<<<<<<< HEAD
-=======
-	 * @ticket 43514
-	 */
-	public function test_get_pages_cache_empty() {
-		wp_cache_delete( 'last_changed', 'posts' );
-		$this->assertFalse( wp_cache_get( 'last_changed', 'posts' ) );
-
-		$num_queries = get_num_queries();
-
-		$pages = get_pages(); // Database gets queried.
-
-		$this->assertSame( $num_queries + 1, get_num_queries() );
-
-		$num_queries = get_num_queries();
-
-		$pages = get_pages(); // Database should not get queried.
-
-		$this->assertSame( $num_queries, get_num_queries() );
-	}
-
-	/**
->>>>>>> 07fc459e7a (Tests: Use the function `get_num_queries` across all unit tests.)
 	 * @ticket 40669
 	 */
 	public function test_cache_should_be_invalidated_by_add_post_meta() {

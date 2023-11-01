@@ -2936,12 +2936,7 @@ class Tests_Term_getTerms extends WP_UnitTestCase {
 
 		$num_queries = get_num_queries();
 		$term0       = get_term( $terms[0] );
-<<<<<<< HEAD
-		$this->assertSame( $num_queries, $wpdb->num_queries );
-=======
 		$this->assertSame( $num_queries, get_num_queries() );
-
->>>>>>> 07fc459e7a (Tests: Use the function `get_num_queries` across all unit tests.)
 	}
 
 	/**
