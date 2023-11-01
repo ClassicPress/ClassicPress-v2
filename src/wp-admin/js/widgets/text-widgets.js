@@ -392,6 +392,11 @@ wp.textWidgets = ( function( $ ) {
 			return;
 		}
 
+		// Bypass using TinyMCE when widget is in legacy mode.
+		if ( ! widgetContainer.find( '.visual' ).val() ) {
+			return;
+		}
+
 		/*
 		 * Create a container element for the widget control fields.
 		 * This is inserted into the DOM immediately before the .widget-content
@@ -446,6 +451,11 @@ wp.textWidgets = ( function( $ ) {
 
 		idBase = widgetContainer.find( '.id_base' ).val();
 		if ( -1 === component.idBases.indexOf( idBase ) ) {
+			return;
+		}
+
+		// Bypass using TinyMCE when widget is in legacy mode.
+		if ( ! widgetForm.find( '.visual' ).val() ) {
 			return;
 		}
 
