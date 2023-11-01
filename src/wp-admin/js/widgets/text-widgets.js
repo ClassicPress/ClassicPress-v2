@@ -95,7 +95,7 @@ wp.textWidgets = ( function( $ ) {
 				});
 
 				// Note that syncInput cannot be re-used because it will be destroyed with each widget-updated event.
-				fieldInput.val( control.syncContainer.find( '.sync-input.' + fieldName ).val() );
+				fieldInput.val( control.syncContainer.querySelector( '.sync-input.' + fieldName ).value );
 			});
 		},
 
@@ -216,7 +216,7 @@ wp.textWidgets = ( function( $ ) {
 			};
 
 			// Just-in-time force-update the hidden input fields.
-			control.syncContainer.closest( '.widget' ).find( '[name=savewidget]:first' ).on( 'click', function onClickSaveButton() {
+			control.syncContainer.closest( '.widget' ).querySelector( '[name=savewidget]' ).addEventListener( 'click', function onClickSaveButton() {
 				triggerChangeIfDirty();
 			});
 
@@ -381,19 +381,23 @@ wp.textWidgets = ( function( $ ) {
 		var widgetForm, idBase, widgetControl, widgetId, animatedCheckDelay = 50, renderWhenAnimationDone, fieldContainer, syncContainer;
 		widgetForm = widgetContainer.find( '> .widget-inside > .form, > .widget-inside > form' ); // Note: '.form' appears in the customizer, whereas 'form' on the widgets admin screen.
 
-		idBase = widgetContainer.find( '.id_base' ).val();
+		if ( widgetContainer instanceof jQuery ) {
+			widgetContainer = widgetContainer[0];
+		}
+
+		idBase = widgetContainer.querySelector( '.id_base' ).value;
 		if ( -1 === component.idBases.indexOf( idBase ) ) {
 			return;
 		}
 
 		// Prevent initializing already-added widgets.
-		widgetId = widgetForm.find( '.widget-id' ).val();
+		widgetId = widgetContainer.querySelector( '.widget-id' ).value;
 		if ( component.widgetControls[ widgetId ] ) {
 			return;
 		}
 
 		// Bypass using TinyMCE when widget is in legacy mode.
-		if ( ! widgetContainer.find( '.visual' ).val() ) {
+		if ( ! widgetContainer.querySelector( '.visual' ).value ) {
 			return;
 		}
 
@@ -408,8 +412,8 @@ wp.textWidgets = ( function( $ ) {
 		 * components", the JS template is rendered outside of the normal form
 		 * container.
 		 */
-		fieldContainer = $( '<div></div>' );
-		syncContainer = widgetContainer.find( '.widget-content:first' );
+		fieldContainer = document.createElement( 'div' );
+		syncContainer = widgetContainer.querySelector( '.widget-content' );
 		syncContainer.before( fieldContainer );
 
 		widgetControl = new component.TextWidgetControl({
@@ -426,7 +430,7 @@ wp.textWidgets = ( function( $ ) {
 		 * with TinyMCE being able to set contenteditable on it.
 		 */
 		renderWhenAnimationDone = function() {
-			if ( ! widgetContainer.hasClass( 'open' ) ) {
+			if ( ! widgetContainer.querySelector( 'details' ).hasAttribute( 'open' ) ) {
 				setTimeout( renderWhenAnimationDone, animatedCheckDelay );
 			} else {
 				widgetControl.initializeEditor();
@@ -451,11 +455,6 @@ wp.textWidgets = ( function( $ ) {
 
 		idBase = widgetContainer.find( '.id_base' ).val();
 		if ( -1 === component.idBases.indexOf( idBase ) ) {
-			return;
-		}
-
-		// Bypass using TinyMCE when widget is in legacy mode.
-		if ( ! widgetForm.find( '.visual' ).val() ) {
 			return;
 		}
 
