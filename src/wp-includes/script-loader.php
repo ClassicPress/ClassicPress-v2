@@ -236,7 +236,6 @@ function wp_default_packages_inline_scripts( $scripts ) {
 		'after'
 	);
 
-	
 	// wp-editor module is exposed as window.wp.editor
 	// Problem: there is quite some code expecting window.wp.oldEditor object available under window.wp.editor
 	// Solution: fuse the two objects together to maintain backward compatibility
