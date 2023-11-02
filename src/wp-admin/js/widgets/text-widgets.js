@@ -378,7 +378,7 @@ wp.textWidgets = ( function( $ ) {
 	 * @return {void}
 	 */
 	component.handleWidgetAdded = function handleWidgetAdded( event, widgetContainer ) {
-		var widgetForm, idBase, widgetControl, widgetId, animatedCheckDelay = 50, renderWhenAnimationDone, fieldContainer, syncContainer;
+		var widgetForm, idBase, widgetControl, widgetId, animatedCheckDelay = 200, renderWhenAnimationDone, fieldContainer, syncContainer;
 		widgetForm = widgetContainer.find( '> .widget-inside > .form, > .widget-inside > form' ); // Note: '.form' appears in the customizer, whereas 'form' on the widgets admin screen.
 
 		if ( widgetContainer instanceof jQuery ) {
