@@ -4441,3 +4441,54 @@ function get_page_by_title( $page_title, $output = OBJECT, $post_type = 'page' )
 
 	return null;
 }
+<<<<<<< HEAD
+=======
+
+/**
+ * Returns the correct template for the site's home page.
+ *
+ * @access private
+ * @since 6.0.0
+ * @deprecated 6.2.0 Site Editor's server-side redirect for missing postType and postId
+ *             		 query args is removed. Thus, this function is no longer used.
+ *
+ * @return array|null A template object, or null if none could be found.
+ */
+function _resolve_home_block_template() {
+	_deprecated_function( __FUNCTION__, '6.2.0' );
+
+	$show_on_front = get_option( 'show_on_front' );
+	$front_page_id = get_option( 'page_on_front' );
+
+	if ( 'page' === $show_on_front && $front_page_id ) {
+		return array(
+				'postType' => 'page',
+				'postId'   => $front_page_id,
+		);
+	}
+
+	$hierarchy = array( 'front-page', 'home', 'index' );
+	$template  = resolve_block_template( 'home', $hierarchy, '' );
+
+	if ( ! $template ) {
+		return null;
+	}
+
+	return array(
+			'postType' => 'wp_template',
+			'postId'   => $template->id,
+	);
+}
+
+/**
+ * Displays the link to the Windows Live Writer manifest file.
+ *
+ * @link https://msdn.microsoft.com/en-us/library/bb463265.aspx
+ * @since 2.3.1
+ * @deprecated 6.3.0 WLW manifest is no longer in use and no longer included in core,
+ *                   so the output from this function is removed.
+ */
+function wlwmanifest_link() {
+	_deprecated_function( __FUNCTION__, '6.3.0' );
+}
+>>>>>>> 20c490d73c (General: Remove Windows Live Writer manifest file.)

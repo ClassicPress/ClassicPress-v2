@@ -3344,6 +3344,7 @@ function rsd_link() {
 }
 
 /**
+<<<<<<< HEAD
  * Displays the link to the Windows Live Writer manifest file.
  *
  * @link https://msdn.microsoft.com/en-us/library/bb463265.aspx
@@ -3357,6 +3358,8 @@ function wlwmanifest_link() {
 }
 
 /**
+=======
+>>>>>>> 20c490d73c (General: Remove Windows Live Writer manifest file.)
  * Displays a referrer `strict-origin-when-cross-origin` meta tag.
  *
  * Outputs a referrer `strict-origin-when-cross-origin` meta tag that tells the browser not to send
