@@ -4443,6 +4443,18 @@ function get_page_by_title( $page_title, $output = OBJECT, $post_type = 'page' )
 }
 
 /**
+ * Displays the link to the Windows Live Writer manifest file.
+ *
+ * @link https://msdn.microsoft.com/en-us/library/bb463265.aspx
+ * @since 2.3.1
+ * @deprecated 6.3.0 WLW manifest is no longer in use and no longer included in core,
+ *                   so the output from this function is removed.
+ */
+function wlwmanifest_link() {
+	_deprecated_function( __FUNCTION__, '6.3.0' );
+}
+
+/**
  * Queues comments for metadata lazy-loading.
  *
  * @since 4.5.0
